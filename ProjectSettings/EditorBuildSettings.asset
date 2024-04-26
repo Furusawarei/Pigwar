@@ -4,5 +4,29 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Member/Furusawa/Scenes2/TestScene.unity
+    guid: d9ca7ed8d7227e74ebbb35816d5e4af9
+  - enabled: 1
+    path: Assets/Member/Hashimoto/Scenes/TestScene3.unity
+    guid: 4598233f5f9b70943a2a1069042a3fcc
+  - enabled: 1
+    path: Assets/Member/Saito/Scenes/TestScene5.unity
+    guid: 49c1d02acdb73fe46a161b3a725cb40e
+  - enabled: 1
+    path: Assets/Member/Matsukawa/Scenes/TestScene4.unity
+    guid: 12b265ccd84d7804aa697fc351214c99
+  - enabled: 1
+    path: Assets/Member/Abe/Scenes/TestScens1.unity
+    guid: 4f41997d90efd614a8fe7cb475c96df4
+  - enabled: 1
+    path: Assets/Scenes/Stert.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Result.unity
+    guid: b4d3a2a62ef67f348b2ac8f14c186bb5
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: fd10d20d44b302e438a9ef11cb10c607
   m_configObjects: {}
