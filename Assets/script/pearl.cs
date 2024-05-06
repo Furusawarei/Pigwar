@@ -1,42 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class pearl : MonoBehaviour
 {
-    private List<GameObject> _pearlist = new List<GameObject>();
+    public List<GameObject> _pearlist = new List<GameObject>();
     private GameObject _pearlprefab;
-    private int count = 1;
-  
+
     private void Start()
     {
+        //ê^éÏÇÃê∂ê¨
         _pearlprefab = Resources.Load<GameObject>("pearl");
         InvokeRepeating(nameof(Production), 0.0f, 1.0f);
-        
-
-
     }
-
+    //ê^éÏÇ™ÇRå¬ê∂ê¨Ç≥ÇÍÇΩÇÁç¿ïWÇâ°Ç…Ç∏ÇÁÇµÇƒÇUå¬à»è„ê∂ê¨Ç≥ÇÍÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈÅB
     private void Production()
     {
-        if (_pearlist.Count >= 3) return;
+        if (_pearlist.Count >= 6) return;
         {
             var obj = Instantiate(_pearlprefab);
-            obj.transform.localPosition = Vector3.up * 5;
-            _pearlist.Add(obj);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(count++);
-        if(count > 4)
-        {
-            if(this.gameObject.CompareTag("Player"))
+            if (_pearlist.Count >= 3)
             {
-                GameObject Obj = GameObject.Find("Pearl(Clone)");
-                Destroy(Obj);
+                obj.transform.position= new Vector3(1.5f, 5.0f, 0.0f);
             }
-
+            else
+            {
+                obj.transform.position = Vector3.up * 5;
+            }
+            _pearlist.Add(obj);
+            Debug.Log("ê∂ê¨");
         }
+        
     }
 }
