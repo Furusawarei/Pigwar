@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Member/Furusawa/Scenes2/TestScene.unity
+    path: Assets/Member/Furusawa/Scenes2/KariScene.unity
     guid: d9ca7ed8d7227e74ebbb35816d5e4af9
   - enabled: 1
     path: Assets/Member/Hashimoto/Scenes/TestScene3.unity
@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Abe/Scenes/ScoreAndRisult.unity
     guid: 1be12af035d947845b238c3a79fbeed0
+  - enabled: 1
+    path: Assets/Member/Furusawa/Scenes2/TestScene.unity
+    guid: 2078ed0ad9f60b9419a6a9747b1e94f2
+  - enabled: 1
+    path: Assets/Member/Furusawa/Scenes2/KariScene 1.unity
+    guid: e2c75280ad886f04b947da020f5149db
   m_configObjects: {}
