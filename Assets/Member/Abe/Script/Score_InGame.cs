@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,8 +8,10 @@ public class Score_InGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //初期化
         Scoremaneger.Instance().PlayerScore[0] = 0;
         Scoremaneger.Instance().PlayerScore[1] = 0;
+        //0を表示する
         _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
         _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();
     }
@@ -21,7 +21,7 @@ public class Score_InGame : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.K))
         {
-            Scoremaneger.Instance().ScoreChenge(1, 2);
+            Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
             Debug.Log("2P+1");
         }
         if (Input.GetKeyUp(KeyCode.H))
@@ -31,7 +31,7 @@ public class Score_InGame : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.I))
         {
-            Scoremaneger.Instance().ScoreChenge(-2, 2);
+            Scoremaneger.Instance().ScoreChenge(-2, 2);//マイナスで減算する
             Debug.Log("2P-2");
         }
         if (Input.GetKeyUp(KeyCode.U))
@@ -41,6 +41,7 @@ public class Score_InGame : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.J))
         {
+            Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
             SceneManager.LoadScene("TestScens1");
         }
     }

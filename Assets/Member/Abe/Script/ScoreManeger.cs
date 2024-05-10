@@ -1,8 +1,5 @@
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Scoremaneger : MonoBehaviour
 {
@@ -19,9 +16,11 @@ public class Scoremaneger : MonoBehaviour
     public int[] PlayerScore = new int[2];
 
 
-    [SerializeField] private TextMeshProUGUI[] _scoreborad=new TextMeshProUGUI[2];
+    [SerializeField] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
+    [SerializeField] private Transform[] _scoreboardTransform = new Transform[2];
+    [SerializeField] private Transform[] _resultPos = new Transform[2];
+    private bool _scoreRandomSwitch = false;
 
-    // Start is called before the first frame update
     void Awake()
     {
         //初期化処理
@@ -36,16 +35,47 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (_scoreRandomSwitch)
+        {
+            for (int i = 0; i < _scoreborad.Length; i++)
+            {
+                _scoreborad[i].text = Random.Range(10, 100).ToString();
+            }
+        }
+    }
+
     //スコア増減と反映(増減数,プレイヤー)
     public void ScoreChenge(int score, int PlayerNumber)
     {
-        PlayerScore[PlayerNumber-1] += score;
-        if (PlayerScore[PlayerNumber - 1] < 0)
+        PlayerNumber -= 1;
+        PlayerScore[PlayerNumber] += score;
+        if (PlayerScore[PlayerNumber] < 0)
         {
-            if (PlayerScore[PlayerNumber - 1] == -1) PlayerScore[PlayerNumber-1] = 1;
-            else PlayerScore[PlayerNumber - 1] = 0;
+            if (PlayerScore[PlayerNumber] == -1) PlayerScore[PlayerNumber] = 1;
+            else PlayerScore[PlayerNumber] = 0;
             Debug.Log("マイナス");
         }
-        _scoreborad[PlayerNumber-1].text = PlayerScore[PlayerNumber-1].ToString();
+        _scoreborad[PlayerNumber].text = PlayerScore[PlayerNumber].ToString();
+    }
+
+    //リザルト画面遷移時のスコア位置移動
+    public void ToResult()
+    {
+        for (int i = 0; i < _scoreboardTransform.Length; i++)
+        {
+            _scoreboardTransform[i].position = _resultPos[i].position;
+            _scoreborad[i].fontSize *= 3;
+        }
+        ScoreRandomSwitch();
+    }
+
+    //ランダムのやつを終了させる用
+    public void ScoreRandomSwitch()
+    {
+        _scoreRandomSwitch= !_scoreRandomSwitch;
+        _scoreborad[0].text = PlayerScore[0].ToString();
+        _scoreborad[1].text = PlayerScore[1].ToString();
     }
 }
