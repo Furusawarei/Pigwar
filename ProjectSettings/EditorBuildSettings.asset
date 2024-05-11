@@ -15,13 +15,19 @@ EditorBuildSettings:
     path: Assets/Member/Saito/Scenes/TestScene5.unity
     guid: 49c1d02acdb73fe46a161b3a725cb40e
   - enabled: 1
-    path: Assets/Member/Matsukawa/Scenes/TestScene4.unity
+    path: Assets/Member/Matsukawa/Scenes/Title.unity
     guid: 12b265ccd84d7804aa697fc351214c99
   - enabled: 1
     path: Assets/Member/Abe/Scenes/TestScens1.unity
     guid: 4f41997d90efd614a8fe7cb475c96df4
   - enabled: 1
-    path: Assets/Scenes/Stert.unity
+    path: Assets/Member/Matsukawa/Scenes/Main.unity
+    guid: d02d04dd9c34ce147b72c159c4c1e588
+  - enabled: 1
+    path: Assets/Member/Matsukawa/Scenes/Result.unity
+    guid: dff955cb4d5525d4ba332b4b37f32eb4
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Result.unity
