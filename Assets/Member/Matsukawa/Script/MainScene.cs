@@ -4,11 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SceneController : MonoBehaviour
+public class MainScene : MonoBehaviour
 {
     void Update()
     {
-
+        if (FadeManager.Instance.IsFading) return;
         // Zƒ{ƒ^ƒ“‚ª‚¨‚³‚ê‚½‚çƒƒCƒ“‰æ–Ê‚É‘JˆÚ
         if (Input.GetKeyDown("joystick button 13"))
         {

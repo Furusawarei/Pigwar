@@ -1313,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4089724615593558283, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_Alpha
+      value: 0.9866684
+      objectReference: {fileID: 0}
     - target: {fileID: 8752862991022105268, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1363,15 +1367,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752862991022105268, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8752862991022105268, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8752862991022105268, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8752862991022105268, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2576,7 +2580,7 @@ SceneRoots:
   - {fileID: 200835022}
   - {fileID: 351274373}
   - {fileID: 8596149}
-  - {fileID: 544097772}
   - {fileID: 1905723580}
-  - {fileID: 1833021073}
   - {fileID: 1109372082}
+  - {fileID: 1833021073}
+  - {fileID: 544097772}
