@@ -26,10 +26,11 @@ public class pearl : MonoBehaviour
         if (_pearlist.Count >= 6) return;
         {
             var obj = Instantiate(_pearlprefab,Vector3.zero,Quaternion.identity, pearl_limit);
+            obj.GetComponent<pearl_counter>().Setup(DeleteObject);
             if (_pearlist.Count >= 3)
             {
                 //3å¬ê∂ê¨ÇµÇΩÇÁç¿ïWÇâ°Ç…Ç∏ÇÁÇ∑
-                obj.transform.position= new Vector3(1.5f, 5.0f, 0.0f);
+                obj.transform.position = new Vector3(1.5f, 5.0f, 0.0f);
             }
             else
             {
@@ -38,6 +39,10 @@ public class pearl : MonoBehaviour
             _pearlist.Add(obj);
             Debug.Log("ê∂ê¨");
         }
-        
+    }
+
+    private void DeleteObject(GameObject obj)
+    {
+        _pearlist.Remove(obj);
     }
 }
