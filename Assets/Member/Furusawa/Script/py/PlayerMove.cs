@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // プレイヤーの位置を更新
-        transform.localPosition += direction * 0.005f;
+        transform.localPosition += direction * 0.01f;
     }
 }
 
