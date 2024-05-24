@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Member/Abe/Script/ResultTest.cs.meta
 guid: 3f1edc0afa2960941b140bc2ac851600
+========
+guid: 656cc8f2392a0fd44ae78bb2feb989bf
+>>>>>>>> saito_yu:Assets/Member/Saito/Script/pearl_counter.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
