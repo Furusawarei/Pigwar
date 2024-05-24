@@ -21,5 +21,9 @@ public class pearl_counter : MonoBehaviour
             Debug.Log("“–‚½‚Á‚½");
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+
+    }
 
 }
