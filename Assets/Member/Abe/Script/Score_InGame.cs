@@ -42,7 +42,7 @@ public class Score_InGame : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.J))
         {
             Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
-            SceneManager.LoadScene("TestScens1");
+            SceneManager.LoadScene("Result");
         }
     }
 }

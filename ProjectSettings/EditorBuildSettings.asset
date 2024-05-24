@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Member/Matsukawa/Scenes/Title.unity
     guid: 12b265ccd84d7804aa697fc351214c99
   - enabled: 1
-    path: Assets/Member/Abe/Scenes/TestScens1.unity
+    path: Assets/Member/Abe/Scenes/ResultTest.unity
     guid: 4f41997d90efd614a8fe7cb475c96df4
   - enabled: 1
     path: Assets/Member/Matsukawa/Scenes/Main.unity
@@ -36,7 +36,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: fd10d20d44b302e438a9ef11cb10c607
   - enabled: 1
-    path: Assets/Member/Abe/Scenes/ScoreAndRisult.unity
+    path: Assets/Member/Abe/Scenes/ScoreTest.unity
     guid: 1be12af035d947845b238c3a79fbeed0
   - enabled: 1
     path: Assets/Member/Furusawa/Scenes2/TestScene.unity
