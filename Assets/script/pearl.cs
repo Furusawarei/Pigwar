@@ -12,7 +12,6 @@ public class pearl : MonoBehaviour
     public List<GameObject> _pearlist = new List<GameObject>();
     private GameObject _pearlprefab;
 
-
     private void Start()
     {
         //^ì‚Ì¶¬

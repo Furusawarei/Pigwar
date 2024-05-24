@@ -10,13 +10,13 @@ public class playermove : MonoBehaviour
         // Wキー（前方移動）
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += speed * transform.forward * Time.deltaTime;
+            transform.position -= speed * transform.forward * Time.deltaTime;
         }
 
         // Sキー（後方移動）
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position -= speed * transform.forward * Time.deltaTime;
+            transform.position += speed * transform.forward * Time.deltaTime;
         }
 
         // Dキー（右移動）
