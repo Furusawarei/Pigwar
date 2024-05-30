@@ -502,6 +502,7 @@ MonoBehaviour:
   playerPos: {fileID: 538978202953161367}
   playerPos2: {fileID: 1241943837}
   boxPrefab: {fileID: 3185122327389440725, guid: 6a1fff94bb79a564289afbe5991f49b9, type: 3}
+  boxPrefab2: {fileID: 3185122327389440725, guid: e8f1f58c013d9294d9f4a0bd6048ed02, type: 3}
 --- !u!4 &1622449871
 Transform:
   m_ObjectHideFlags: 0
