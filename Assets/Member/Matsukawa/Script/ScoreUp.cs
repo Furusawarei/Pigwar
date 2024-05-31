@@ -23,29 +23,26 @@ public class ScoreUp : MonoBehaviour
     // Player2の障害物
     public GameObject boxPrefab2;
 
-    public void FixedUpdate()
+    private bool isCallOnce;
+    private bool generatePrefab2;
+
+    public void Update()
     {
         //✕ボタン（Zキー）を押したときスコアが２以上なら
         //障害物をプレイヤー１の目の前に生成する   
         if (score1 <= 2) return;
         if (Input.GetKeyDown("joystick button 1") || Input.GetKey(KeyCode.Z))
         {
-            GeneratePrefabs();
+
+            var bPrefab = Instantiate(boxPrefab);
+            bPrefab.transform.position = transform.position + playerPos.forward * 1;
+
+            score1 -= 2;
+
+            score1Text.text = string.Format("Player1:{0}", score1);
+            Debug.Log("player1:" + score1);
+
         }
-
-    }
-    public void Update()
-    {
-        //✕ボタン（Xキー）を押したときスコアが２以上なら
-        //障害物をプレイヤー２の目の前に生成する   
-        if (score2 <= 2) return;
-        if (Input.GetKeyDown("joystick button 1") || Input.GetKey(KeyCode.X))
-        {
-            GeneratePrefabs2();
-        }
-
-
-
 
         // Player1の障害物の数
         int count = GameObject.FindGameObjectsWithTag("boxPrefab").Length;
@@ -56,36 +53,15 @@ public class ScoreUp : MonoBehaviour
             Destroy(boxPrefab);
         }
 
-
-        // Player２の障害物の数
-        int count2 = GameObject.FindGameObjectsWithTag("boxPrefab2").Length;
-
-        if (count2 <= 8) return;
-        if (count2 == 8)
-        {
-            Destroy(boxPrefab2);
-        }
-
     }
 
-    public void GeneratePrefabs()
-    {
-        score1--;
-
-        var boxPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        boxPrefab.transform.position = transform.position + playerPos.forward * 1;
-
-        score1Text.text = string.Format("Player1:{0}", score1);
-        Debug.Log("player1:" + score1);
-
-    }
 
     public void GeneratePrefabs2()
     {
-        score2--;
+        score2 -= 2;
 
-        var boxPrefab2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        boxPrefab.transform.position = transform.position + playerPos2.forward * 1;
+        var bPrefab2 = Instantiate(boxPrefab2);
+        bPrefab2.transform.position = transform.position + playerPos2.forward * 1;
 
         score2Text.text = string.Format("Player2:{0}", score2);
         Debug.Log("player2:" + score2);
