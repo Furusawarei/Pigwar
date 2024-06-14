@@ -1,29 +1,29 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public class Scoremaneger : MonoBehaviour
 {
-    //singletonƒGƒŠƒA
+    //singletonã‚¨ãƒªã‚¢
     private static Scoremaneger instance;
-    public static Scoremaneger Instance()//¶¬
+    public static Scoremaneger Instance()//ç”Ÿæˆ
     {
         if (instance == null)
             instance = new Scoremaneger();
         return instance;
     }
     private Scoremaneger() { }
-    //•Ï”
+    //å¤‰æ•°
     public int[] PlayerScore = new int[2];
 
 
-    [SerializeField] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
-    [SerializeField] private Transform[] _scoreboardTransform = new Transform[2];
-    [SerializeField] private Transform[] _resultPos = new Transform[2];
+    [SerializeField, Header("ã‚¹ã‚³ã‚¢è¡¨ç¤ºã«ä½¿ã†text(TMP)")] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
+    [SerializeField,Header("ã‚¹ã‚³ã‚¢è¡¨ç¤ºã«ä½¿ã†text(TMP)")] private Transform[] _scoreboardTransform = new Transform[2];
+    [SerializeField,Header("ãƒªã‚¶ãƒ«ãƒˆã«é·ç§»ã—ãŸã¨ãã«ç§»å‹•ã™ã‚‹å ´æ‰€")] private Transform[] _resultPos = new Transform[2];
     private bool _scoreRandomSwitch = false;
 
     void Awake()
     {
-        //‰Šú‰»ˆ—
+        //åˆæœŸåŒ–å‡¦ç†
         if (instance == null)
         {
             instance = this;
@@ -46,7 +46,11 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
-    //ƒXƒRƒA‘Œ¸‚Æ”½‰f(‘Œ¸”,ƒvƒŒƒCƒ„[)
+    /// <summary>
+    /// ã‚¹ã‚³ã‚¢å¢—æ¸›ã¨åæ˜ (å¢—æ¸›æ•°,ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼)
+    /// </summary>
+    /// <param name="score">å¢—æ¸›ã•ã›ã‚‹å€¤</param>
+    /// <param name="PlayerNumber">å¢—æ¸›ã•ã›ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼</param>
     public void ScoreChenge(int score, int PlayerNumber)
     {
         PlayerNumber -= 1;
@@ -55,12 +59,14 @@ public class Scoremaneger : MonoBehaviour
         {
             if (PlayerScore[PlayerNumber] == -1) PlayerScore[PlayerNumber] = 1;
             else PlayerScore[PlayerNumber] = 0;
-            Debug.Log("ƒ}ƒCƒiƒX");
+            Debug.Log("ãƒã‚¤ãƒŠã‚¹");
         }
         _scoreborad[PlayerNumber].text = PlayerScore[PlayerNumber].ToString();
     }
 
-    //ƒŠƒUƒ‹ƒg‰æ–Ê‘JˆÚ‚ÌƒXƒRƒAˆÊ’uˆÚ“®
+    /// <summary>
+    /// ãƒªã‚¶ãƒ«ãƒˆç”»é¢é·ç§»æ™‚ã®ã‚¹ã‚³ã‚¢ä½ç½®ç§»å‹•
+    /// </summary>
     public void ToResult()
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
@@ -71,11 +77,24 @@ public class Scoremaneger : MonoBehaviour
         ScoreRandomSwitch();
     }
 
-    //ƒ‰ƒ“ƒ_ƒ€‚Ì‚â‚Â‚ğI—¹‚³‚¹‚é—p
+    /// <summary>
+    /// ãƒ©ãƒ³ãƒ€ãƒ ã®ã‚„ã¤ã‚’çµ‚äº†ã•ã›ã‚‹ç”¨ 
+    /// </summary>
     public void ScoreRandomSwitch()
     {
         _scoreRandomSwitch= !_scoreRandomSwitch;
         _scoreborad[0].text = PlayerScore[0].ToString();
         _scoreborad[1].text = PlayerScore[1].ToString();
+    }
+
+    /// <summary>
+    /// å‹æ•—åˆ¤å®š
+    /// </summary>
+    /// <returns>å¼•ãåˆ†ã‘ãªã‚‰0,ãã†ã§ãªã„ãªã‚‰å‹ã£ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·ãŒintã§</returns>
+    public int Judge()
+    {
+        if (PlayerScore[0] > PlayerScore[1]) return 1;
+        else if (PlayerScore[0] < PlayerScore[1]) return 2;
+        else return 0;
     }
 }
