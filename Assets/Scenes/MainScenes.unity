@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17757899, g: 0.2223225, b: 0.30451906, a: 1}
+  m_IndirectSpecularColor: {r: 0.17757857, g: 0.22232181, b: 0.30451754, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1580,6 +1580,7 @@ Transform:
   - {fileID: 1302235390}
   - {fileID: 1595491180}
   - {fileID: 1145040592}
+  - {fileID: 1921635205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &767714796 stripped
@@ -2980,7 +2981,7 @@ GameObject:
   - component: {fileID: 1145040592}
   - component: {fileID: 1145040591}
   m_Layer: 0
-  m_Name: Pearl
+  m_Name: Pearl 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2998,6 +2999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 889f469d71a858b418c08d234d2e2fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _PosX: -7
   pearl_limit: {fileID: 1145040592}
   _pearlist: []
 --- !u!4 &1145040592
@@ -3009,7 +3011,7 @@ Transform:
   m_GameObject: {fileID: 1145040590}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11, y: 0.59998775, z: 4.5}
+  m_LocalPosition: {x: -11, y: 0.6, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3549,6 +3551,7 @@ MonoBehaviour:
   playerPos: {fileID: 0}
   playerPos2: {fileID: 0}
   boxPrefab: {fileID: 0}
+  boxPrefab2: {fileID: 0}
 --- !u!114 &1329411525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6050,6 +6053,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8929d1d9ac2e04a4f96a620d69fd90b5, type: 3}
+--- !u!1 &1921635204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921635205}
+  - component: {fileID: 1921635206}
+  m_Layer: 0
+  m_Name: Pearl 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1921635205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921635204}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0.6, z: 4.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 742586659}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1921635206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921635204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889f469d71a858b418c08d234d2e2fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PosX: 7
+  pearl_limit: {fileID: 0}
+  _pearlist: []
 --- !u!1001 &1933976730
 PrefabInstance:
   m_ObjectHideFlags: 0
