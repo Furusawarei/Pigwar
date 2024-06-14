@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
-using UnityEditorInternal;
+//using UnityEditorInternal;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -24,16 +24,16 @@ public class PlayerInput : MonoBehaviour
 
     void Start()
     {
-        upForce = 250;
-        rb = GetComponent<Rigidbody>();//ƒWƒƒƒ“ƒv
+        upForce = 150;
+        rb = GetComponent<Rigidbody>();//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
     }
 
     void Update()
     {
         var pos = _actionControl.Player.Move.ReadValue<Vector2>();
-        transform.position += new Vector3(pos.x, 0, pos.y) * 0.05f; //ˆÚ“®
+        transform.position += new Vector3(pos.x, 0, pos.y) * 0.03f; //ï¿½Ú“ï¿½
 
-        Vector3 diff = transform.position - BefoPos;//ˆÚ“®•ûŒüŒü‚­
+        Vector3 diff = transform.position - BefoPos;//ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         diff.y = 0;
         BefoPos = transform.position;
         if (diff.magnitude > 0.01f)
@@ -43,7 +43,7 @@ public class PlayerInput : MonoBehaviour
 
         
 
-        if (_actionControl.Player.Jump.triggered && !Jumping)//ƒWƒƒƒ“ƒv
+        if (_actionControl.Player.Jump.triggered && !Jumping)//ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½v
         {
             //rb.velocity = Vector3.up * upForce;
             rb.AddForce(new Vector3(0, upForce, 0));

@@ -6,10 +6,21 @@ using UnityEngine.InputSystem;
 
 public class ResultScene : MonoBehaviour
 {
+     private ActionControl _actionControl;
+     private void Awake()
+    {
+        _actionControl = new ActionControl();
+        _actionControl.Enable();
+    }
     void Update()
     {
+        if(_actionControl.UI.Scenes.triggered)
+        {
+           FadeManager.Instance.TransScene("Title", 2.0f);
+        }
 
-        // Zƒ{ƒ^ƒ“‚ª‚¨‚³‚ê‚½‚çƒƒCƒ“‰æ–Ê‚É‘JˆÚ
+        /*
+        // ï¿½Zï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‚½ï¿½çƒï¿½Cï¿½ï¿½ï¿½ï¿½Ê‚É‘Jï¿½ï¿½
         if (Input.GetKeyDown("joystick button 13"))
         {
             FadeManager.Instance.TransScene("Title", 2.0f);
@@ -18,6 +29,7 @@ public class ResultScene : MonoBehaviour
         {
             FadeManager.Instance.TransScene("Title", 2.0f);
         }
+        */
 
     }
 

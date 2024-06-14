@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Score2 : MonoBehaviour
 {
+    [SerializeField]Scoremaneger scoremaneger;
       private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pearl"))
