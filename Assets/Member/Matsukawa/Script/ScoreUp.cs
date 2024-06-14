@@ -17,8 +17,14 @@ public class ScoreUp : MonoBehaviour
     [SerializeField] public Transform playerPos;
     [SerializeField] public Transform playerPos2;
 
-    // 障害物
+    // Player1の障害物
     public GameObject boxPrefab;
+
+    // Player2の障害物
+    public GameObject boxPrefab2;
+
+    private bool isCallOnce;
+    private bool generatePrefab2;
 
     public void Update()
     {
@@ -27,33 +33,45 @@ public class ScoreUp : MonoBehaviour
         if (score1 <= 2) return;
         if (Input.GetKeyDown("joystick button 1") || Input.GetKey(KeyCode.Z))
         {
-            score1--;
 
-            var boxPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            boxPrefab.transform.position = transform.position + playerPos.forward * 1;
+            var bPrefab = Instantiate(boxPrefab);
+            bPrefab.transform.position = transform.position + playerPos.forward * 1;
+
+            score1 -= 2;
 
             score1Text.text = string.Format("Player1:{0}", score1);
             Debug.Log("player1:" + score1);
 
         }
 
-        //✕ボタン（Xキー）を押したときスコアが２以上なら
-        //障害物をプレイヤー２の目の前に生成する   
-        if (score2 <= 2) return;
-        if (Input.GetKeyDown("joystick button 1") || Input.GetKey(KeyCode.X))
+        // Player1の障害物の数
+        int count = GameObject.FindGameObjectsWithTag("boxPrefab").Length;
+
+        if (count <= 8) return;
+        if (count == 8)
         {
-            score2--;
-
-            var boxPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            boxPrefab.transform.position = transform.position + playerPos2.forward * 1;
-
-            score2Text.text = string.Format("Player2:{0}", score2);
-            Debug.Log("player2:" + score2);
-
+            Destroy(boxPrefab);
         }
 
     }
 
+
+    public void GeneratePrefabs2()
+    {
+        score2 -= 2;
+
+        var bPrefab2 = Instantiate(boxPrefab2);
+        bPrefab2.transform.position = transform.position + playerPos2.forward * 1;
+
+        score2Text.text = string.Format("Player2:{0}", score2);
+        Debug.Log("player2:" + score2);
+
+    }
+
+
+    /// <summary>
+    /// ボタンを押したらプレイヤー１のスコアが１上がる関数
+    /// </summary>
     public void ClickScoreUp()
     {
         score1++;
