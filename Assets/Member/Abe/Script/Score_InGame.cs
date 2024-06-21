@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,10 +8,10 @@ public class Score_InGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //‰Šú‰»
-        Scoremaneger.Instance().PlayerScore[0] = 0;
-        Scoremaneger.Instance().PlayerScore[1] = 0;
-        //0‚ğ•\¦‚·‚é
+        //åˆæœŸåŒ–
+        Scoremaneger.Instance().SetScore(0, 1);
+        Scoremaneger.Instance().SetScore(0, 2); ;
+        //0ã‚’è¡¨ç¤ºã™ã‚‹
         _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
         _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();
     }
@@ -21,7 +21,7 @@ public class Score_InGame : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.K))
         {
-            Scoremaneger.Instance().ScoreChenge(1, 2);//‘Œ¸’l,ƒvƒŒƒCƒ„[
+            Scoremaneger.Instance().ScoreChenge(1, 2);//å¢—æ¸›å€¤,ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
             Debug.Log("2P+1");
         }
         if (Input.GetKeyUp(KeyCode.H))
@@ -31,7 +31,7 @@ public class Score_InGame : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.I))
         {
-            Scoremaneger.Instance().ScoreChenge(-2, 2);//ƒ}ƒCƒiƒX‚ÅŒ¸Z‚·‚é
+            Scoremaneger.Instance().ScoreChenge(-2, 2);//ãƒã‚¤ãƒŠã‚¹ã§æ¸›ç®—ã™ã‚‹
             Debug.Log("2P-2");
         }
         if (Input.GetKeyUp(KeyCode.U))
@@ -41,8 +41,8 @@ public class Score_InGame : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.J))
         {
-            Scoremaneger.Instance().ToResult();//‚±‚±‚ÅƒXƒRƒA•\¦‚ğˆÚ“®
-            SceneManager.LoadScene("Result");
+            Scoremaneger.Instance().ToResult();//ã“ã“ã§ã‚¹ã‚³ã‚¢è¡¨ç¤ºã‚’ç§»å‹•
+            SceneManager.LoadScene("MatukawaResult_Copy");
         }
     }
 }
