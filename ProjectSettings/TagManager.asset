@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ground
   - Pearl
-  - Default
   layers:
   - Default
   - TransparentFX

@@ -17,13 +17,8 @@ public class pearl : MonoBehaviour
     private void Start()
     {
         //�^��̐���
-<<<<<<< Updated upstream
         _pearlprefab = Resources.Load<GameObject>("pearl");
         InvokeRepeating(nameof(Production), 4.0f, 3.0f);
-=======
-        _pearlprefab = Resources.Load<GameObject>("Pearl");
-        InvokeRepeating(nameof(Production), 0.0f, 2.0f);
->>>>>>> Stashed changes
         
     }
 

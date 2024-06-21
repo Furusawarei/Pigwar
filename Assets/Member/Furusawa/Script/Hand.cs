@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 
 public class Hand : MonoBehaviour
 {
-    public ActionControl _inputActions;
-    public GameObject _gameObject;
+    public InputActions _inputActions;
+    public GameObject gameObject;
 
     void Start()
     {
-        _inputActions = new ActionControl();
+        _inputActions = new InputActions();
         _inputActions.Enable();
     }
     void Update()

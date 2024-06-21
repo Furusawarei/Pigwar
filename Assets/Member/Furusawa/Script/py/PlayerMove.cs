@@ -1,56 +1,39 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    private ActionControl _actionControl;
+    private InputActions _actionControl;
 
-    private Vector3 BefoPos;
-
-    private Rigidbody rb;
-    private float upForce;
-    private bool Jumping = false;
+    public Vector3 direction; //追加
+    // Start is called before the first frame update
 
     private void Awake()
     {
-        _actionControl = new ActionControl();
+        _actionControl = new InputActions();
         _actionControl.Enable();
     }
 
-    void Start()
-    {
-        upForce = 150;
-        rb = GetComponent<Rigidbody>();//�W�����v
-    }
-
+    // Update is called once per frame
     void Update()
     {
-        var pos = _actionControl.Player.Move.ReadValue<Vector2>();
-        transform.position += new Vector3(pos.x, 0, pos.y) * 0.03f; //�ړ�
+        // プレイヤーの入力を取得
+        var input = _actionControl.Player.Move.ReadValue<Vector2>();
 
-        Vector3 diff = transform.position - BefoPos;//�ړ���������
-        diff.y = 0;
-        BefoPos = transform.position;
-        if (diff.magnitude > 0.01f)
-        {
-           transform.rotation = Quaternion.LookRotation(diff);
-        }
-        
+        // 入力に基づいて進行方向を計算
+        direction = new Vector3(input.x, 0, input.y).normalized;
 
-        if (_actionControl.Player.Jump.triggered && !Jumping)//�W�����v
+        // 進行方向がある場合にのみ回転を変更
+        if (direction != Vector3.zero)
         {
-            //rb.velocity = Vector3.up * upForce;
-            rb.AddForce(new Vector3(0, upForce, 0));
-            Jumping = true;
+            transform.forward = direction;
         }
-    }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.CompareTag("Ground"))
-        {
-            Jumping = false;
-        }
+        // プレイヤーの位置を更新
+        transform.localPosition += direction * 0.01f;
     }
 }
+
