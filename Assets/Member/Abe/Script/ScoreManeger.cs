@@ -83,7 +83,7 @@ public class Scoremaneger : MonoBehaviour
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
             _scoreboardTransform[i].position = _resultPos[i].position;
-            _scoreborad[i].fontSize *= 3;
+            _scoreborad[i].fontSize *= 2;
         }
         ScoreRandomSwitch();
     }
