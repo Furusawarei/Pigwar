@@ -7,14 +7,14 @@ public class ScoreUp2 : MonoBehaviour
     public ScoreUp scoreUp;
 
     // Update is called once per frame
-    void Update()
+    public void Generate()
     {
         //✕ボタン（Xキー）を押したときスコアが２以上なら
         //障害物をプレイヤー２の目の前に生成する   
-        if (scoreUp.score2 <= 2) return;
-        if (Input.GetKeyDown("joystick button 1") || Input.GetKey(KeyCode.X))
+        if (scoreUp.score2 < 2) return;
+        if (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.X))
         {
-            scoreUp.GeneratePrefabs2();
+            scoreUp.GeneratePrefabs();
         }
 
         // Player２の障害物の数
