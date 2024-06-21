@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class pearl : MonoBehaviour
 {
+    [SerializeField]private float _PosX;
     public Transform pearl_limit;
     public List<GameObject> _pearlist = new List<GameObject>();
     private GameObject _pearlprefab;
@@ -17,7 +18,7 @@ public class pearl : MonoBehaviour
     {
         //�^��̐���
         _pearlprefab = Resources.Load<GameObject>("pearl");
-        InvokeRepeating(nameof(Production), 0.0f, 2.0f);
+        InvokeRepeating(nameof(Production), 4.0f, 3.0f);
         
     }
 
@@ -33,7 +34,7 @@ public class pearl : MonoBehaviour
         {
             var obj = Instantiate(_pearlprefab,Vector3.zero,Quaternion.identity, pearl_limit);
             obj.GetComponent<pearl_counter>().Setup(DeleteObject);
-            obj.transform.position = new Vector3(-6.5f, 1.3f, rnd);
+            obj.transform.position = new Vector3(_PosX,0.6f, rnd);
 
             /* if (_pearlist.Count >= 3)
             {
