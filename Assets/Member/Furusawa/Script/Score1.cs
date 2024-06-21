@@ -19,6 +19,7 @@ public class Score1 : MonoBehaviour
 
             // オプション: パールオブジェクトを破壊する場合
             // Destroy(other.gameObject);
+            other.gameObject.tag = "Default";
         }
     }
 }

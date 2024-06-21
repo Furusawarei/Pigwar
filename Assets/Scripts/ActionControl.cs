@@ -84,17 +84,6 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""f60d030a-bcfb-4f5d-b0a6-74eaeb1c0e94"",
-                    ""path"": ""<DualShockGamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""WASD"",
                     ""id"": ""48af57b2-9a1d-4374-981f-e7bec96fa7c9"",
                     ""path"": ""2DVector"",
@@ -151,6 +140,17 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""633bbaaa-593f-4703-8077-24e091ba50d3"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f732e6d0-2358-4d9e-ae14-e6ba126561bf"",
                     ""path"": ""<DualShockGamepad>/buttonEast"",
                     ""interactions"": """",
@@ -175,6 +175,17 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""357ae5f6-73bb-48ff-960b-e8fb4ad2df93"",
                     ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0b616d5-96eb-46eb-9bc7-3e07c4d809ce"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

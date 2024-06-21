@@ -491,6 +491,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream:Assets/Member/Matsukawa/Resources/Scenes/Score.unity
 --- !u!114 &776194707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,6 +522,8 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+=======
+>>>>>>> Stashed changes:Assets/Member/Matsukawa/Scenes/Score.unity
 --- !u!1 &1304415423
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,8 +651,13 @@ MonoBehaviour:
   score1Text: {fileID: 2029176099}
   score2: 0
   score2Text: {fileID: 1702103951}
+<<<<<<< Updated upstream:Assets/Member/Matsukawa/Resources/Scenes/Score.unity
   boxGeneratePos: {fileID: 0}
   boxGeneratePos2: {fileID: 0}
+=======
+  playerPos: {fileID: 0}
+  playerPos2: {fileID: 0}
+>>>>>>> Stashed changes:Assets/Member/Matsukawa/Scenes/Score.unity
   boxPrefab: {fileID: 3185122327389440725, guid: 6a1fff94bb79a564289afbe5991f49b9, type: 3}
   boxPrefab2: {fileID: 3185122327389440725, guid: e8f1f58c013d9294d9f4a0bd6048ed02, type: 3}
 --- !u!4 &1622449871
@@ -930,6 +938,10 @@ SceneRoots:
   - {fileID: 1304415426}
   - {fileID: 1783393788}
   - {fileID: 198837994}
+<<<<<<< Updated upstream:Assets/Member/Matsukawa/Resources/Scenes/Score.unity
+=======
+  - {fileID: 1951791876}
+>>>>>>> Stashed changes:Assets/Member/Matsukawa/Scenes/Score.unity
   - {fileID: 776194706}
   - {fileID: 245426993}
   - {fileID: 95216775}
