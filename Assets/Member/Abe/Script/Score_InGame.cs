@@ -9,8 +9,8 @@ public class Score_InGame : MonoBehaviour
     void Start()
     {
         //初期化
-        Scoremaneger.Instance().PlayerScore[0] = 0;
-        Scoremaneger.Instance().PlayerScore[1] = 0;
+        Scoremaneger.Instance().SetScore(0, 1);
+        Scoremaneger.Instance().SetScore(0, 2); ;
         //0を表示する
         _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
         _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();

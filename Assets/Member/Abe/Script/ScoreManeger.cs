@@ -46,22 +46,33 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
+    public void SetScore(int Score,int PlayerNumber)
+    {
+        PlayerScore[PlayerNumber - 1] = Score;
+    }
+    public int GetScore(int PlayerNumber)
+    {
+        return PlayerScore[PlayerNumber-1];
+    }
+
+
     /// <summary>
     /// スコア増減と反映(増減数,プレイヤー)
     /// </summary>
     /// <param name="score">増減させる値</param>
     /// <param name="PlayerNumber">増減させるプレイヤー</param>
-    public void ScoreChenge(int score, int PlayerNumber)
+    /// <returns>スコアを変更できたか</returns>
+    public bool ScoreChenge(int score, int PlayerNumber)
     {
         PlayerNumber -= 1;
-        PlayerScore[PlayerNumber] += score;
-        if (PlayerScore[PlayerNumber] < 0)
+        if (PlayerScore[PlayerNumber] + score < 0)//計算後のスコアが0未満になるなら反映しない
         {
-            if (PlayerScore[PlayerNumber] == -1) PlayerScore[PlayerNumber] = 1;
-            else PlayerScore[PlayerNumber] = 0;
-            Debug.Log("マイナス");
+            Debug.Log("スコアがマイナスになった");
+            return false;
         }
+        PlayerScore[PlayerNumber] += score;
         _scoreborad[PlayerNumber].text = PlayerScore[PlayerNumber].ToString();
+        return true;
     }
 
     /// <summary>
