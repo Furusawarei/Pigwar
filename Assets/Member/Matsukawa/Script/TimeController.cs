@@ -6,18 +6,20 @@ using System;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 
+/// <summary>
+/// 時間管理用のクラス
+/// </summary>
 public class TimerController : MonoBehaviour
 {
+    // タイマー
     public float countdownMinutes;
     private float countdownSeconds;
 
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI finishText;
 
-
     [SerializeField] private GameObject startImage;
-
-    [SerializeField] private GameObject resultButton;
+    //[SerializeField] private GameObject resultButton;
 
     void Start()
     {
@@ -34,11 +36,6 @@ public class TimerController : MonoBehaviour
             countdownSeconds -= Time.deltaTime;
             var span = new TimeSpan(0, 0, (int)countdownSeconds);
             timeText.text = span.ToString(@"mm\:ss");
-
-            //if(countdownSeconds <= 0) 
-            //{
-            //    timer = false;
-            //}
         }
 
         if (FadeManager.Instance.IsFading) return;

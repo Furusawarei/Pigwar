@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// スコアと障害物の管理用クラス
+/// スコアの表示と、障害物の管理用クラス
 /// </summary>
 public class ScoreUp : MonoBehaviour
 {
+    // 他関数
+    //public Scoremaneger scoremaneger;
     public ScoreUp2 scoreUp2;
 
     [SerializeField] public int score1;
@@ -21,27 +23,27 @@ public class ScoreUp : MonoBehaviour
     [SerializeField] public Transform boxGeneratePos;
     [SerializeField] public Transform boxGeneratePos2;
 
-    // Player1の障害物
-    public GameObject boxPrefab;
-    // Player2の障害物
-    public GameObject boxPrefab2;
+    public GameObject boxPrefab;    // Player1の障害物
+    public GameObject boxPrefab2;   // Player2の障害物
 
-    // 生成した障害物を保存しておくためのリスト
-    [SerializeField] List<GameObject> boxList = new List<GameObject>();
-    // プレイヤー２の障害物
-    [SerializeField] List<GameObject> boxList2 = new List<GameObject>();
+    [Header("Player1の障害物")]
+    [SerializeField] List<GameObject> boxList = new List<GameObject>();    // Player1の生成した障害物を保存しておくためのリスト
+    [Header("Player2の障害物")]
+    [SerializeField] List<GameObject> boxList2 = new List<GameObject>();    // Player2の障害物
 
-    // 障害物管理時に使うリスト用
+    // 障害物管理時に使う リスト用
     private int countPrefabs;
 
     public void Update()
     {
-        // Player2の障害物生成
+        // Player2の障害物生成用関数呼び出し
         scoreUp2.Generate();
 
+        //score1 = scoremaneger.PlayerScore;
         // Player1の障害物生成
-        //✕ボタン（Zキー）を押したときスコアが２以上なら
-        //障害物をプレイヤー１の目の前に生成する   
+
+        // ✕ボタン（Zキー）を押したときスコアが２以上なら
+        // 障害物をプレイヤー１の目の前に生成する   
         if (score1 < 2) return;
         if (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Z))
         {
@@ -61,9 +63,9 @@ public class ScoreUp : MonoBehaviour
         }
 
         // Player1の障害物の数を管理
-        // boxPrefab(障害物)の数が9個になった時、
+        // boxPrefab(障害物)の数が3個になった時、
         // 1番最初に生成された障害物を消す
-        if (boxList.Count > 8)
+        if (boxList.Count > 2)
         {
             Destroy(boxList[0]);
             boxList.Remove(boxList[0]);
@@ -89,9 +91,9 @@ public class ScoreUp : MonoBehaviour
         boxList2.Add(obj);
 
         // Player2の障害物の数を管理
-        // boxPrefab(障害物)の数が9個になった時、
+        // boxPrefab(障害物)の数が3個になった時、
         // 1番最初に生成された障害物を消す
-        if (boxList2.Count > 8)
+        if (boxList2.Count > 2)
         {
             Destroy(boxList2[0]);
             boxList2.Remove(boxList2[0]);
