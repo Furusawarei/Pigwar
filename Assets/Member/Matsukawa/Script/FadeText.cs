@@ -6,9 +6,7 @@ using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 
 /// <summary>
-/// 文字のカウントダウンとフェード
-/// 
-/// キャンバスのフェードアウト
+/// ゲームが始める前の「よ～い」、「スタート！」を表示するためのクラス
 /// </summary>
 public class FadeText : MonoBehaviour
 {
