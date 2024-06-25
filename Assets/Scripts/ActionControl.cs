@@ -37,16 +37,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pick"",
-                    ""type"": ""Button"",
-                    ""id"": ""d31f9c0e-1fbd-44d9-b960-4b36d0a23148"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""summon"",
+                    ""name"": ""Summon"",
                     ""type"": ""Button"",
                     ""id"": ""db69cf8d-a56b-44e0-a73b-1edc66aa92d5"",
                     ""expectedControlType"": ""Button"",
@@ -86,17 +77,17 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f60d030a-bcfb-4f5d-b0a6-74eaeb1c0e94"",
-                    ""path"": ""<DualShockGamepad>/leftStick"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad1"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""WASD"",
-                    ""id"": ""48af57b2-9a1d-4374-981f-e7bec96fa7c9"",
+                    ""id"": ""8fe7a0d7-9f1e-4849-b6cf-f2e9673d7752"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -107,7 +98,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""7e9fe241-831c-4b3f-97cf-04f1b56b19b9"",
+                    ""id"": ""4ffc7bf4-be7d-4eff-b4db-1779967baac2"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -118,7 +109,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""1f1cbeab-37bb-41ff-9594-2aa4bcffef7e"",
+                    ""id"": ""1904bd92-806c-4fb1-95b4-9b97a844867e"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -129,7 +120,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""0ba19b76-bf74-4f8b-b6fb-edab13a6818b"",
+                    ""id"": ""e3c4995e-3272-4b18-b3d9-38dc749da095"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -140,7 +131,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""503d80a6-4433-4db0-861b-75b48d96c21b"",
+                    ""id"": ""360ba228-b719-4136-b8f9-6f20b804e246"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -151,30 +142,30 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f732e6d0-2358-4d9e-ae14-e6ba126561bf"",
-                    ""path"": ""<DualShockGamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""12ba1b23-8bd8-466c-90ee-b3154d75f275"",
-                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""summon"",
+                    ""groups"": ""Gamepad1"",
+                    ""action"": ""Summon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""357ae5f6-73bb-48ff-960b-e8fb4ad2df93"",
-                    ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad1"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""150f881f-9f4b-4b50-b032-ff400b78275c"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -185,10 +176,10 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1253c4e8-7609-4c9b-b794-5e5729d9994d"",
-                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad1"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -207,10 +198,10 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cd5a5140-53d1-4a63-837f-5a76b5d9a42a"",
-                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad1"",
                     ""action"": ""Have"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -222,6 +213,114 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Have"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Player1"",
+            ""id"": ""7f8e2189-4f50-4fe8-a816-ffc1e27cf23c"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""df25b7d5-9380-4794-ba87-49d666e04061"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Summon"",
+                    ""type"": ""Button"",
+                    ""id"": ""90d19a4b-730d-4ff9-b96c-57c6be2bcb01"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""da476d79-cfaa-49a0-9a3e-58898e7b32c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ce846e7-33ac-45d3-a36c-8a072b7bec94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Have"",
+                    ""type"": ""Button"",
+                    ""id"": ""25f9d486-b005-48d2-8d17-c3d15dd2808b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""14c453a0-a673-40a8-ac24-d6a42e4fad0d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad2"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6e2c417-d54a-4e96-a636-079791c7b5fe"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad2"",
+                    ""action"": ""Summon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c0e003e-837b-4cb7-9044-4564fe4e9c22"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad2"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed0ef810-768a-4629-a6bb-5e07722fbf97"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad2"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ae29398-4c58-4e7f-8913-7d6832201b01"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad2"",
                     ""action"": ""Have"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -246,7 +345,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0e0eb291-0e82-45d4-9f85-6ad7e9170138"",
-                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -268,16 +367,45 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Gamepad2"",
+            ""bindingGroup"": ""Gamepad2"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad1"",
+            ""bindingGroup"": ""Gamepad1"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Pick = m_Player.FindAction("Pick", throwIfNotFound: true);
-        m_Player_summon = m_Player.FindAction("summon", throwIfNotFound: true);
+        m_Player_Summon = m_Player.FindAction("Summon", throwIfNotFound: true);
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Have = m_Player.FindAction("Have", throwIfNotFound: true);
+        // Player1
+        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
+        m_Player1_Move = m_Player1.FindAction("Move", throwIfNotFound: true);
+        m_Player1_Summon = m_Player1.FindAction("Summon", throwIfNotFound: true);
+        m_Player1_Throw = m_Player1.FindAction("Throw", throwIfNotFound: true);
+        m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
+        m_Player1_Have = m_Player1.FindAction("Have", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Scenes = m_UI.FindAction("Scenes", throwIfNotFound: true);
@@ -343,8 +471,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Pick;
-    private readonly InputAction m_Player_summon;
+    private readonly InputAction m_Player_Summon;
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Have;
@@ -353,8 +480,7 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
         private @ActionControl m_Wrapper;
         public PlayerActions(@ActionControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Pick => m_Wrapper.m_Player_Pick;
-        public InputAction @summon => m_Wrapper.m_Player_summon;
+        public InputAction @Summon => m_Wrapper.m_Player_Summon;
         public InputAction @Throw => m_Wrapper.m_Player_Throw;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Have => m_Wrapper.m_Player_Have;
@@ -370,12 +496,9 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Pick.started += instance.OnPick;
-            @Pick.performed += instance.OnPick;
-            @Pick.canceled += instance.OnPick;
-            @summon.started += instance.OnSummon;
-            @summon.performed += instance.OnSummon;
-            @summon.canceled += instance.OnSummon;
+            @Summon.started += instance.OnSummon;
+            @Summon.performed += instance.OnSummon;
+            @Summon.canceled += instance.OnSummon;
             @Throw.started += instance.OnThrow;
             @Throw.performed += instance.OnThrow;
             @Throw.canceled += instance.OnThrow;
@@ -392,12 +515,9 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Pick.started -= instance.OnPick;
-            @Pick.performed -= instance.OnPick;
-            @Pick.canceled -= instance.OnPick;
-            @summon.started -= instance.OnSummon;
-            @summon.performed -= instance.OnSummon;
-            @summon.canceled -= instance.OnSummon;
+            @Summon.started -= instance.OnSummon;
+            @Summon.performed -= instance.OnSummon;
+            @Summon.canceled -= instance.OnSummon;
             @Throw.started -= instance.OnThrow;
             @Throw.performed -= instance.OnThrow;
             @Throw.canceled -= instance.OnThrow;
@@ -424,6 +544,84 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Player1
+    private readonly InputActionMap m_Player1;
+    private List<IPlayer1Actions> m_Player1ActionsCallbackInterfaces = new List<IPlayer1Actions>();
+    private readonly InputAction m_Player1_Move;
+    private readonly InputAction m_Player1_Summon;
+    private readonly InputAction m_Player1_Throw;
+    private readonly InputAction m_Player1_Jump;
+    private readonly InputAction m_Player1_Have;
+    public struct Player1Actions
+    {
+        private @ActionControl m_Wrapper;
+        public Player1Actions(@ActionControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player1_Move;
+        public InputAction @Summon => m_Wrapper.m_Player1_Summon;
+        public InputAction @Throw => m_Wrapper.m_Player1_Throw;
+        public InputAction @Jump => m_Wrapper.m_Player1_Jump;
+        public InputAction @Have => m_Wrapper.m_Player1_Have;
+        public InputActionMap Get() { return m_Wrapper.m_Player1; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
+        public void AddCallbacks(IPlayer1Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_Player1ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Player1ActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
+            @Summon.started += instance.OnSummon;
+            @Summon.performed += instance.OnSummon;
+            @Summon.canceled += instance.OnSummon;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Have.started += instance.OnHave;
+            @Have.performed += instance.OnHave;
+            @Have.canceled += instance.OnHave;
+        }
+
+        private void UnregisterCallbacks(IPlayer1Actions instance)
+        {
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
+            @Summon.started -= instance.OnSummon;
+            @Summon.performed -= instance.OnSummon;
+            @Summon.canceled -= instance.OnSummon;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Have.started -= instance.OnHave;
+            @Have.performed -= instance.OnHave;
+            @Have.canceled -= instance.OnHave;
+        }
+
+        public void RemoveCallbacks(IPlayer1Actions instance)
+        {
+            if (m_Wrapper.m_Player1ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayer1Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_Player1ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Player1ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public Player1Actions @Player1 => new Player1Actions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -470,10 +668,35 @@ public partial class @ActionControl: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+    private int m_Gamepad2SchemeIndex = -1;
+    public InputControlScheme Gamepad2Scheme
+    {
+        get
+        {
+            if (m_Gamepad2SchemeIndex == -1) m_Gamepad2SchemeIndex = asset.FindControlSchemeIndex("Gamepad2");
+            return asset.controlSchemes[m_Gamepad2SchemeIndex];
+        }
+    }
+    private int m_Gamepad1SchemeIndex = -1;
+    public InputControlScheme Gamepad1Scheme
+    {
+        get
+        {
+            if (m_Gamepad1SchemeIndex == -1) m_Gamepad1SchemeIndex = asset.FindControlSchemeIndex("Gamepad1");
+            return asset.controlSchemes[m_Gamepad1SchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnPick(InputAction.CallbackContext context);
+        void OnSummon(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnHave(InputAction.CallbackContext context);
+    }
+    public interface IPlayer1Actions
+    {
+        void OnMove(InputAction.CallbackContext context);
         void OnSummon(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

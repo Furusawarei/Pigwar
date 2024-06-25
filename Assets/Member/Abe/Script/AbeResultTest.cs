@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ResultTest : MonoBehaviour
 {
+    /*
     void Update() { 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -11,4 +12,5 @@ public class ResultTest : MonoBehaviour
         }
         
     }
+    */
 }

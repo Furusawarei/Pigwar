@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Score_InGame : MonoBehaviour
 {
+    /*
     [SerializeField] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
     // Start is called before the first frame update
     void Start()
@@ -45,4 +46,5 @@ public class Score_InGame : MonoBehaviour
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
     }
+    */
 }

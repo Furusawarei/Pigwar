@@ -3,27 +3,25 @@ using UnityEngine;
 
 public class Scoremaneger : MonoBehaviour
 {
-    //singletonエリア
     private static Scoremaneger instance;
-    public static Scoremaneger Instance()//生成
+    public static Scoremaneger Instance()
     {
         if (instance == null)
             instance = new Scoremaneger();
         return instance;
     }
     private Scoremaneger() { }
-    //変数
+
     public int[] PlayerScore = new int[2];
-
-
     [SerializeField, Header("スコア表示に使うtext(TMP)")] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
-    [SerializeField,Header("スコア表示に使うtext(TMP)")] private Transform[] _scoreboardTransform = new Transform[2];
-    [SerializeField,Header("リザルトに遷移したときに移動する場所")] private Transform[] _resultPos = new Transform[2];
+    [SerializeField, Header("スコア表示に使うtext(TMP)")] private Transform[] _scoreboardTransform = new Transform[2];
+    [SerializeField, Header("リザルトに遷移したときに移動する場所")] private Transform[] _resultPos = new Transform[2];
     private bool _scoreRandomSwitch = false;
+
+    [SerializeField] public GameObject boxPrefab2; // Add a reference to the prefab
 
     void Awake()
     {
-        //初期化処理
         if (instance == null)
         {
             instance = this;
@@ -46,11 +44,6 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// スコア増減と反映(増減数,プレイヤー)
-    /// </summary>
-    /// <param name="score">増減させる値</param>
-    /// <param name="PlayerNumber">増減させるプレイヤー</param>
     public void ScoreChenge(int score, int PlayerNumber)
     {
         PlayerNumber -= 1;
@@ -64,9 +57,6 @@ public class Scoremaneger : MonoBehaviour
         _scoreborad[PlayerNumber].text = PlayerScore[PlayerNumber].ToString();
     }
 
-    /// <summary>
-    /// リザルト画面遷移時のスコア位置移動
-    /// </summary>
     public void ToResult()
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
@@ -77,24 +67,24 @@ public class Scoremaneger : MonoBehaviour
         ScoreRandomSwitch();
     }
 
-    /// <summary>
-    /// ランダムのやつを終了させる用 
-    /// </summary>
     public void ScoreRandomSwitch()
     {
-        _scoreRandomSwitch= !_scoreRandomSwitch;
+        _scoreRandomSwitch = !_scoreRandomSwitch;
         _scoreborad[0].text = PlayerScore[0].ToString();
         _scoreborad[1].text = PlayerScore[1].ToString();
     }
 
-    /// <summary>
-    /// 勝敗判定
-    /// </summary>
-    /// <returns>引き分けなら0,そうでないなら勝ったプレイヤー番号がintで</returns>
     public int Judge()
     {
         if (PlayerScore[0] > PlayerScore[1]) return 1;
         else if (PlayerScore[0] < PlayerScore[1]) return 2;
         else return 0;
+    }
+
+    // Method to generate the prefabs
+    public void GeneratePrefabs()
+    {
+        // Implement the logic to generate the prefab for Player 2
+        Instantiate(boxPrefab2, new Vector3(0, 0, 0), Quaternion.identity); // Adjust the position as needed
     }
 }

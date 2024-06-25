@@ -13,21 +13,21 @@ public class TimerController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI finishText;
-
-
     [SerializeField] private GameObject startImage;
-
     [SerializeField] private GameObject resultButton;
+    
+    // SE関連の変数を追加
+    [SerializeField] private AudioSource countdownSE;
+    private float lastSETime = 0.0f;
 
     void Start()
     {
         countdownSeconds = countdownMinutes * 60;
     }
 
-
     void Update()
     {
-        //  タイマーの処理
+        // タイマーの処理
         if (startImage.activeSelf) return;
         if (countdownSeconds > 0)
         {
@@ -35,10 +35,15 @@ public class TimerController : MonoBehaviour
             var span = new TimeSpan(0, 0, (int)countdownSeconds);
             timeText.text = span.ToString(@"mm\:ss");
 
-            //if(countdownSeconds <= 0) 
-            //{
-            //    timer = false;
-            //}
+            // 残り5秒を切った時のSE処理
+            if (countdownSeconds <= 5 && countdownSeconds > 0)
+            {
+                if (Time.time - lastSETime >= 1.0f)
+                {
+                    countdownSE.Play();
+                    lastSETime = Time.time;
+                }
+            }
         }
 
         if (FadeManager.Instance.IsFading) return;
@@ -54,5 +59,4 @@ public class TimerController : MonoBehaviour
             FadeManager.Instance.TransScene("Result", 2.0f);
         }
     }
-
 }
