@@ -10,26 +10,25 @@ using UnityEngine.InputSystem;
 public class ScoreUp : MonoBehaviour
 {
     // 他関数
-    //public Scoremaneger scoremaneger;
     public ScoreUp2 scoreUp2;
+    public Scoremaneger scoreManager;
+    // あべさんのスコアリスト
 
-    [SerializeField] public int score1;
-    [SerializeField] public TextMeshProUGUI score1Text;
+    [SerializeField] protected int score1;
+    [SerializeField] private TextMeshProUGUI score1Text;
 
-    [SerializeField] public int score2;
-    [SerializeField] public TextMeshProUGUI score2Text;
+    [SerializeField] protected int score2;
+    [SerializeField] private TextMeshProUGUI score2Text;
 
     // 障害物を生成する場所
-    [SerializeField] public Transform boxGeneratePos;
-    [SerializeField] public Transform boxGeneratePos2;
+    [SerializeField] private Transform boxGeneratePos;
+    [SerializeField] private Transform boxGeneratePos2;
 
-    public GameObject boxPrefab;    // Player1の障害物
-    public GameObject boxPrefab2;   // Player2の障害物
+    [SerializeField] private GameObject boxPrefab;    // Player1の障害物
+    [SerializeField] protected GameObject boxPrefab2;   // Player2の障害物
 
-    [Header("Player1の障害物")]
-    [SerializeField] List<GameObject> boxList = new List<GameObject>();    // Player1の生成した障害物を保存しておくためのリスト
-    [Header("Player2の障害物")]
-    [SerializeField] List<GameObject> boxList2 = new List<GameObject>();    // Player2の障害物
+    [Header("Player1の障害物"), SerializeField] List<GameObject> boxList = new List<GameObject>();    // Player1の生成した障害物を保存しておくためのリスト
+    [Header("Player2の障害物"), SerializeField] List<GameObject> boxList2 = new List<GameObject>();    // Player2の障害物
 
     // 障害物管理時に使う リスト用
     private int countPrefabs;
@@ -39,6 +38,7 @@ public class ScoreUp : MonoBehaviour
         // Player2の障害物生成用関数呼び出し
         scoreUp2.Generate();
 
+        scoreManager.PlayerScore[0] = score1;
         //score1 = scoremaneger.PlayerScore;
         // Player1の障害物生成
 
@@ -77,6 +77,9 @@ public class ScoreUp : MonoBehaviour
     /// </summary>
     public void GeneratePrefabs()
     {
+        // あべさんの所から来たスコア
+        scoreManager.PlayerScore[1] = score2;
+
         // Player2の前にboxPrefab（障害物）を生成
         var obj = Instantiate(boxPrefab2, boxGeneratePos2.transform.position, Quaternion.identity);
 
