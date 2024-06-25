@@ -1471,7 +1471,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224565054574266747, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306140235847017028, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 7f8e2189-4f50-4fe8-a816-ffc1e27cf23c
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306140235847017028, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad2
       objectReference: {fileID: 0}
     - target: {fileID: 4045073634438324519, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
       propertyPath: JumpSE
@@ -1479,8 +1487,12 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: e5ea77c392556c44b81f6fc655c62903, type: 3}
     - target: {fileID: 4045073634438324519, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4045073634438324519, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1976417192}
     - target: {fileID: 8843021583748990397, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.796
@@ -1565,7 +1577,6 @@ MonoBehaviour:
   _resultPos:
   - {fileID: 1595491180}
   - {fileID: 1302235390}
-  boxPrefab2: {fileID: 5025703893363277069, guid: ac305cb978edde244b73da913d4254c2, type: 3}
 --- !u!4 &742586659
 Transform:
   m_ObjectHideFlags: 0
@@ -3641,6 +3652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreUp2: {fileID: 0}
+  scoreManager: {fileID: 0}
   score1: 0
   score1Text: {fileID: 0}
   score2: 0
@@ -6101,8 +6113,6 @@ MonoBehaviour:
   timeText: {fileID: 1133562797}
   finishText: {fileID: 1471516601}
   startImage: {fileID: 1429550375}
-  resultButton: {fileID: 0}
-  countdownSE: {fileID: 0}
 --- !u!114 &1976417190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6555,7 +6565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306140235847017028, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
       propertyPath: m_DefaultActionMap
-      value: Player
+      value: Player1
       objectReference: {fileID: 0}
     - target: {fileID: 1306140235847017028, guid: fa5d699f11296c844aaae44e672dc64e, type: 3}
       propertyPath: m_DefaultControlScheme

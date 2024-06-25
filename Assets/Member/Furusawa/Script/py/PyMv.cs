@@ -33,7 +33,7 @@ public class PyMv : MonoBehaviour
 
     void Update()
     {
-        var pos = _actionControl.Player.Move.ReadValue<Vector2>();
+        var pos = _actionControl.Player1.Move.ReadValue<Vector2>();
         transform.position += new Vector3(pos.x, 0, pos.y) * 0.03f; // プレイヤーの移動
 
         Vector3 diff = transform.position - BefoPos; // 前フレームとの位置の差分を計算
@@ -45,7 +45,7 @@ public class PyMv : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(diff);
         }
 
-        if (_actionControl.Player.Jump.triggered && !Jumping) // ジャンプの処理
+        if (_actionControl.Player1.Jump.triggered && !Jumping) // ジャンプの処理
         {
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;

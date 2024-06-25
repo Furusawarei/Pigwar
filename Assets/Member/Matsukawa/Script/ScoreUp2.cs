@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ScoreUp2 : MonoBehaviour
+public class ScoreUp2 : ScoreUp
 {
-    [SerializeField] ActionControl _actionControl;
-
+    [SerializeField] private ActionControl _actionControl;
     public ScoreUp scoreUp;
-    public GameObject boxPrefab; // 出現させるプレハブ
-    public Transform spawnPoint;
 
     private void Awake()
     {
@@ -17,15 +14,19 @@ public class ScoreUp2 : MonoBehaviour
         _actionControl.Enable();
     }
 
+
     // Update is called once per frame
     public void Generate()
     {
+        // あべさんの所から来たスコア
+        scoreManager.PlayerScore[1] = score2;
+
         //✕ボタン（Xキー）を押したときスコアが２以上なら
         //障害物をプレイヤー２の目の前に生成する   
-        if (scoreUp.score2 < 2) return;
+        if (score2 < 2) return;
         if (_actionControl.Player1.Summon.triggered)
         {
-         Instantiate(boxPrefab, spawnPoint.position, spawnPoint.rotation);
+            scoreUp.GeneratePrefabs();
         }
 
         // Player２の障害物の数
@@ -34,7 +35,7 @@ public class ScoreUp2 : MonoBehaviour
         if (count2 <= 8) return;
         if (count2 == 8)
         {
-            Destroy(scoreUp.boxPrefab2);
+            Destroy(boxPrefab2);
         }
 
     }
