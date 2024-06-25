@@ -57,6 +57,14 @@ public class TouchObject : MonoBehaviour
                 throwObj.transform.SetParent(null); // オブジェクトの親を解除
                 throwObj.transform.rotation = Quaternion.identity; // 回転をリセット
                 rb.isKinematic = false; // 物理的に固定を解除
+
+                // フラグを設定
+                ThrowableObject throwable = throwObj.GetComponent<ThrowableObject>();
+                if (throwable != null)
+                {
+                    throwable.isThrown = true;
+                }
+
                 rb.AddForce(rayPoint.forward * 10.0f, ForceMode.Impulse); // オブジェクトに力を加えて前方に発射
 
                 // 残りのオブジェクトを再配置

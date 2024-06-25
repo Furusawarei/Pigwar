@@ -16,8 +16,8 @@ public class pearl : MonoBehaviour
 
     private void Start()
     {
-        //�^��̐���
-        _pearlprefab = Resources.Load<GameObject>("pearl");
+        //?^??????
+        _pearlprefab = Resources.Load<GameObject>("pearl_main");
         InvokeRepeating(nameof(Production), 4.0f, 3.0f);
         
     }
@@ -29,7 +29,7 @@ public class pearl : MonoBehaviour
 
     private void Production()
     {
-        //�^�삪6�ȏ�ɂȂ�Ȃ��悤�ɂ���
+        //?^??6????????????????
         if (_pearlist.Count >= 6) return;
         {
             var obj = Instantiate(_pearlprefab,Vector3.zero,Quaternion.identity, pearl_limit);
@@ -38,7 +38,7 @@ public class pearl : MonoBehaviour
 
             /* if (_pearlist.Count >= 3)
             {
-                //3������������W�����ɂ��炷
+                //3?????????????W?????????
                 obj.transform.position = new Vector3(-8f, 5.0f, 0.0f);
             }
             else
@@ -46,10 +46,10 @@ public class pearl : MonoBehaviour
                 obj.transform.position = new Vector3(-8f, 5.0f, 0.0f);
             }*/
             _pearlist.Add(obj);
-            Debug.Log("����");
+            Debug.Log("????");
         }
     }
-    //�^��̗v�f�����폜
+    //?^???v?f??????
     private void DeleteObject(GameObject obj)
     {
         _pearlist.Remove(obj);
