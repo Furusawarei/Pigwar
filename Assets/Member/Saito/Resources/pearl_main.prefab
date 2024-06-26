@@ -167,4 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isThrown: 0
-  hitSound: {fileID: 8300000, guid: 532365b6b3211a347bcf96f64f7268ed, type: 3}
+  hitSound: {fileID: 8300000, guid: d18d889cd6d3d644e9f6f4b9939f2156, type: 3}

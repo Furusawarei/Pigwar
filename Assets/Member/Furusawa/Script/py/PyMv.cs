@@ -8,11 +8,12 @@ public class PyMv : MonoBehaviour
     private ActionControl _actionControl;
     private Vector3 BefoPos;
     private Rigidbody rb;
-    private float upForce;
     private bool Jumping = false;
 
     public AudioClip jumpSound;
+    public AudioClip attackSound;
     public AudioSource audioSource;
+    public float jumpHeight = 0.5f; // ジャンプの高さ（メートル）
 
     private void Awake()
     {
@@ -22,9 +23,8 @@ public class PyMv : MonoBehaviour
 
     void Start()
     {
-        upForce = 150;
         rb = GetComponent<Rigidbody>();
-        
+
         if (audioSource == null)
         {
             Debug.LogError("AudioSource component is missing from this game object.");
@@ -47,7 +47,9 @@ public class PyMv : MonoBehaviour
 
         if (_actionControl.Player1.Jump.triggered && !Jumping) // ジャンプの処理
         {
-            rb.AddForce(new Vector3(0, upForce, 0));
+            float gravity = Physics.gravity.y;
+            float jumpVelocity = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(gravity));
+            rb.AddForce(new Vector3(0, jumpVelocity * rb.mass, 0), ForceMode.Impulse);
             Jumping = true;
 
             if (jumpSound != null && audioSource != null)
