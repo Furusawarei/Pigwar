@@ -1,17 +1,20 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+/// <summary>
+/// このスクリプトはテスト、使い方サンプル用です　実際の動作には使わないでください
+/// </summary>
 public class Score_InGame : MonoBehaviour
 {
-    /*
-    [SerializeField] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
+    
+    [SerializeField] private List<TextMeshProUGUI> _scoreborad;
     // Start is called before the first frame update
     void Start()
     {
         //初期化
         Scoremaneger.Instance().SetScore(0, 1);
-        Scoremaneger.Instance().SetScore(0, 2); ;
+        Scoremaneger.Instance().SetScore(0, 2);
         //0を表示する
         _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
         _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();
@@ -46,5 +49,5 @@ public class Score_InGame : MonoBehaviour
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
     }
-    */
+    
 }
