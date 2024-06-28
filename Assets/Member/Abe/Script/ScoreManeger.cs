@@ -13,12 +13,12 @@ public class Scoremaneger : MonoBehaviour
     }
     private Scoremaneger() { }
     //変数
-    public int[] PlayerScore = new int[2];
+    public  int[] PlayerScore = new int[2];
 
 
-    [SerializeField, Header("スコア表示に使うtext(TMP)")] private TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
-    [SerializeField,Header("スコア表示に使うtext(TMP)")] private Transform[] _scoreboardTransform = new Transform[2];
-    [SerializeField,Header("リザルトに遷移したときに移動する場所")] private Transform[] _resultPos = new Transform[2];
+    [SerializeField, Header("スコア表示に使うtext(TMP)")] public  TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
+    [SerializeField,Header("スコア表示に使うtext(TMP)")] public  Transform[] _scoreboardTransform = new Transform[2];
+    [SerializeField,Header("リザルトに遷移したときに移動する場所")] public  Transform[] _resultPos = new Transform[2];
     private bool _scoreRandomSwitch = false;
 
     void Awake()

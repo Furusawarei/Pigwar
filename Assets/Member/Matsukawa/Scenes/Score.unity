@@ -712,12 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de89df97da3700645a042d2b3102e1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoremaneger: {fileID: 0}
-  scoreUp2: {fileID: 1622449872}
-  score1: 0
-  score1Text: {fileID: 2029176099}
-  score2: 0
-  score2Text: {fileID: 1702103951}
+  scoreManager: {fileID: 1622449872}
   boxGeneratePos: {fileID: 444089818}
   boxGeneratePos2: {fileID: 495217818}
   boxPrefab: {fileID: 3185122327389440725, guid: 6a1fff94bb79a564289afbe5991f49b9, type: 3}
@@ -748,10 +743,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1622449869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae942511a087078438ef7cede2f92f31, type: 3}
+  m_Script: {fileID: 11500000, guid: 40ba4302b06ca6843a1d9632f1798571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreUp: {fileID: 1622449870}
+  PlayerScore: 0000000000000000
+  _scoreborad:
+  - {fileID: 2029176099}
+  - {fileID: 1702103951}
+  _scoreboardTransform:
+  - {fileID: 0}
+  - {fileID: 0}
+  _resultPos:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1702103951 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3032231743107810466, guid: e5ef1a0f7c7afc7429f1259647d7386c, type: 3}
@@ -909,7 +913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1821308266
 RectTransform:
   m_ObjectHideFlags: 0
