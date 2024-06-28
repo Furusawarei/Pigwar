@@ -2,7 +2,7 @@
     "name": "ActionControl",
     "maps": [
         {
-            "name": "Player",
+            "name": "Player1",
             "id": "0fa92493-4cb2-41f4-85bb-f30c2f82ff08",
             "actions": [
                 {
@@ -142,33 +142,11 @@
                 },
                 {
                     "name": "",
-                    "id": "150f881f-9f4b-4b50-b032-ff400b78275c",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1253c4e8-7609-4c9b-b794-5e5729d9994d",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad1",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "65f2ece7-f915-411d-ba03-121737402f75",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -183,22 +161,11 @@
                     "action": "Have",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3790cc82-a92d-4147-980e-947d85b927b2",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Have",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "Player1",
+            "name": "Player2",
             "id": "7f8e2189-4f50-4fe8-a816-ffc1e27cf23c",
             "actions": [
                 {

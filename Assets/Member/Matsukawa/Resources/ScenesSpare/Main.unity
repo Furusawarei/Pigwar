@@ -217,17 +217,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &222257207 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5368599015641329459, guid: e5ef1a0f7c7afc7429f1259647d7386c, type: 3}
-  m_PrefabInstance: {fileID: 4059818543273429500}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &351274369
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544097772}
   - component: {fileID: 544097771}
-  - component: {fileID: 544097770}
+  - component: {fileID: 544097773}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -352,26 +341,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &544097770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544097769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &544097771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,22 +371,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633615723 stripped
+--- !u!114 &544097773
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8927460969787441093, guid: e5ef1a0f7c7afc7429f1259647d7386c, type: 3}
-  m_PrefabInstance: {fileID: 4059818543273429500}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 544097769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &799288461 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4621597302741877294, guid: e5ef1a0f7c7afc7429f1259647d7386c, type: 3}
-  m_PrefabInstance: {fileID: 4059818543273429500}
-  m_PrefabAsset: {fileID: 0}
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1001 &1109372082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1030,10 +1013,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countdownMinutes: 15
-  timeText: {fileID: 222257207}
-  finishText: {fileID: 633615723}
+  timeText: {fileID: 0}
+  finishText: {fileID: 0}
   startImage: {fileID: 1905723576}
-  resultButton: {fileID: 799288461}
 --- !u!114 &1833021075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,7 +1096,7 @@ Canvas:
   m_GameObject: {fileID: 1905723576}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1998280899}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -1258,6 +1240,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1998280899}
+    - target: {fileID: 5116378644663809208, guid: e5ef1a0f7c7afc7429f1259647d7386c, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5831189222860406012, guid: e5ef1a0f7c7afc7429f1259647d7386c, type: 3}
       propertyPath: m_Pivot.x
       value: 0

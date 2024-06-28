@@ -24,7 +24,7 @@ public class TouchObject : MonoBehaviour
     private void Update()
     {
         // "Have"アクションがトリガーされた場合
-        if (_actionControl.Player.Have.triggered)
+        if (_actionControl.Player1.Have.triggered)
         {
             // 最大保持数未満の場合のみ掴む
             if (grabObjects.Count < maxGrabCount)
@@ -46,7 +46,7 @@ public class TouchObject : MonoBehaviour
             }
         }
         // "Throw"アクションがトリガーされた場合
-        else if (_actionControl.Player.Throw.triggered)
+        else if (_actionControl.Player1.Throw.triggered)
         {
             // 掴んでいるオブジェクトがある場合
             if (grabObjects.Count > 0)
