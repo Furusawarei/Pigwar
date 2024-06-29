@@ -30,10 +30,6 @@ public class ScoreUp : MonoBehaviour
     // 障害物管理時に使う (リスト用)
     private int countPrefabs;
 
-    private void Start()
-    {
-        
-    }
 
     public void Update()
     {
@@ -92,6 +88,9 @@ public class ScoreUp : MonoBehaviour
 
     //}
 
+    /// <summary>
+    /// Player1の障害物を管理する関数
+    /// </summary>
     public void GeneratePrefabs()
     {
         // あべさんの所から来たスコア
@@ -144,7 +143,7 @@ public class ScoreUp : MonoBehaviour
 
 
     /// <summary>
-    /// Player2の障害物を生成する
+    /// Player2の障害物を管理する
     /// </summary>
     public void GeneratePrefabs2()
     {
@@ -166,7 +165,7 @@ public class ScoreUp : MonoBehaviour
 
             // Player2のスコアを2減らす
             score2 -= 2;
-            scoreTextList[0].text = string.Format("Player2:{0}", score2);
+            scoreTextList[1].text = string.Format("Player2:{0}", score2);
             Debug.Log("player2:" + score2);
 
             // リストに追加

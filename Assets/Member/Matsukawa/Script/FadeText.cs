@@ -50,7 +50,7 @@ public class FadeText : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        start.text = ("スタート");
+        start.text = ("スタート！");
         while (true)
         {
             for (int i = 0; i < 255; i++)
