@@ -7,11 +7,11 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 
 /// <summary>
-/// ŠÔŠÇ——p‚ÌƒNƒ‰ƒX
+/// ï¿½ï¿½ï¿½ÔŠÇ—ï¿½ï¿½pï¿½ÌƒNï¿½ï¿½ï¿½X
 /// </summary>
 public class TimerController : MonoBehaviour
 {
-    // ƒ^ƒCƒ}[
+    // ï¿½^ï¿½Cï¿½}ï¿½[
     public float countdownMinutes;
     private float countdownSeconds;
 
@@ -29,7 +29,7 @@ public class TimerController : MonoBehaviour
 
     void Update()
     {
-        //  ƒ^ƒCƒ}[‚Ìˆ—
+        //  ï¿½^ï¿½Cï¿½}ï¿½[ï¿½Ìï¿½ï¿½ï¿½
         if (startImage.activeSelf) return;
         if (countdownSeconds > 0)
         {
@@ -39,16 +39,16 @@ public class TimerController : MonoBehaviour
         }
 
         if (FadeManager.Instance.IsFading) return;
-        // ƒ^ƒCƒ}[‚ª0‚É‚È‚Á‚½‚Ìˆ—
+        // ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
         if (countdownSeconds < 0)
         {
-            // I‚í‚èI‚ªo‚é
-            finishText.text = ("‚¨‚í‚èI");
+            // ï¿½Iï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½oï¿½ï¿½
+            finishText.text = ("ï¿½ï¿½ï¿½ï¿½ï¿½I");
 
-            // ƒ^ƒCƒ}[0‚ÉŒ©‚¦‚é‚æ‚¤‚É
+            // ï¿½^ï¿½Cï¿½}ï¿½[0ï¿½ÉŒï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ï¿½
             timeText.text = ("00:00");
 
-            FadeManager.Instance.TransScene("Result", 2.0f);
+            FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
         }
     }
 

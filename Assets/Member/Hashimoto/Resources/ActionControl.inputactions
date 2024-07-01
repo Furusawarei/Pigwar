@@ -131,6 +131,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8579096f-cfc9-4f09-b0cc-73932713f428",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad1",
+                    "action": "Summon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "357ae5f6-73bb-48ff-960b-e8fb4ad2df93",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -146,7 +157,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad1",
                     "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -168,7 +179,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad1",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -190,7 +201,7 @@
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad1",
                     "action": "Have",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Score_InGame : MonoBehaviour
 {
-    
+
     [SerializeField] private List<TextMeshProUGUI> _scoreborad;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,7 @@ public class Score_InGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyUp(KeyCode.K))
         {
             Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
@@ -48,6 +49,10 @@ public class Score_InGame : MonoBehaviour
             Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
+    */
+
+        Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
     }
-    
+
+
 }
