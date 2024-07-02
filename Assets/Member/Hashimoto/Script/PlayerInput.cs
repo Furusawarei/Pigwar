@@ -1,20 +1,16 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UIElements;
-//using UnityEditorInternal;
 
 public class PlayerInput : MonoBehaviour
 {
     private ActionControl _actionControl;
-
-    private Vector3 BefoPos;
-
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
+    
+    public AudioClip jumpSound;
+    public AudioSource audioSource;
 
     private void Awake()
     {
@@ -25,27 +21,48 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         upForce = 150;
-        rb = GetComponent<Rigidbody>();// リジッドボディの取得
+        rb = GetComponent<Rigidbody>(); // リジッドボディの取得
     }
 
     void Update()
     {
+        // プレイヤーの移動
         var pos = _actionControl.Player1.Move.ReadValue<Vector2>();
-        transform.position += new Vector3(pos.x, 0, pos.y) * 0.03f; // プレイヤーの移動
+        Vector3 move = new Vector3(pos.x, 0, pos.y) * 0.03f;
+        transform.position += move;
 
+        // プレイヤーの向きを移動方向に変更
+        //修正後
+        if (move.magnitude > 0.01f)
+        {
+            transform.rotation = Quaternion.LookRotation(move);
+        }
+
+        /*
+        //変更前
         Vector3 diff = transform.position - BefoPos; // 前フレームとの位置の差分を計算
         diff.y = 0;
         BefoPos = transform.position;
         if (diff.magnitude > 0.01f)
         {
-            transform.rotation = Quaternion.LookRotation(diff);
+           transform.rotation = Quaternion.LookRotation(diff);
         }
+        */
 
-        if (_actionControl.Player1.Jump.triggered && !Jumping) // ジャンプの処理
+        // ジャンプの処理
+        if (_actionControl.Player1.Jump.triggered && !Jumping)
         {
-            // rb.velocity = Vector3.up * upForce;
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;
+
+            if (jumpSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(jumpSound);
+            }
+            else
+            {
+                Debug.LogWarning("jumpSound or audioSource is null.");
+            }
         }
     }
 
