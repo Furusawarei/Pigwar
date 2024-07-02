@@ -7,7 +7,7 @@ public class Bgm : MonoBehaviour
 {
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Title")
+        if (SceneManager.GetActiveScene().name == "MainTitle")
         { // Titleシーンでのみやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
         }
@@ -15,7 +15,7 @@ public class Bgm : MonoBehaviour
         { //MainScenesのシーンでやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
         }
-        else if (SceneManager.GetActiveScene().name == "Result")
+        else if (SceneManager.GetActiveScene().name == "MainResult")
         {
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
         }

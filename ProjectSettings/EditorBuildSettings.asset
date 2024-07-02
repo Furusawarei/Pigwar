@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Member/Matsukawa/Resources/ScenesSpare/Result.unity
     guid: dff955cb4d5525d4ba332b4b37f32eb4
   - enabled: 1
-    path: Assets/Scenes/Start.unity
+    path: Assets/Member/Saito/Scenes/Start.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Result.unity
