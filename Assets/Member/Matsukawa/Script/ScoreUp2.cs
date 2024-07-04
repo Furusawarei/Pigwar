@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +28,6 @@ public class ScoreUp2 : ScoreUp
         {
             scoreUp.GeneratePrefabs();
         }
-=======
 ﻿//using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;
@@ -50,21 +48,18 @@ public class ScoreUp2 : ScoreUp
 //        {
 //            GeneratePrefabs();
 //        }
->>>>>>> Stashed changes
 
 //        // Player２の障害物の数
 //        int count2 = GameObject.FindGameObjectsWithTag("boxPrefab2").Length;
 
-<<<<<<< Updated upstream
-        if (count2 <= 8) return;
-        if (count2 == 8)
+     //   if (count2 <= 8) return;
+     //   if (count2 == 8)
         {
             Destroy(boxPrefab2);
         }
 
     }
 }
-=======
 //        if (count2 <= 8) return;
 //        if (count2 == 8)
 //        {
@@ -73,4 +68,3 @@ public class ScoreUp2 : ScoreUp
 
 //    }
 //}
->>>>>>> Stashed changes
