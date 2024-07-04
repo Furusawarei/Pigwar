@@ -32,7 +32,8 @@ public class ScoreUp2 : ScoreUp
 //using System.Collections.Generic;
 //using UnityEngine;
 
-//public class ScoreUp2 : ScoreUp
+        // Player２の障害物の数
+        int count2 = GameObject.FindGameObjectsWithTag("boxPrefab2").Length;
 
 //{
 //    // Update is called once per frame
