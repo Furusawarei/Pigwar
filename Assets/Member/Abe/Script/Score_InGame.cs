@@ -24,10 +24,14 @@ public class Score_InGame : MonoBehaviour
     void Update()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
        
 >>>>>>> Furusawa
+=======
+        /*
+>>>>>>> parent of 0999877 (３Dモデル)
         if (Input.GetKeyUp(KeyCode.K))
         {
             Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
@@ -53,6 +57,7 @@ public class Score_InGame : MonoBehaviour
             Scoremaneger.Instance().ToResult("MatukawaResult_Copy");//ここでスコア表示を移動しシーン遷移
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
         
         //↓Update内に直接あるので無限ループ状態になり処理落ちしました
@@ -61,6 +66,11 @@ public class Score_InGame : MonoBehaviour
 
 >>>>>>> Furusawa
         //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
+=======
+    */
+
+        Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
+>>>>>>> parent of 0999877 (３Dモデル)
     }
 
 
