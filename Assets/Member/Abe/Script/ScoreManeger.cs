@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scoremaneger : MonoBehaviour
 {
@@ -76,9 +77,10 @@ public class Scoremaneger : MonoBehaviour
     }
 
     /// <summary>
-    /// リザルト画面遷移時のスコア位置移動
+    /// リザルト画面遷移とスコア位置移動
     /// </summary>
-    public void ToResult()
+    /// <param name="ResultScene">利用するリザルトシーン</param>
+    public void ToResult(string ResultScene)
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
@@ -86,6 +88,7 @@ public class Scoremaneger : MonoBehaviour
             _scoreborad[i].fontSize *= 2;
         }
         ScoreRandomSwitch();
+        SceneManager.LoadScene(ResultScene);
     }
 
     /// <summary>
@@ -101,11 +104,28 @@ public class Scoremaneger : MonoBehaviour
     /// <summary>
     /// 勝敗判定
     /// </summary>
-    /// <returns>引き分けなら0,そうでないなら勝ったプレイヤー番号がintで</returns>
-    public int Judge()
+    /// <param name="winer">勝ったプレイヤー番号-1</param>
+    /// <param name="loser">負けたプレイヤー番号-1</param>
+    /// <returns>決着がついたか</returns>
+    public bool Judge(out int winer,out int loser)
     {
-        if (PlayerScore[0] > PlayerScore[1]) return 1;
-        else if (PlayerScore[0] < PlayerScore[1]) return 2;
-        else return 0;
+        if (PlayerScore[0] > PlayerScore[1])
+        {
+            winer = 0;
+            loser = 1;
+            return true;
+        }
+        else if (PlayerScore[0] < PlayerScore[1])
+        {
+            winer = 1;
+            loser = 0;
+            return true;
+        }
+        else
+        {
+            winer = -1;
+            loser = -1;
+            return false;
+        }
     }
 }

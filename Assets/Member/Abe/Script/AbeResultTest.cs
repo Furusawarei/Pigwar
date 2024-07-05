@@ -16,7 +16,7 @@ public class ResultTest : MonoBehaviour
 
     [SerializeField, Header("何秒後に発表するか")] private float _waitTime;
     private float _timer;
-    private int _winer=0;//勝ったプレイヤー番号
+    private bool _isSettled=true;//決着がついたか
     private Vector3 _winerPos= Vector3.zero;//勝ったプレイヤーの場所
 
     private Coroutine _scaleCoroutine;//プレイヤースケールを変えるコルーチン
@@ -44,7 +44,9 @@ public class ResultTest : MonoBehaviour
         _lightPower = 0;
         _winerLightImage.fillAmount = _lightPower;//ライトを消す
         _f_scale = 0.5f;//スケールを1:1に
-        _scale.x = _f_scale; _scale.y = _f_scale; _scale.z = _f_scale;//スケール適用
+        _scale.x = _f_scale;
+        _scale.y = _f_scale; 
+        _scale.z = _f_scale;//スケール適用
 
         #endregion
         _scaleCoroutine = StartCoroutine(PlayerScaleChenge());
@@ -55,9 +57,9 @@ public class ResultTest : MonoBehaviour
         if (_timer>=_waitTime && ! _resulted)
         {
             StopCoroutine(_scaleCoroutine);//スケール変え止め
-            _resulted = true;
             judge();
-            if(_winer!=0)StartCoroutine(LightOn());
+            if(_isSettled)StartCoroutine(LightOn());
+            _resulted = true;
         }
     }
 
@@ -67,31 +69,25 @@ public class ResultTest : MonoBehaviour
     private void judge()
     {
         Scoremaneger.Instance().ScoreRandomSwitch();//ランダム止め
-        _winer =Scoremaneger.Instance().Judge();//プレイヤー番号
-        if(_winer!=0)_winerPos.x= _winOrLoseTransform[_winer-1].position.x;//上から来る光を勝った人へ移動
-        _winerLightTransfrom.position = _winerPos;
-        //勝ち負けの処理
-        if (_winer == 1)//1P勝ち
+        _isSettled=Scoremaneger.Instance().Judge(out int winer,out int loser);//プレイヤー番号
+        //決着がついていないなら
+        if (!_isSettled)
         {
-            WinText(_winOrLoseText[0]);
-            LoseText(_winOrLoseText[1]);
-            _playerScale[0].localScale = _defScale * 0.75f;
-            _playerScale[1].localScale = _defScale * 0.25f;
-        }
-        else if( _winer == 2)//2P勝ち
-        {
-            WinText(_winOrLoseText[1]);
-            LoseText(_winOrLoseText[0]);
-            _playerScale[0].localScale = _defScale * 0.25f;
-            _playerScale[1].localScale = _defScale * 0.75f;
-        }
-        else//引き分け
-        {
+            //引き分け処理
             DrawText(_winOrLoseText[0]);
-            DrawText(_winOrLoseText[1]); 
+            DrawText(_winOrLoseText[1]);
             _playerScale[0].localScale = _defScale * 0.5f;
             _playerScale[1].localScale = _defScale * 0.5f;
+            return;
         }
+
+        _winerPos.x= _winOrLoseTransform[winer].position.x;//勝った方の位置をxだけ保存
+        _winerLightTransfrom.position = _winerPos;//上から来る光を↑で保存した位置へ移動
+        //勝ち負けの処理
+        WinText(_winOrLoseText[winer]);
+        LoseText(_winOrLoseText[loser]);
+        _playerScale[winer].localScale = _defScale * 0.75f;
+        _playerScale[loser].localScale = _defScale * 0.25f;
         
     }
     #region　テキスト変更関数
