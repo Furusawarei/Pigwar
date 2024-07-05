@@ -23,11 +23,7 @@ public class Score_InGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        
-=======
        
->>>>>>> Furusawa
         if (Input.GetKeyUp(KeyCode.K))
         {
             Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
@@ -50,16 +46,11 @@ public class Score_InGame : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.J))
         {
-            Scoremaneger.Instance().ToResult("MatukawaResult_Copy");//ここでスコア表示を移動しシーン遷移
+            //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
+            SceneManager.LoadScene("MatukawaResult_Copy");
         }
-<<<<<<< HEAD
-    
-        
-        //↓Update内に直接あるので無限ループ状態になり処理落ちしました
-=======
  
 
->>>>>>> Furusawa
         //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
     }
 
