@@ -23,7 +23,7 @@ public class Score_InGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+       
         if (Input.GetKeyUp(KeyCode.K))
         {
             Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
@@ -49,9 +49,9 @@ public class Score_InGame : MonoBehaviour
             Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
-    */
+ 
 
-        Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
+        //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
     }
 
 
