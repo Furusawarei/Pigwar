@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,47 +6,37 @@ using UnityEngine.InputSystem;
 
 public class PyMv : MonoBehaviour
 {
-    private ActionControl _actionControl;
-    private Vector3 BefoPos;
+    private PlayerInput _playerInput;
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
 
     public AudioClip jumpSound;
     public AudioSource audioSource;
-
-    private void Awake()
-    {
-        _actionControl = new ActionControl();
-        _actionControl.Enable();
-    }
-
+    
     void Start()
     {
+        _playerInput = GetComponent<PlayerInput>();
+
         upForce = 150;
-        rb = GetComponent<Rigidbody>();
-        
-        if (audioSource == null)
-        {
-            Debug.LogError("AudioSource component is missing from this game object.");
-        }
+        rb = GetComponent<Rigidbody>(); // リジッドボディの取得
     }
 
     void Update()
     {
-        var pos = _actionControl.Player1.Move.ReadValue<Vector2>();
-        transform.position += new Vector3(pos.x, 0, pos.y) * 0.03f; // プレイヤーの移動
+        // プレイヤーの移動
+        var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
+        Vector3 move = new Vector3(pos.x, 0, pos.y) * 0.03f;
+        transform.position += move;
 
-        Vector3 diff = transform.position - BefoPos; // 前フレームとの位置の差分を計算
-        diff.y = 0;
-        BefoPos = transform.position;
-
-        if (diff.magnitude > 0.01f)
+        // プレイヤーの向きを移動方向に変更
+        if (move.magnitude > 0.01f)
         {
-            transform.rotation = Quaternion.LookRotation(diff);
+            transform.rotation = Quaternion.LookRotation(move);
         }
 
-        if (_actionControl.Player1.Jump.triggered && !Jumping) // ジャンプの処理
+        // ジャンプの処理
+        if (_playerInput.actions["Jump"].triggered && !Jumping)
         {
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;
@@ -59,11 +50,14 @@ public class PyMv : MonoBehaviour
                 Debug.LogWarning("jumpSound or audioSource is null.");
             }
         }
+
+        Debug.Log(Jumping);
+
     }
 
-    private void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if(collision.gameObject.CompareTag("Ground"))
         {
             Jumping = false;
         }

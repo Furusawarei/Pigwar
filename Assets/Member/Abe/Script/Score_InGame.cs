@@ -23,19 +23,6 @@ public class Score_InGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-=======
-       
->>>>>>> Furusawa
-=======
-        /*
->>>>>>> parent of 0999877 (３Dモデル)
-=======
-       
->>>>>>> develop
         if (Input.GetKeyUp(KeyCode.K))
         {
             Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
@@ -61,23 +48,6 @@ public class Score_InGame : MonoBehaviour
             //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-        
-        //↓Update内に直接あるので無限ループ状態になり処理落ちしました
-=======
-=======
->>>>>>> develop
- 
-
-        //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
-=======
-    */
-
-        Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
->>>>>>> parent of 0999877 (３Dモデル)
     }
 
 

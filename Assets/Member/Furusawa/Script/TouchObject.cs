@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class TouchObject : MonoBehaviour
 {
-    public ActionControl _actionControl;
+     private PlayerInput _playerInput;
 
     [SerializeField] private Transform grabPoint; // オブジェクトを持つ位置
     [SerializeField] private Transform rayPoint; // レイの発射位置
@@ -15,16 +15,15 @@ public class TouchObject : MonoBehaviour
     private int maxGrabCount = 3; // 最大保持オブジェクト数
     RaycastHit hit; // レイキャストのヒット情報
 
-    private void Awake()
+     void Start()
     {
-        _actionControl = new ActionControl();
-        _actionControl.Enable(); // アクションコントロールを有効化
-    }
+        _playerInput = GetComponent<PlayerInput>();
 
+    }
     private void Update()
     {
         // "Have"アクションがトリガーされた場合
-        if (_actionControl.Player1.Have.triggered)
+        if (_playerInput.actions["Have"].triggered)
         {
             // 最大保持数未満の場合のみ掴む
             if (grabObjects.Count < maxGrabCount)
@@ -46,7 +45,7 @@ public class TouchObject : MonoBehaviour
             }
         }
         // "Throw"アクションがトリガーされた場合
-        else if (_actionControl.Player1.Throw.triggered)
+        else if (_playerInput.actions["Throw"].triggered)
         {
             // 掴んでいるオブジェクトがある場合
             if (grabObjects.Count > 0)

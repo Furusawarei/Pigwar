@@ -20,6 +20,7 @@ public class TimerController : MonoBehaviour
 
     [SerializeField] private GameObject startImage;
     //[SerializeField] private GameObject resultButton;
+    
 
     void Start()
     {

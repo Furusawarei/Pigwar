@@ -17,7 +17,7 @@ public class MainScene : MonoBehaviour
     {
         if(_actionControl.UI.Scenes.triggered)
         {
-            FadeManager.Instance.TransScene("MainScenes", 2.0f);
+            FadeManager.Instance.TransScene("MainScenes2", 2.0f);
         }
 
         /*

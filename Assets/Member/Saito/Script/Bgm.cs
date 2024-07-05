@@ -34,7 +34,7 @@ public class Bgm : MonoBehaviour
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
             Debug.Log("切り替えタイトル");
         }
-        else if (SceneManager.GetActiveScene().name == "MainScenes")
+        else if (SceneManager.GetActiveScene().name == "MainScenes2")
         { //MainScenesのシーンでやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
             Debug.Log("切り替えゲーム");

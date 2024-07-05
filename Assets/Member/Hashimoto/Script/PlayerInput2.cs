@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PyMv1 : MonoBehaviour
+public class PlayerInput2 : MonoBehaviour
 {
     private ActionControl _actionControl;
-    private Vector3 BefoPos;
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
-
+    
     public AudioClip jumpSound;
     public AudioSource audioSource;
+    internal object actions;
 
     private void Awake()
     {
@@ -23,29 +22,36 @@ public class PyMv1 : MonoBehaviour
     void Start()
     {
         upForce = 150;
-        rb = GetComponent<Rigidbody>();
-        
-        if (audioSource == null)
-        {
-            Debug.LogError("AudioSource component is missing from this game object.");
-        }
+        rb = GetComponent<Rigidbody>(); // リジッドボディの取得
     }
 
     void Update()
     {
-        var pos = _actionControl.Player2.Move.ReadValue<Vector2>();
-        transform.position += new Vector3(pos.x, 0, pos.y) * 0.03f; // プレイヤーの移動
+        // プレイヤーの移動
+        var pos = _actionControl.Player1.Move.ReadValue<Vector2>();
+        Vector3 move = new Vector3(pos.x, 0, pos.y) * 0.03f;
+        transform.position += move;
 
+        // プレイヤーの向きを移動方向に変更
+        //修正後
+        if (move.magnitude > 0.01f)
+        {
+            transform.rotation = Quaternion.LookRotation(move);
+        }
+
+        /*
+        //変更前
         Vector3 diff = transform.position - BefoPos; // 前フレームとの位置の差分を計算
         diff.y = 0;
         BefoPos = transform.position;
-
         if (diff.magnitude > 0.01f)
         {
-            transform.rotation = Quaternion.LookRotation(diff);
+           transform.rotation = Quaternion.LookRotation(diff);
         }
+        */
 
-        if (_actionControl.Player2.Jump.triggered && !Jumping) // ジャンプの処理
+        // ジャンプの処理
+        if (_actionControl.Player1.Jump.triggered && !Jumping)
         {
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;
