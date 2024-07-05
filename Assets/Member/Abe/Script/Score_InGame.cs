@@ -46,7 +46,7 @@ public class Score_InGame : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.J))
         {
-            Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
+            //Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
  
