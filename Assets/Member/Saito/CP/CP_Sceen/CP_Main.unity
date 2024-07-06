@@ -5536,7 +5536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1976417191}
   - component: {fileID: 1976417190}
-  - component: {fileID: 1976417189}
+  - component: {fileID: 1976417193}
   - component: {fileID: 1976417192}
   m_Layer: 0
   m_Name: Manager
@@ -5545,22 +5545,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1976417189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976417187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ab55c32ced70c4baf71ae05a59746a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countdownMinutes: 3
-  timeText: {fileID: 1133562797}
-  finishText: {fileID: 1471516601}
-  startImage: {fileID: 1429550375}
 --- !u!114 &1976417190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5689,6 +5673,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1976417193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976417187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf41d96e192c46a42a5c58ad308b0a61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownMinutes: 3
+  timeText: {fileID: 1133562797}
+  finishText: {fileID: 1471516601}
+  startImage: {fileID: 1429550375}
 --- !u!1 &1997023316
 GameObject:
   m_ObjectHideFlags: 0
