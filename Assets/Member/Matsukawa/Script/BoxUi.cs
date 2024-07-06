@@ -7,86 +7,66 @@ using UnityEngine.UI;
 /// </summary>
 public class BoxUi : MonoBehaviour
 {
-    // ScoreUpŒp³
     public ScoreUp scoreUp;
 
-    // svoreUp‚©‚ç‚Á‚Ä‚«‚½ƒŠƒXƒg‚ğ‚¢‚ê‚é‚Æ‚±‚ë
-    private List<GameObject> b_list;    // Player1‚Ì¶¬‚µ‚½áŠQ•¨‚ğ•Û‘¶‚µ‚Ä‚¨‚­‚½‚ß‚ÌƒŠƒXƒg
-    private List<GameObject> b_list2;    // Player2‚ÌáŠQ•¨
-
-
     /* áŠQ•¨‚ÌUIŠÖŒW */
+
     // •ÏX‚·‚éƒCƒ[ƒW‚ğ•ÛŠÇ‚·‚é‚½‚ß‚ÌƒŠƒXƒg
-    [SerializeField] protected GameObject[] magentaSpriteArr;
-    [SerializeField] protected GameObject[] blueSpriteArr;
+    [SerializeField] protected Sprite[] magentaSpriteArr;
+    [SerializeField] protected Sprite[] blueSpriteArr;
 
     // image‚ğŠi”[‚·‚é‚Æ‚±‚ë
-    //[SerializeField] public GameObject magentaUiImage;
-    //[SerializeField] public GameObject blueUiImage;
+    [SerializeField] protected Image magentaUiImage;
+    [SerializeField] protected Image blueUiImage;
+
+    private List<GameObject> b_list;    // Player1‚Ì¶¬‚µ‚½áŠQ•¨‚ğ•Û‘¶‚µ‚Ä‚¨‚­‚½‚ß‚ÌƒŠƒXƒg
+    private List<GameObject> b_list2;    // Player2‚ÌáŠQ•¨
 
     /// <summary>
     /// player1‚ÌáŠQ•¨UI‚ğ¶¬‚·‚éŠÖ”
     /// </summary>
-    //public void ShowMagentaBoxUi()
-    //{
-    //    /* SourceImage‚©‚ç•ÏX‚·‚é */
-
-    //    b_list = scoreUp.boxList;
-
-
-    //    if (b_list.Count == 0)
-    //    {
-    //        magentaUiImage.sprite = magentaSpriteArr[0];
-    //    }
-    //    else if (b_list.Count == 1)
-    //    {
-    //        magentaUiImage.sprite = magentaSpriteArr[1];
-    //    }
-    //    else if (b_list.Count == 2)
-    //    {
-    //        magentaUiImage.sprite = magentaSpriteArr[2];
-    //    }
-    //}
-
-
     public void ShowMagentaBoxUi()
     {
         b_list = scoreUp.boxList;
 
+        //magentaUiImage = GetComponent<Image>();
 
         if (b_list.Count == 0)
         {
-            magentaSpriteArr[0].SetActive(true);
+            magentaUiImage.sprite = magentaSpriteArr[0];
         }
         else if (b_list.Count == 1)
         {
-            magentaSpriteArr[1].SetActive(true);
+            magentaUiImage.sprite = magentaSpriteArr[1];
         }
         else if (b_list.Count == 2)
         {
-            magentaSpriteArr[2].SetActive(true);
+            magentaUiImage.sprite = magentaSpriteArr[2];
         }
-
     }
+
+
     /// <summary>
     /// player2‚ÌáŠQ•¨UI‚ğ¶¬‚·‚éŠÖ”
     /// </summary>
     public void ShowBlueBoxUi()
     {
-        b_list2 = scoreUp.boxList2;
+        // 
+        if (blueUiImage == null) blueUiImage = GetComponent<Image>();
 
+        b_list2 = scoreUp.boxList2;
 
         if (b_list2.Count == 0)
         {
-            blueSpriteArr[0].SetActive(true);
+            blueUiImage.sprite = blueSpriteArr[0];
         }
         else if (b_list2.Count == 1)
         {
-            blueSpriteArr[1].SetActive(true);
+            blueUiImage.sprite = blueSpriteArr[1];
         }
         else if (b_list2.Count == 2)
         {
-            blueSpriteArr[2].SetActive(true);
+            blueUiImage.sprite = blueSpriteArr[2];
         }
     }
 }

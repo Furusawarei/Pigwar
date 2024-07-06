@@ -15,7 +15,7 @@ public class ScoreUp : MonoBehaviour
     public Scoremaneger scoreManager;
     public BoxUi boxUi;
 
-    // あべさんのスコアとスコアを表示するテキストリストをいれるところ
+    // あべさんのスコアとスコアを表示するテキストリストをいれる変数
     protected int score1;
     protected int score2;
 
