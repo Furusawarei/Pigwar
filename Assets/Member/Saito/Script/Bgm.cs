@@ -29,17 +29,24 @@ public class Bgm : MonoBehaviour
     private void OnActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
         Debug.Log("切り替え成功");
-        if (SceneManager.GetActiveScene().name == "Title")
+        //if (SceneManager.GetActiveScene().name == "CP_Title")
+        if (SceneManager.GetActiveScene().name == "MainTitle")
         { // Titleシーンでのみやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
             Debug.Log("切り替えタイトル");
         }
+<<<<<<< HEAD
+=======
+        //else if (SceneManager.GetActiveScene().name == "CP_Main")
+>>>>>>> saito_yu
         else if (SceneManager.GetActiveScene().name == "MainScenes2")
         { //MainScenesのシーンでやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
             Debug.Log("切り替えゲーム");
         }
-        else if (SceneManager.GetActiveScene().name == "Result")
+
+        //else if (SceneManager.GetActiveScene().name == "CP_Result")
+        else if (SceneManager.GetActiveScene().name == "MainResult")
         {
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
             Debug.Log("切り替えリザルト");

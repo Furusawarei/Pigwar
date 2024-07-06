@@ -812,6 +812,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManeger
       objectReference: {fileID: 0}
+    - target: {fileID: 958790302858589642, guid: 1bcdbf8425a9fc047adb9abf8eece9f4, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 86efb646ee1486a4b89e78bf893c1225, type: 3}
+    - target: {fileID: 958790302858589642, guid: 1bcdbf8425a9fc047adb9abf8eece9f4, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6673915679669174103, guid: 1bcdbf8425a9fc047adb9abf8eece9f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.40472394
@@ -851,6 +859,14 @@ PrefabInstance:
     - target: {fileID: 6673915679669174103, guid: 1bcdbf8425a9fc047adb9abf8eece9f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063059139970096011, guid: 1bcdbf8425a9fc047adb9abf8eece9f4, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7063059139970096011, guid: 1bcdbf8425a9fc047adb9abf8eece9f4, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -942,7 +958,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2055234096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 071255b3280324548bc1513273b9ed23, type: 3}
+  m_Script: {fileID: 11500000, guid: d8d7e33a99a4424488b35b05d05d8298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2141052038

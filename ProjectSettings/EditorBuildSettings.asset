@@ -50,5 +50,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Member/Abe/Scenes/MatukawaResult_Copy.unity
     guid: 27d09c9b4e0d0424e8dddeee4ba6deea
+  - enabled: 1
+    path: Assets/Member/Saito/CP/CP_Sceen/CP_Main.unity
+    guid: 691726807db5a72418e99ee8bb356de4
+  - enabled: 1
+    path: Assets/Member/Saito/CP/CP_Sceen/CP_Title.unity
+    guid: ea6fd585f9c553d46be7344a771f2df5
+  - enabled: 1
+    path: Assets/Member/Saito/CP/CP_Sceen/CP_Result.unity
+    guid: b46d35806cc23824191ac8d8a206510f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 01efad6111c7ac74e87f0d9b124d81eb, type: 2}
