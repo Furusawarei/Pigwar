@@ -20,7 +20,11 @@ public class Scoremaneger : MonoBehaviour
     [SerializeField, Header("スコア表示に使うtext(TMP)")] public  TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
     [SerializeField,Header("スコア表示に使うtext(TMP)")] public  Transform[] _scoreboardTransform = new Transform[2];
     [SerializeField,Header("リザルトに遷移したときに移動する場所")] public  Transform[] _resultPos = new Transform[2];
+
+    private Vector3[] _defPos=new Vector3[2];
+
     private bool _scoreRandomSwitch = false;
+    private bool _RenderSwitch = true;
 
     void Awake()
     {
@@ -30,10 +34,11 @@ public class Scoremaneger : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else
+        else//インスタンスが２個以上にならないようにする
         {
             Destroy(this.gameObject);
         }
+        
     }
 
     private void Update()
@@ -50,6 +55,8 @@ public class Scoremaneger : MonoBehaviour
     public void SetScore(int Score,int PlayerNumber)
     {
         PlayerScore[PlayerNumber - 1] = Score;
+        //最初の位置を記憶しておく
+        _defPos[PlayerNumber-1] = _scoreboardTransform[PlayerNumber - 1].position;
     }
     public int GetScore(int PlayerNumber)
     {
@@ -79,8 +86,7 @@ public class Scoremaneger : MonoBehaviour
     /// <summary>
     /// リザルト画面遷移とスコア位置移動
     /// </summary>
-    /// <param name="ResultScene">利用するリザルトシーン</param>
-    public void ToResult(string ResultScene)
+    public void ToResult()
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
@@ -88,11 +94,32 @@ public class Scoremaneger : MonoBehaviour
             _scoreborad[i].fontSize *= 2;
         }
         ScoreRandomSwitch();
-        SceneManager.LoadScene(ResultScene);
+    }
+    /// <summary>
+    /// リザルト画面用に動かしたスコアの位置を戻す
+    /// </summary>
+    public void ToInGame()
+    {
+        for (int i = 0; i < _scoreboardTransform.Length; i++)
+        {
+            _scoreboardTransform[i].position = _defPos[i];
+            _scoreborad[i].fontSize /= 2;
+        }
+    }
+    /// <summary>
+    /// スコアの文字の表示非表示切り替え
+    /// </summary>
+    public void RenderSwitch()
+    {
+        _RenderSwitch = !_RenderSwitch;
+        for (int i = 0; i < _scoreborad.Length; i++)
+        {
+            _scoreborad[i].enabled = _RenderSwitch;
+        }
     }
 
     /// <summary>
-    /// ランダムのやつを終了させる用 
+    /// ランダムのやつのトグルスイッチ 
     /// </summary>
     public void ScoreRandomSwitch()
     {
