@@ -112,8 +112,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dce49bd8e7a6dcf47a96e48e2c48a152, type: 3}
       propertyPath: m_Name
-      value: pig@Running
+      value: MainPig
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: dce49bd8e7a6dcf47a96e48e2c48a152, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dc78e6604af4d7e4dbfb5a34b4fc1873, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
