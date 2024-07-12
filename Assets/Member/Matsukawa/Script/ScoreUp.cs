@@ -31,6 +31,8 @@ public class ScoreUp : MonoBehaviour
 
     // 障害物管理時に使う (リスト用)
     private int countPrefabs;
+
+    // 
     public void Update()
     {
         // Player2の障害物生成用関数呼び出し
