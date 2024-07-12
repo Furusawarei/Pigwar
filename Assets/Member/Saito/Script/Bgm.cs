@@ -35,10 +35,6 @@ public class Bgm : MonoBehaviour
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
             Debug.Log("切り替えタイトル");
         }
-<<<<<<< HEAD
-=======
-        //else if (SceneManager.GetActiveScene().name == "CP_Main")
->>>>>>> saito_yu
         else if (SceneManager.GetActiveScene().name == "MainScenes2")
         { //MainScenesのシーンでやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
