@@ -6,9 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 
-
 /// <summary>
-/// ƒV[ƒ“‘JˆÚ‚ÌƒtƒF[ƒhƒCƒ“EƒAƒEƒg‚ğ§Œä‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+/// ã‚·ãƒ¼ãƒ³é–“ç§»å‹•ã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ã‚¢ã‚¦ãƒˆã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class FadeManager : MonoBehaviour
 {
@@ -38,15 +37,15 @@ public class FadeManager : MonoBehaviour
     #endregion Singleton
 
     /// <summary>
-    /// ƒfƒoƒbƒOƒ‚[ƒh .
+    /// ãƒ‡ãƒãƒƒã‚°ãƒ¢ãƒ¼ãƒ‰ .
     /// </summary>
     //private bool DebugMode = false;
-    /// <summary>ƒtƒF[ƒh’†‚Ì“§–¾“x</summary>
+    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã®é€æ˜åº¦</summary>
     //private float fadeAlpha = 0;
-    /// <summary>ƒtƒF[ƒh’†‚©‚Ç‚¤‚©</summary>
+    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ä¸­ã‹ã©ã†ã‹</summary>
     private bool isFading = false;
     public bool IsFading => isFading;
-    /// <summary>ƒtƒF[ƒhF</summary>
+    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰è‰²</summary>
     public Color fadeColor = Color.black;
 
     [SerializeField] CanvasGroup _canvasGroup;
@@ -65,10 +64,10 @@ public class FadeManager : MonoBehaviour
     //public void OnGUI()
     //{
 
-    //    // Fade .
+    //    // ãƒ•ã‚§ãƒ¼ãƒ‰ .
     //    if (this.isFading)
     //    {
-    //        //F‚Æ“§–¾“x‚ğXV‚µ‚Ä”’ƒeƒNƒXƒ`ƒƒ‚ğ•`‰æ .
+    //        //è‰²ã¨é€æ˜åº¦ã‚’æ›´æ–°ã—ã¦æç”» .
     //        this.fadeColor.a = this.fadeAlpha;
     //        GUI.color = this.fadeColor;
     //        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
@@ -78,15 +77,15 @@ public class FadeManager : MonoBehaviour
     //    {
     //        if (!this.isFading)
     //        {
-    //            //Sceneˆê——‚ğì¬ .
-    //            //(UnityEditor–¼‘O‹óŠÔ‚ğg‚í‚È‚¢‚Æ©“®æ“¾‚Å‚«‚È‚¢) .
+    //            //Sceneãƒªã‚¹ãƒˆã‚’ä½œæˆ .
+    //            //(UnityEditorã®ã¿ä½¿ç”¨å¯èƒ½ãªé–¢æ•°) .
     //            List<string> scenes = new List<string>();
     //            scenes.Add("Title");
     //            scenes.Add("Main");
     //            scenes.Add("Result");
 
 
-    //            //Scene‚ªˆê‚Â‚à‚È‚¢ .
+    //            //SceneãŒè¦‹ã¤ã‹ã‚‰ãªã„å ´åˆ .
     //            if (scenes.Count == 0)
     //            {
     //                GUI.Box(new Rect(10, 10, 200, 50), "Fade Manager(Debug Mode)");
@@ -110,19 +109,18 @@ public class FadeManager : MonoBehaviour
     //            }
     //        }
     //    }
-
-
-
     //}
 
+    /// <summary>
+    /// ã‚·ãƒ¼ãƒ³é·ç§»
     /// </summary>
-    /// <param name='scene'>ƒV[ƒ“–¼</param>
-    /// <param name='interval'>ˆÃ“]‚É‚©‚©‚éŠÔ(•b)</param>
+    /// <param name='scene'>ã‚·ãƒ¼ãƒ³å</param>
+    /// <param name='interval'>é·ç§»ã«ã‹ã‘ã‚‹æ™‚é–“(ç§’)</param>
     public async void TransScene(string scene, float interval)
     {
         await FadeIn(scene, interval);
 
-        //ƒV[ƒ“Ø‘Ö
+        //ã‚·ãƒ¼ãƒ³é·ç§»
         await SceneManager.LoadSceneAsync(scene);
 
         await FadeOut(scene, interval);
@@ -131,52 +129,47 @@ public class FadeManager : MonoBehaviour
 
     public async UniTask FadeIn(string scene, float interval)
     {
-        //‚¾‚ñ‚¾‚ñˆÃ‚­ .
+        //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®é–‹å§‹ .
         this.isFading = true;
         float time = 0;
-        //while (time <= interval)
-        //{
-        //    this.fadeAlpha = Mathf.Lerp(0f, 1f, time / interval);
-        //    time += Time.deltaTime;
-        //    await UniTask.Yield();
-        //}
-        _canvasGroup.gameObject.SetActive(true);
-        _canvasGroup.alpha = 0;
-        while (time < 1.0f)
+
+        if (_canvasGroup != null)
         {
-            time += Time.deltaTime / interval;
-            time = Mathf.Clamp01(time);
-            _canvasGroup.alpha = time;
-            await UniTask.Yield();
+            _canvasGroup.gameObject.SetActive(true);
+            _canvasGroup.alpha = 0;
+            while (time < 1.0f)
+            {
+                time += Time.deltaTime / interval;
+                time = Mathf.Clamp01(time);
+                _canvasGroup.alpha = time;
+                await UniTask.Yield();
+            }
         }
 
-        this.isFading= false;
+        this.isFading = false;
     }
-
 
     public async UniTask FadeOut(string scene, float interval)
     {
         this.isFading = true;
 
-        //‚¾‚ñ‚¾‚ñ–¾‚é‚­ .
+        //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®é–‹å§‹ .
         float time = 0;
-        //while (time <= interval)
-        //{
-        //    time += Time.deltaTime;
-        //    this.fadeAlpha = Mathf.Lerp(1f, 0f, time / interval);
-        //    await UniTask.Yield();
-        //}
-        _canvasGroup.alpha = 1;
-        while (time < 1.0f)
+
+        if (_canvasGroup != null)
         {
-            time += Time.deltaTime / interval;
-            time = Mathf.Clamp01(time);
-            _canvasGroup.alpha = 1 - time;
-            await UniTask.Yield();
+            _canvasGroup.alpha = 1;
+            while (time < 1.0f)
+            {
+                time += Time.deltaTime / interval;
+                time = Mathf.Clamp01(time);
+                _canvasGroup.alpha = 1 - time;
+                await UniTask.Yield();
+            }
+
+            _canvasGroup.gameObject.SetActive(false);
         }
 
         this.isFading = false;
-        _canvasGroup.gameObject.SetActive(false);
     }
 }
-

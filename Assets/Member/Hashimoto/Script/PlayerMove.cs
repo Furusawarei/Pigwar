@@ -4,14 +4,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-  private PlayerInput _playerInput;
+    private PlayerInput _playerInput;
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
 
     public AudioClip jumpSound;
     public AudioSource audioSource;
-    
+
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -66,11 +66,10 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             Jumping = false;
         }
     }
 }
 
-      

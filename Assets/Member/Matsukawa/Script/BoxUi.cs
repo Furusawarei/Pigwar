@@ -3,33 +3,31 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// áŠQ•¨‚ÌUI‚ğ•\¦‚·‚éƒNƒ‰ƒX
+/// éšœå®³ç‰©ã®UIã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class BoxUi : MonoBehaviour
 {
     public ScoreUp scoreUp;
 
-    /* áŠQ•¨‚ÌUIŠÖŒW */
+    /* éšœå®³ç‰©ã®UIè¡¨ç¤º */
 
-    // •ÏX‚·‚éƒCƒ[ƒW‚ğ•ÛŠÇ‚·‚é‚½‚ß‚ÌƒŠƒXƒg
+    // å¤‰æ›´ã™ã‚‹ã‚¤ãƒ¡ãƒ¼ã‚¸ã‚’æ ¼ç´ã™ã‚‹ãŸã‚ã®ãƒªã‚¹ãƒˆ
     [SerializeField] protected Sprite[] magentaSpriteArr;
     [SerializeField] protected Sprite[] blueSpriteArr;
 
-    // image‚ğŠi”[‚·‚é‚Æ‚±‚ë
+    // imageã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’æ ¼ç´ã™ã‚‹
     [SerializeField] protected Image magentaUiImage;
     [SerializeField] protected Image blueUiImage;
 
-    private List<GameObject> b_list;    // Player1‚Ì¶¬‚µ‚½áŠQ•¨‚ğ•Û‘¶‚µ‚Ä‚¨‚­‚½‚ß‚ÌƒŠƒXƒg
-    private List<GameObject> b_list2;    // Player2‚ÌáŠQ•¨
+    private List<GameObject> b_list;    // Player1ã®ç”Ÿæˆã•ã‚ŒãŸéšœå®³ç‰©ã‚’ä¿æŒã™ã‚‹ãŸã‚ã®ãƒªã‚¹ãƒˆ
+    private List<GameObject> b_list2;   // Player2ã®éšœå®³ç‰©
 
     /// <summary>
-    /// player1‚ÌáŠQ•¨UI‚ğ¶¬‚·‚éŠÖ”
+    /// Player1ã®éšœå®³ç‰©UIã‚’æ›´æ–°ã™ã‚‹é–¢æ•°
     /// </summary>
     public void ShowMagentaBoxUi()
     {
         b_list = scoreUp.boxList;
-
-        //magentaUiImage = GetComponent<Image>();
 
         if (b_list.Count == 0)
         {
@@ -45,13 +43,11 @@ public class BoxUi : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// player2‚ÌáŠQ•¨UI‚ğ¶¬‚·‚éŠÖ”
+    /// Player2ã®éšœå®³ç‰©UIã‚’æ›´æ–°ã™ã‚‹é–¢æ•°
     /// </summary>
     public void ShowBlueBoxUi()
     {
-        // 
         if (blueUiImage == null) blueUiImage = GetComponent<Image>();
 
         b_list2 = scoreUp.boxList2;
