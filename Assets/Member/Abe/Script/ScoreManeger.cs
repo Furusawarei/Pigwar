@@ -1,4 +1,4 @@
-﻿﻿﻿using TMPro;
+﻿﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,14 +14,14 @@ public class Scoremaneger : MonoBehaviour
     }
     private Scoremaneger() { }
     //変数
-    public  int[] PlayerScore = new int[2];
+    public int[] PlayerScore = new int[2];
 
 
-    [SerializeField, Header("スコア表示に使うtext(TMP)")] public  TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
-    [SerializeField,Header("スコア表示に使うtext(TMP)")] public  Transform[] _scoreboardTransform = new Transform[2];
-    [SerializeField,Header("リザルトに遷移したときに移動する場所")] public  Transform[] _resultPos = new Transform[2];
+    [SerializeField, Header("スコア表示に使うtext(TMP)")] public TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
+    [SerializeField, Header("スコア表示に使うtext(TMP)")] public Transform[] _scoreboardTransform = new Transform[2];
+    [SerializeField, Header("リザルトに遷移したときに移動する場所")] public Transform[] _resultPos = new Transform[2];
 
-    private Vector3[] _defPos=new Vector3[2];
+    private Vector3[] _defPos = new Vector3[2];
 
     private bool _scoreRandomSwitch = false;
     private bool _RenderSwitch = true;
@@ -38,7 +38,7 @@ public class Scoremaneger : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+
     }
 
     private void Update()
@@ -52,15 +52,15 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
-    public void SetScore(int Score,int PlayerNumber)
+    public void SetScore(int Score, int PlayerNumber)
     {
         PlayerScore[PlayerNumber - 1] = Score;
         //最初の位置を記憶しておく
-        _defPos[PlayerNumber-1] = _scoreboardTransform[PlayerNumber - 1].position;
+        _defPos[PlayerNumber - 1] = _scoreboardTransform[PlayerNumber - 1].position;
     }
     public int GetScore(int PlayerNumber)
     {
-        return PlayerScore[PlayerNumber-1];
+        return PlayerScore[PlayerNumber - 1];
     }
 
 
@@ -91,7 +91,7 @@ public class Scoremaneger : MonoBehaviour
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
             _scoreboardTransform[i].position = _resultPos[i].position;
-            _scoreborad[i].fontSize *= 1.5f;
+            _scoreborad[i].fontSize *= 2;
         }
         ScoreRandomSwitch();
     }
@@ -123,7 +123,7 @@ public class Scoremaneger : MonoBehaviour
     /// </summary>
     public void ScoreRandomSwitch()
     {
-        _scoreRandomSwitch= !_scoreRandomSwitch;
+        _scoreRandomSwitch = !_scoreRandomSwitch;
         _scoreborad[0].text = PlayerScore[0].ToString();
         _scoreborad[1].text = PlayerScore[1].ToString();
     }
@@ -134,7 +134,7 @@ public class Scoremaneger : MonoBehaviour
     /// <param name="winer">勝ったプレイヤー番号-1</param>
     /// <param name="loser">負けたプレイヤー番号-1</param>
     /// <returns>決着がついたか</returns>
-    public bool Judge(out int winer,out int loser)
+    public bool Judge(out int winer, out int loser)
     {
         if (PlayerScore[0] > PlayerScore[1])
         {
@@ -155,4 +155,21 @@ public class Scoremaneger : MonoBehaviour
             return false;
         }
     }
-}       
+
+    /// <summary>
+    /// タイトルシーンに戻る際の処理
+    /// </summary>
+    public void ToTitle()
+    {
+        // スコアのテキストを非表示にする
+        RenderSwitch();
+
+        // スコアの値をリセットする（初期化）
+        SetScore(0, 1);
+        SetScore(0, 2);
+
+        // スコア表示を元の位置に戻す（ゲーム型に移動）
+        ToInGame();
+    }
+
+}

@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class Test1 : MonoBehaviour
 {
     [SerializeField] private int playerNumber; // プレイヤー番号を設定するための変数
     [SerializeField] private GameObject boxPrefab; // プレハブを設定するための変数
     [SerializeField] private Transform boxGeneratePos; // 生成位置を設定するための変数
+    [SerializeField] private int maxPrefabs = 8; // 保持するプレハブの最大数
 
     private Scoremaneger scoreManager; // スコアを管理するクラスを参照するための変数
     private AudioSource audioSource;
     public AudioClip summonSE; // プレハブを生成する際のSE
 
     private PlayerInput _playerInput;
+    private List<GameObject> instantiatedPrefabs = new List<GameObject>();
 
     private void Start()
     {
@@ -55,10 +58,20 @@ public class Test1 : MonoBehaviour
             GameObject newBox = Instantiate(boxPrefab, spawnPosition, Quaternion.identity);
 
             // プレハブの名前を設定（例：cube0, cube1など）
-            newBox.name = "cube" + playerNumber;
+            newBox.name = "BoxPlafab" + playerNumber;
 
-            // 他の処理（プレハブリストに追加、UIの更新、SEの再生など）
+            // 生成したプレハブをリストに追加
+            instantiatedPrefabs.Add(newBox);
 
+            // プレハブの数が最大数を超えたら古いものから削除
+            if (instantiatedPrefabs.Count > maxPrefabs)
+            {
+                GameObject oldPrefab = instantiatedPrefabs[0];
+                instantiatedPrefabs.RemoveAt(0);
+                Destroy(oldPrefab);
+            }
+
+            // 他の処理（UIの更新、SEの再生など）
             if (summonSE != null)
             {
                 audioSource.PlayOneShot(summonSE);
@@ -70,5 +83,4 @@ public class Test1 : MonoBehaviour
             Debug.Log("Score is not enough to summon the box.");
         }
     }
-
 }

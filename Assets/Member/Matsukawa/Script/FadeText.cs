@@ -17,6 +17,11 @@ public class FadeText : MonoBehaviour
     [SerializeField] GameObject startCanvas;
     [SerializeField] Image imageToFade;
 
+    // SE再生用のAudioSource
+    [SerializeField] AudioSource audioSource;
+    // スタートの際に再生するSE
+    [SerializeField] AudioClip startSE;
+
     void Start()
     {
         ready.text = "ready";
@@ -45,7 +50,6 @@ public class FadeText : MonoBehaviour
         }
     }
 
-
     IEnumerator FadeInS()
     {
         yield return new WaitForSeconds(2f);
@@ -60,6 +64,8 @@ public class FadeText : MonoBehaviour
             }
             break;
         }
+
+        PlayStartSE(); // スタートSEを再生
 
         StartCoroutine("FadeOut");
     }
@@ -80,6 +86,14 @@ public class FadeText : MonoBehaviour
         }
 
         startCanvas.SetActive(false);
+    }
 
+    // スタートSEを再生するメソッド
+    private void PlayStartSE()
+    {
+        if (audioSource != null && startSE != null)
+        {
+            audioSource.PlayOneShot(startSE);
+        }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerInput _playerInput;
+    public Animator _animator;
+
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
@@ -15,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _animator = GetComponent<Animator>();
 
         upForce = 150;
         rb = GetComponent<Rigidbody>(); // リジッドボディの取得
@@ -42,6 +45,11 @@ public class PlayerMove : MonoBehaviour
         if (move.magnitude > 0.01f)
         {
             transform.rotation = Quaternion.LookRotation(move);
+            _animator.SetBool("running", true);
+        }
+        else
+        {
+            _animator.SetBool("running", false);
         }
 
         // ジャンプの処理

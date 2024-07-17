@@ -11,9 +11,11 @@ public class PyMv : MonoBehaviour
     private float upForce;
     private bool Jumping = false;
 
+
     public AudioClip jumpSound;
+    public AudioClip playerCollisionSound; // プレイヤー同士の衝突音
     public AudioSource audioSource;
-    
+
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -52,14 +54,31 @@ public class PyMv : MonoBehaviour
         }
 
         Debug.Log(Jumping);
-
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+
+        if (collision.gameObject.CompareTag("Ground"))
         {
             Jumping = false;
+        }
+        if(collision.gameObject.CompareTag("boxPrefab"))
+        {
+            Jumping = false;
+        }
+
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (playerCollisionSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(playerCollisionSound);
+            }
+            else
+            {
+                Debug.LogWarning("playerCollisionSound or audioSource is null.");
+            }
         }
     }
 }

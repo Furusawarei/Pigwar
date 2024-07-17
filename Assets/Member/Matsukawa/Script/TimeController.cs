@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -22,21 +21,22 @@ public class TimerController : MonoBehaviour
     [SerializeField] private GameObject startImage;
     //[SerializeField] private GameObject resultButton;
 
-    //スコア用テキスト
+    // スコア用テキスト
     [SerializeField] private List<TextMeshProUGUI> _scoreborad;
 
     void Start()
     {
         countdownSeconds = countdownMinutes * 60;
 
-        //初期化
+        Scoremaneger.Instance().ToInGame();//これでスコア表示をゲーム型に移動
+
+        // 初期化
         Scoremaneger.Instance().SetScore(0, 1);
         Scoremaneger.Instance().SetScore(0, 2);
-        //0を表示する
+        // 0を表示する
         _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
         _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();
     }
-
 
     void Update()
     {
@@ -65,9 +65,17 @@ public class TimerController : MonoBehaviour
             // スコアをリザルト型に移動
             Scoremaneger.Instance().ToResult();
 
-            // シーン遷移
-            FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
+            // 遷移前に少し待機
+            StartCoroutine(WaitAndTransition());
         }
     }
 
+    private IEnumerator WaitAndTransition()
+    {
+        // 1秒待機
+        yield return new WaitForSeconds(1.0f);
+
+        // シーン遷移
+        FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
+    }
 }
