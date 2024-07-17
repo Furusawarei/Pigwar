@@ -23,7 +23,7 @@ public class CP_TimerController : MonoBehaviour
 
     void Start()
     {
-        countdownSeconds = countdownMinutes * 1;
+        countdownSeconds = countdownMinutes * 30;
     }
 
 
