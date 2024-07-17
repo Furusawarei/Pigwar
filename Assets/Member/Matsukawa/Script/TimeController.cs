@@ -5,13 +5,14 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ï¿½ï¿½ï¿½ÔŠÇ—ï¿½ï¿½pï¿½ÌƒNï¿½ï¿½ï¿½X
+/// ƒ^ƒCƒ}[ŠÇ——p‚ÌƒNƒ‰ƒX
 /// </summary>
 public class TimerController : MonoBehaviour
 {
-    // ï¿½^ï¿½Cï¿½}ï¿½[
+    // ƒ^ƒCƒ}[
     public float countdownMinutes;
     private float countdownSeconds;
 
@@ -20,17 +21,26 @@ public class TimerController : MonoBehaviour
 
     [SerializeField] private GameObject startImage;
     //[SerializeField] private GameObject resultButton;
-    
+
+    //ƒXƒRƒA—pƒeƒLƒXƒg
+    [SerializeField] private List<TextMeshProUGUI> _scoreborad;
 
     void Start()
     {
         countdownSeconds = countdownMinutes * 60;
+
+        //‰Šú‰»
+        Scoremaneger.Instance().SetScore(0, 1);
+        Scoremaneger.Instance().SetScore(0, 2);
+        //0‚ğ•\¦‚·‚é
+        _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
+        _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();
     }
 
 
     void Update()
     {
-        //  ï¿½^ï¿½Cï¿½}ï¿½[ï¿½Ìï¿½ï¿½ï¿½
+        // ƒ^ƒCƒ}[‚ÌŠJn
         if (startImage.activeSelf) return;
         if (countdownSeconds > 0)
         {
@@ -40,15 +50,22 @@ public class TimerController : MonoBehaviour
         }
 
         if (FadeManager.Instance.IsFading) return;
-        // ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
+
+        // ƒ^ƒCƒ}[‚ª0‚É‚È‚Á‚½‚Ìˆ—
         if (countdownSeconds < 0)
         {
-            // ï¿½Iï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½oï¿½ï¿½
-            finishText.text = ("ï¿½ï¿½ï¿½ï¿½ï¿½I");
+            Debug.Log("ƒ^ƒCƒ}[‚ª0‚É‚È‚è‚Ü‚µ‚½");
 
-            // ï¿½^ï¿½Cï¿½}ï¿½[0ï¿½ÉŒï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ï¿½
+            // I—¹ƒƒbƒZ[ƒW‚ğ•\¦
+            finishText.text = ("I—¹I");
+
+            // ƒ^ƒCƒ}[‚ğ0‚Éİ’è
             timeText.text = ("00:00");
 
+            // ƒXƒRƒA‚ğƒŠƒUƒ‹ƒgŒ^‚ÉˆÚ“®
+            Scoremaneger.Instance().ToResult();
+
+            // ƒV[ƒ“‘JˆÚ
             FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
         }
     }

@@ -69,6 +69,10 @@ PrefabInstance:
       value: pearl_main
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e21da035872dbc44b8e6c2ff4e18388f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e21da035872dbc44b8e6c2ff4e18388f, type: 3}
       propertyPath: m_TagString
       value: Pearl
       objectReference: {fileID: 0}

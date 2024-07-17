@@ -1,60 +1,74 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class Test1 : MonoBehaviour
 {
-    [SerializeField] private ActionControl _actionControl;
-    [SerializeField] private GameObject boxPrefab2; // 障害物のプレハブ
-    [SerializeField] private Transform playerTransform; // プレイヤーのTransform
-    [SerializeField] private float spawnDistance = 2.0f; // プレイヤーの前に生成する距離
+    [SerializeField] private int playerNumber; // プレイヤー番号を設定するための変数
+    [SerializeField] private GameObject boxPrefab; // プレハブを設定するための変数
+    [SerializeField] private Transform boxGeneratePos; // 生成位置を設定するための変数
 
-    private Scoremaneger scoreManager;
+    private Scoremaneger scoreManager; // スコアを管理するクラスを参照するための変数
+    private AudioSource audioSource;
+    public AudioClip summonSE; // プレハブを生成する際のSE
 
-    private void Awake()
+    private PlayerInput _playerInput;
+
+    private void Start()
     {
-        _actionControl = new ActionControl();
-        _actionControl.Enable();
-        scoreManager = Scoremaneger.Instance();
+        // ScoreManagerのインスタンスをシーン内から取得する（例：ScoreManagerがシーン内の別のオブジェクトにアタッチされている場合）
+        scoreManager = FindObjectOfType<Scoremaneger>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        Generate();
+        if (_playerInput.actions["Summon"].triggered)
+        {
+            SummonBox();
+        }
     }
 
-    public void Generate()
+    public void SummonBox()
     {
-        // プレイヤー2のスコアを取得
-        int score2 = scoreManager.GetScore(2);
+        int scoreToConsume = 2; // 消費するスコア
 
-        // スコアが2未満なら生成しない
-        if (score2 < 2) return;
-
-        // プレイヤー1の召喚アクションがトリガーされたとき
-        if (_actionControl.Player1.Summon.triggered)
+        // スコアが2以上か確認
+        if (scoreManager.GetScore(playerNumber) >= scoreToConsume)
         {
-            // プレイヤーの前方に障害物を生成
-            Vector3 spawnPosition = playerTransform.position + playerTransform.forward * spawnDistance;
-            Instantiate(boxPrefab2, spawnPosition, Quaternion.identity);
-
             // スコアを減らす
-            scoreManager.ScoreChenge(-2, 2);
-        }
+            scoreManager.ScoreChenge(-scoreToConsume, playerNumber);
 
-        // "boxPrefab2"タグを持つオブジェクトの数を数える
-        int count2 = GameObject.FindGameObjectsWithTag("boxPrefab2").Length;
+            // プレイヤーの現在位置を取得
+            Vector3 playerPosition = transform.position;
 
-        // オブジェクトが8個を超えた場合は古いものを破壊する
-        if (count2 > 8)
-        {
-            GameObject oldestBox = GameObject.FindWithTag("boxPrefab2");
-            if (oldestBox != null)
+            // プレイヤーの前方向に1メートル進んだ位置を計算
+            Vector3 spawnPosition = playerPosition + transform.forward * 1.0f;
+
+            // プレハブを生成
+            GameObject newBox = Instantiate(boxPrefab, spawnPosition, Quaternion.identity);
+
+            // プレハブの名前を設定（例：cube0, cube1など）
+            newBox.name = "cube" + playerNumber;
+
+            // 他の処理（プレハブリストに追加、UIの更新、SEの再生など）
+
+            if (summonSE != null)
             {
-                Destroy(oldestBox);
+                audioSource.PlayOneShot(summonSE);
             }
         }
+        else
+        {
+            // スコアが足りない場合の処理を記述
+            Debug.Log("Score is not enough to summon the box.");
+        }
     }
+
 }
