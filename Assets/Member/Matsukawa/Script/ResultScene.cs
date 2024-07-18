@@ -16,11 +16,11 @@ public class ResultScene : MonoBehaviour
     {
         if(_actionControl.UI.Scenes.triggered)
         {
-           FadeManager.Instance.TransScene("Title", 2.0f);
+           FadeManager.Instance.TransScene("MAinTitle", 2.0f);
         }
 
         /*
-        // �Z�{�^���������ꂽ�烁�C����ʂɑJ��
+        // ?Z?{?^?????????????C??????J??
         if (Input.GetKeyDown("joystick button 13"))
         {
             FadeManager.Instance.TransScene("Title", 2.0f);

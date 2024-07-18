@@ -5,10 +5,10 @@ public class UVScroll1 : MonoBehaviour
 {
 
     [SerializeField]
-    private float scrollSpeedX = 0.1f;
+    private float scrollSpeedX;
 
     [SerializeField]
-    private float scrollSpeedY = 0.1f;
+    private float scrollSpeedY;
 
     void Start()
     {

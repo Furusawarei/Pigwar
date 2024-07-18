@@ -9,5 +9,7 @@ public class TitleManager : MonoBehaviour
 
         // タイトルシーンでの処理
         scoreManager.ToTitle();
+        
+
     }
 }

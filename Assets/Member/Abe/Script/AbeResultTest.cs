@@ -68,7 +68,7 @@ public class ResultTest : MonoBehaviour
     /// </summary>
     private void judge()
     {
-        Scoremaneger.Instance().ScoreRandomSwitch();//ランダム止め
+        //Scoremaneger.Instance().ScoreRandomSwitch();//ランダム止め
         _isSettled=Scoremaneger.Instance().Judge(out int winer,out int loser);//プレイヤー番号
         //決着がついていないなら
         if (!_isSettled)

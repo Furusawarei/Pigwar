@@ -28,7 +28,6 @@ public class TimerController : MonoBehaviour
     {
         countdownSeconds = countdownMinutes * 60;
 
-        Scoremaneger.Instance().ToInGame();//これでスコア表示をゲーム型に移動
 
         // 初期化
         Scoremaneger.Instance().SetScore(0, 1);
@@ -50,32 +49,17 @@ public class TimerController : MonoBehaviour
         }
 
         if (FadeManager.Instance.IsFading) return;
-
         // タイマーが0になった時の処理
         if (countdownSeconds < 0)
         {
-            Debug.Log("タイマーが0になりました");
-
             // 終了メッセージを表示
             finishText.text = ("終了！");
 
             // タイマーを0に設定
             timeText.text = ("00:00");
 
-            // スコアをリザルト型に移動
-            Scoremaneger.Instance().ToResult();
-
-            // 遷移前に少し待機
-            StartCoroutine(WaitAndTransition());
+            // シーン遷移
+            FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
         }
-    }
-
-    private IEnumerator WaitAndTransition()
-    {
-        // 1秒待機
-        yield return new WaitForSeconds(1.0f);
-
-        // シーン遷移
-        FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
     }
 }
