@@ -5,28 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Matsukawa/Resources/ScenesSpare/Title.unity
     guid: 12b265ccd84d7804aa697fc351214c99
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Furusawa/Scenes2/Main(kari).unity
     guid: d9ca7ed8d7227e74ebbb35816d5e4af9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Hashimoto/Scenes/TestScene3.unity
     guid: 4598233f5f9b70943a2a1069042a3fcc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Saito/Scenes/TestScene5.unity
     guid: 49c1d02acdb73fe46a161b3a725cb40e
   - enabled: 0
     path: Assets/Member/Abe/Scenes/ResultTest.unity
     guid: 4f41997d90efd614a8fe7cb475c96df4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Matsukawa/Resources/ScenesSpare/Main.unity
     guid: d02d04dd9c34ce147b72c159c4c1e588
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Matsukawa/Resources/ScenesSpare/Result.unity
     guid: dff955cb4d5525d4ba332b4b37f32eb4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Saito/Scenes/Start.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
@@ -38,26 +38,29 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScenes2.unity
     guid: 5f15662817f958e43ae11d0b68dfbd5b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Abe/Scenes/ScoreTest.unity
     guid: 1be12af035d947845b238c3a79fbeed0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Furusawa/Scenes2/TestScene.unity
     guid: 2078ed0ad9f60b9419a6a9747b1e94f2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Furusawa/Scenes2/KariScene 1.unity
     guid: e2c75280ad886f04b947da020f5149db
   - enabled: 1
     path: Assets/Member/Abe/Scenes/MatukawaResult_Copy.unity
     guid: 27d09c9b4e0d0424e8dddeee4ba6deea
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Saito/CP/CP_Sceen/CP_Main.unity
     guid: 691726807db5a72418e99ee8bb356de4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Saito/CP/CP_Sceen/CP_Title.unity
     guid: ea6fd585f9c553d46be7344a771f2df5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Member/Saito/CP/CP_Sceen/CP_Result.unity
     guid: b46d35806cc23824191ac8d8a206510f
+  - enabled: 1
+    path: Assets/Scenes/MainTitle.unity
+    guid: 866d40cbfce679048aab61b1054f3b4f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 01efad6111c7ac74e87f0d9b124d81eb, type: 2}

@@ -9,6 +9,7 @@ TagManager:
   - Default
   - boxPrefab
   - boxPrefab2
+  - body
   layers:
   - Default
   - TransparentFX

@@ -42,7 +42,7 @@ public class Bgm : MonoBehaviour
         }
 
         //else if (SceneManager.GetActiveScene().name == "CP_Result")
-        else if (SceneManager.GetActiveScene().name == "MainResult")
+        else if (SceneManager.GetActiveScene().name == "MatukawaResult_Copy")
         {
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
             Debug.Log("Ø‚è‘Ö‚¦ƒŠƒUƒ‹ƒg");
