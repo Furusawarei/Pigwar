@@ -52,7 +52,7 @@ public class FadeText : MonoBehaviour
 
     IEnumerator FadeInS()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         start.text = ("スタート！");
         while (true)
@@ -68,6 +68,7 @@ public class FadeText : MonoBehaviour
         PlayStartSE(); // スタートSEを再生
 
         StartCoroutine("FadeOut");
+
     }
 
     IEnumerator FadeOut()

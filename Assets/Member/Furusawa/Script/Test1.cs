@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Test1 : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class Test1 : MonoBehaviour
     private PlayerInput _playerInput;
     private List<GameObject> instantiatedPrefabs = new List<GameObject>();
 
+    // スプライトを変更するためのUI要素とスプライトを設定
+    [SerializeField] private Image uiSprite; // UIのスプライトを表示するImageコンポーネント
+    [SerializeField] private Sprite sprite1; // 1個未満の時のスプライト
+    [SerializeField] private Sprite sprite2; // 2個の時のスプライト
+    [SerializeField] private Sprite sprite4; // 4個の時のスプライト
+
     private void Start()
     {
         // ScoreManagerのインスタンスをシーン内から取得する（例：ScoreManagerがシーン内の別のオブジェクトにアタッチされている場合）
@@ -28,6 +35,7 @@ public class Test1 : MonoBehaviour
         }
 
         _playerInput = GetComponent<PlayerInput>();
+        UpdateSprite(); // 初期スプライトの設定
     }
 
     private void Update()
@@ -71,6 +79,9 @@ public class Test1 : MonoBehaviour
                 Destroy(oldPrefab);
             }
 
+            // スプライトの更新
+            UpdateSprite();
+
             // 他の処理（UIの更新、SEの再生など）
             if (summonSE != null)
             {
@@ -81,6 +92,22 @@ public class Test1 : MonoBehaviour
         {
             // スコアが足りない場合の処理を記述
             Debug.Log("Score is not enough to summon the box.");
+        }
+    }
+
+    private void UpdateSprite()
+    {
+        if (instantiatedPrefabs.Count >= 4)
+        {
+            uiSprite.sprite = sprite4;
+        }
+        else if (instantiatedPrefabs.Count >= 2)
+        {
+            uiSprite.sprite = sprite2;
+        }
+        else
+        {
+            uiSprite.sprite = sprite1;
         }
     }
 }

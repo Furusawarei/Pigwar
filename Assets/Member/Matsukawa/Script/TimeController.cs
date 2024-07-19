@@ -21,8 +21,7 @@ public class TimerController : MonoBehaviour
     [SerializeField] private GameObject startImage;
     //[SerializeField] private GameObject resultButton;
 
-    // スコア用テキスト
-    [SerializeField] private List<TextMeshProUGUI> _scoreborad;
+    
 
     void Start()
     {
@@ -32,9 +31,7 @@ public class TimerController : MonoBehaviour
         // 初期化
         Scoremaneger.Instance().SetScore(0, 1);
         Scoremaneger.Instance().SetScore(0, 2);
-        // 0を表示する
-        _scoreborad[0].text = Scoremaneger.Instance().PlayerScore[0].ToString();
-        _scoreborad[1].text = Scoremaneger.Instance().PlayerScore[1].ToString();
+       
     }
 
     void Update()

@@ -36,8 +36,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScenes.unity
     guid: fd10d20d44b302e438a9ef11cb10c607
   - enabled: 1
+    path: Assets/Scenes/MainTitle.unity
+    guid: 866d40cbfce679048aab61b1054f3b4f
+  - enabled: 1
     path: Assets/Scenes/MainScenes2.unity
     guid: 5f15662817f958e43ae11d0b68dfbd5b
+  - enabled: 1
+    path: Assets/Member/Abe/Scenes/MatukawaResult_Copy.unity
+    guid: 27d09c9b4e0d0424e8dddeee4ba6deea
   - enabled: 0
     path: Assets/Member/Abe/Scenes/ScoreTest.unity
     guid: 1be12af035d947845b238c3a79fbeed0
@@ -47,9 +53,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Member/Furusawa/Scenes2/KariScene 1.unity
     guid: e2c75280ad886f04b947da020f5149db
-  - enabled: 1
-    path: Assets/Member/Abe/Scenes/MatukawaResult_Copy.unity
-    guid: 27d09c9b4e0d0424e8dddeee4ba6deea
   - enabled: 0
     path: Assets/Member/Saito/CP/CP_Sceen/CP_Main.unity
     guid: 691726807db5a72418e99ee8bb356de4
@@ -59,8 +62,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Member/Saito/CP/CP_Sceen/CP_Result.unity
     guid: b46d35806cc23824191ac8d8a206510f
-  - enabled: 1
-    path: Assets/Scenes/MainTitle.unity
-    guid: 866d40cbfce679048aab61b1054f3b4f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 01efad6111c7ac74e87f0d9b124d81eb, type: 2}

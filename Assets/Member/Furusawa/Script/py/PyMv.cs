@@ -11,6 +11,7 @@ public class PyMv : MonoBehaviour
     private float upForce;
     private bool Jumping = false;
 
+    public float moveSpeed = 5f; // 移動スピードを設定
 
     public AudioClip jumpSound;
     public AudioClip playerCollisionSound; // プレイヤー同士の衝突音
@@ -28,13 +29,14 @@ public class PyMv : MonoBehaviour
     {
         // プレイヤーの移動
         var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
-        Vector3 move = new Vector3(pos.x, 0, pos.y) * 0.03f;
-        transform.position += move;
+        Vector3 move = new Vector3(pos.x, 0, pos.y) * moveSpeed;
+
+        rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
 
         // プレイヤーの向きを移動方向に変更
         if (move.magnitude > 0.01f)
         {
-            transform.rotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.LookRotation(new Vector3(move.x, 0, move.z));
         }
 
         // ジャンプの処理
@@ -58,7 +60,6 @@ public class PyMv : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-
         if (collision.gameObject.CompareTag("Ground"))
         {
             Jumping = false;
@@ -67,7 +68,6 @@ public class PyMv : MonoBehaviour
         {
             Jumping = false;
         }
-
 
         if (collision.gameObject.CompareTag("Player"))
         {

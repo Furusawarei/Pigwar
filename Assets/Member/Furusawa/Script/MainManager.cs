@@ -4,11 +4,6 @@ public class MainManager : MonoBehaviour
 {
     void Start()
     {
-        // Scoremaneger のインスタンスを取得
-        Scoremaneger scoreManager = Scoremaneger.Instance();
-
-        
-        scoreManager.RenderSwitch();
-
+           Scoremaneger.Instance().RenderSwitch();//これでスコア表示のオンオフ
     }
 }

@@ -22,7 +22,7 @@ public class Scoremaneger : MonoBehaviour
     [SerializeField, Header("リザルトに遷移したときに移動する場所")] public Transform[] _resultPos = new Transform[2];
 
     private Vector3[] _defPos = new Vector3[2];
-    private float[] _originalFontSize = new float[2];  // 元のフォントサイズを保持する配列
+    private float _originalFontSize = 200;  // 元のフォントサイズを保持する配列
 
     private bool _scoreRandomSwitch = false;
     private bool _RenderSwitch = true;
@@ -44,11 +44,7 @@ public class Scoremaneger : MonoBehaviour
 
     void Start()
     {
-        // 初期のフォントサイズを保存
-        for (int i = 0; i < _scoreborad.Length; i++)
-        {
-            _originalFontSize[i] = _scoreborad[i].fontSize;
-        }
+
     }
 
     private void Update()
@@ -60,6 +56,7 @@ public class Scoremaneger : MonoBehaviour
                 _scoreborad[i].text = Random.Range(10, 100).ToString();
             }
         }
+
     }
 
     public void SetScore(int Score, int PlayerNumber)
@@ -101,7 +98,7 @@ public class Scoremaneger : MonoBehaviour
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
             _scoreboardTransform[i].position = _resultPos[i].position;
-            _scoreborad[i].fontSize *= 1.5f;
+            _scoreborad[i].fontSize *= 1.2f;
         }
         ScoreRandomSwitch();
     }
@@ -113,7 +110,7 @@ public class Scoremaneger : MonoBehaviour
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
             _scoreboardTransform[i].position = _defPos[i];
-            _scoreborad[i].fontSize = _originalFontSize[i];  // 元のフォントサイズに戻す
+            _scoreborad[i].fontSize = _originalFontSize;  // 元のフォントサイズに戻す
         }
     }
     /// <summary>

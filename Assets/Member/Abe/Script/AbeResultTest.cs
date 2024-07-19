@@ -86,8 +86,8 @@ public class ResultTest : MonoBehaviour
         //勝ち負けの処理
         WinText(_winOrLoseText[winer]);
         LoseText(_winOrLoseText[loser]);
-        _playerScale[winer].localScale = _defScale * 0.75f;
-        _playerScale[loser].localScale = _defScale * 0.25f;
+        _playerScale[winer].localScale = _defScale * 0.8f;
+        _playerScale[loser].localScale = _defScale * 0.3f;
         
     }
     #region　テキスト変更関数
@@ -130,12 +130,12 @@ public class ResultTest : MonoBehaviour
             if(_isScaleUp) 
             {
                 _f_scale += 0.0025f;
-                if(_f_scale >0.75)_isScaleUp = false;
+                if(_f_scale >0.8)_isScaleUp = false;
             }
             else
             {
                 _f_scale -= 0.0025f;
-                if( _f_scale <0.25)_isScaleUp=true;
+                if( _f_scale <0.3)_isScaleUp=true;
             }
             //スケールサイズ変更
             _scale.x = _defScale.x * _f_scale;
