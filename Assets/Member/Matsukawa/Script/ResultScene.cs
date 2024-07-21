@@ -17,6 +17,7 @@ public class ResultScene : MonoBehaviour
         if(_actionControl.UI.Scenes.triggered)
         {
            FadeManager.Instance.TransScene("MAinTitle", 2.0f);
+           Scoremaneger.Instance().ToInGame();
         }
 
         /*

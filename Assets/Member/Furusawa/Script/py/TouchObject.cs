@@ -17,6 +17,8 @@ public class TouchObject : MonoBehaviour
     private int maxBoxCount = 1; // 最大ボックス保持数
     RaycastHit hit; // レイキャストのヒット情報
 
+    private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>(); // オブジェクトの元のレイヤーを記憶する辞書
+
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -61,10 +63,23 @@ public class TouchObject : MonoBehaviour
             throwObj.transform.rotation = Quaternion.identity; // 回転をリセット
             rb.isKinematic = false; // 物理的に固定を解除
 
+            // オブジェクトのレイヤーを元に戻す
+            if (originalLayers.ContainsKey(throwObj))
+            {
+                throwObj.layer = originalLayers[throwObj];
+                originalLayers.Remove(throwObj);
+            }
+
             // パールの場合、前方に力を加えて投げる
             if (throwObj.CompareTag("Pearl"))
             {
                 rb.AddForce(rayPoint.forward * 10.0f, ForceMode.Impulse); // オブジェクトに力を加えて前方に発射
+                // 投げたオブジェクトにisThrownを設定
+                var throwableObject = throwObj.GetComponent<ThrowableObject>();
+                if (throwableObject != null)
+                {
+                    throwableObject.isThrown = true;
+                }
             }
 
             // `boxPrefab`の場合、その場に置くため力を加えない
@@ -73,10 +88,42 @@ public class TouchObject : MonoBehaviour
 
     private void GrabObject(GameObject obj)
     {
+        // 元のレイヤーを記憶
+        if (!originalLayers.ContainsKey(obj))
+        {
+            originalLayers[obj] = obj.layer;
+        }
+
+        // レイヤーを変更（例：掴んだオブジェクトのレイヤーを「HeldObjectLayer」に変更）
+        obj.layer = LayerMask.NameToLayer("HeldObjectLayer");
+
         obj.GetComponent<Rigidbody>().isKinematic = true; // オブジェクトを物理的に固定
         obj.transform.position = grabPoint.position + Vector3.up * heightOffset * grabObjects.Count; // 高さオフセットを適用
         obj.transform.rotation = Quaternion.identity; // 回転をリセット
         obj.transform.SetParent(transform); // オブジェクトの親をこのオブジェクトに設定
         grabObjects.Add(obj); // オブジェクトをリストに追加
+    }
+
+    public void DropAllPearls()
+    {
+        for (int i = grabObjects.Count - 1; i >= 0; i--)
+        {
+            GameObject obj = grabObjects[i];
+            if (obj.CompareTag("Pearl"))
+            {
+                grabObjects.RemoveAt(i);
+                Rigidbody rb = obj.GetComponent<Rigidbody>();
+                obj.transform.SetParent(null); // オブジェクトの親を解除
+                obj.transform.rotation = Quaternion.identity; // 回転をリセット
+                rb.isKinematic = false; // 物理的に固定を解除
+
+                // オブジェクトのレイヤーを元に戻す
+                if (originalLayers.ContainsKey(obj))
+                {
+                    obj.layer = originalLayers[obj];
+                    originalLayers.Remove(obj);
+                }
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ public class Scoremaneger : MonoBehaviour
     [SerializeField, Header("リザルトに遷移したときに移動する場所")] public Transform[] _resultPos = new Transform[2];
 
     private Vector3[] _defPos = new Vector3[2];
-    private float _originalFontSize = 200;  // 元のフォントサイズを保持する配列
+    private float _originalFontSize = 180;  // 元のフォントサイズを保持する配列
 
     private bool _scoreRandomSwitch = false;
     private bool _RenderSwitch = true;

@@ -30,7 +30,7 @@ public class pearl : MonoBehaviour
     private void Production()
     {
         //?^??6????????????????
-        if (_pearlist.Count >= 5) return;
+        if (_pearlist.Count >= 9) return;
         {
             var obj = Instantiate(_pearlprefab,Vector3.zero,Quaternion.identity, pearl_limit);
             obj.GetComponent<pearl_counter>().Setup(DeleteObject);
