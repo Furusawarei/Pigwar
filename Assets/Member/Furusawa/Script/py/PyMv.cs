@@ -10,8 +10,8 @@ public class PyMv : MonoBehaviour
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
-
     public float moveSpeed = 5f; // 移動スピードを設定
+    private TouchObject touchObject;
 
     public AudioClip jumpSound;
     public AudioClip playerCollisionSound; // プレイヤー同士の衝突音
@@ -23,6 +23,8 @@ public class PyMv : MonoBehaviour
 
         upForce = 150;
         rb = GetComponent<Rigidbody>(); // リジッドボディの取得
+
+        touchObject = GetComponent<TouchObject>();
     }
 
     void Update()
@@ -40,7 +42,7 @@ public class PyMv : MonoBehaviour
         }
 
         // ジャンプの処理
-        if (_playerInput.actions["Jump"].triggered && !Jumping)
+        if (_playerInput.actions["Jump"].triggered && !Jumping && (touchObject == null || !touchObject.IsHoldingObject))
         {
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;

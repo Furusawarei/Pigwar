@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 public class MainScene : MonoBehaviour
 {
     private ActionControl _actionControl;
+    private bool isScneChanging = false;
+
     public AudioSource audioSource; // SE再生用のAudioSource
     public AudioClip sceneChangeSE; // シーン遷移の際に再生するSE
 
@@ -18,12 +20,11 @@ public class MainScene : MonoBehaviour
 
     void Update()
     {
-        if (_actionControl.UI.Scenes.triggered)
+        if (_actionControl.UI.Scenes.triggered && !isScneChanging)
         {
-            PlaySE(sceneChangeSE); // SEを再生
-            FadeManager.Instance.TransScene("MainScenes2", 2.0f);
+           StartCoroutine(SceneChange());
         }
-        
+
         /*
         if (FadeManager.Instance.IsFading) return;
         // セレクトボタンが押されたときにシーン遷移
@@ -38,6 +39,16 @@ public class MainScene : MonoBehaviour
             FadeManager.Instance.TransScene("Main", 2.0f);
         }
         */
+    }
+
+    private IEnumerator SceneChange()
+    {
+        isScneChanging = true;
+        PlaySE(sceneChangeSE); // SEを再生
+        FadeManager.Instance.TransScene("MainScenes2", 2.0f);
+
+        yield return new WaitForSeconds(2.0f);
+        isScneChanging = false;
     }
 
     // SEを再生するメソッド

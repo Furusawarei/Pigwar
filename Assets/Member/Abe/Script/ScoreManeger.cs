@@ -1,21 +1,20 @@
 ﻿﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Scoremaneger : MonoBehaviour
 {
-    //singletonエリア
+    // Singletonエリア
     private static Scoremaneger instance;
-    public static Scoremaneger Instance()//生成
+    public static Scoremaneger Instance()
     {
         if (instance == null)
             instance = new Scoremaneger();
         return instance;
     }
     private Scoremaneger() { }
-    //変数
-    public int[] PlayerScore = new int[2];
 
+    // 変数
+    public int[] PlayerScore = new int[2];
 
     [SerializeField, Header("スコア表示に使うtext(TMP)")] public TextMeshProUGUI[] _scoreborad = new TextMeshProUGUI[2];
     [SerializeField, Header("スコア表示に使うtext(TMP)")] public Transform[] _scoreboardTransform = new Transform[2];
@@ -35,16 +34,15 @@ public class Scoremaneger : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else//インスタンスが２個以上にならないようにする
+        else
         {
             Destroy(this.gameObject);
         }
-
     }
 
     void Start()
     {
-
+        // 初期化コードがあればここに記述
     }
 
     private void Update()
@@ -56,15 +54,15 @@ public class Scoremaneger : MonoBehaviour
                 _scoreborad[i].text = Random.Range(10, 100).ToString();
             }
         }
-
     }
 
     public void SetScore(int Score, int PlayerNumber)
     {
         PlayerScore[PlayerNumber - 1] = Score;
-        //最初の位置を記憶しておく
-        _defPos[PlayerNumber - 1] = _scoreboardTransform[PlayerNumber - 1].position;
+        _scoreborad[PlayerNumber - 1].text = Score.ToString();  // スコア表示を更新
+        _defPos[PlayerNumber - 1] = _scoreboardTransform[PlayerNumber - 1].position;  // 最初の位置を記憶しておく
     }
+
     public int GetScore(int PlayerNumber)
     {
         return PlayerScore[PlayerNumber - 1];
@@ -80,7 +78,7 @@ public class Scoremaneger : MonoBehaviour
     public bool ScoreChenge(int score, int PlayerNumber)
     {
         PlayerNumber -= 1;
-        if (PlayerScore[PlayerNumber] + score < 0)//計算後のスコアが0未満になるなら反映しない
+        if (PlayerScore[PlayerNumber] + score < 0)
         {
             Debug.Log("スコアがマイナスになった");
             return false;
@@ -102,9 +100,7 @@ public class Scoremaneger : MonoBehaviour
         }
         ScoreRandomSwitch();
     }
-    /// <summary>
-    /// リザルト画面用に動かしたスコアの位置を戻す
-    /// </summary>
+
     public void ToInGame()
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
@@ -113,9 +109,7 @@ public class Scoremaneger : MonoBehaviour
             _scoreborad[i].fontSize = _originalFontSize;  // 元のフォントサイズに戻す
         }
     }
-    /// <summary>
-    /// スコアの文字の表示非表示切り替え
-    /// </summary>
+
     public void RenderSwitch()
     {
         _RenderSwitch = !_RenderSwitch;
@@ -163,11 +157,15 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
+    //変更箇所
     public void ToTitle()
     {
-        RenderSwitch();
-        SetScore(0, 1);
-        SetScore(0, 2);
-        ToInGame();
+        for (int i = 0; i < _scoreborad.Length; i++)
+        {
+            SetScore(0, i + 1);
+            _scoreborad[i].fontSize = _originalFontSize;  // フォントサイズをリセット
+            _scoreborad[i].enabled = false;  // スコア表示を非表示にする
+        }
+        _RenderSwitch = false;  // 表示状態をリセット
     }
 }
