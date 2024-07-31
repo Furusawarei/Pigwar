@@ -7,10 +7,12 @@ public class PlayerLabel : MonoBehaviour
 {
     public int playerNumber;
     private TextMeshPro label;
-    // Start is called before the first frame update
+    private Camera mainCamera;
+
     void Start()
     {
-        label =  GetComponentInChildren<TextMeshPro>();
+        label = GetComponentInChildren<TextMeshPro>();
+        mainCamera = Camera.main; // メインカメラを取得
 
         if (playerNumber == 1)
         {
@@ -21,5 +23,11 @@ public class PlayerLabel : MonoBehaviour
         {
             label.text = "P2";
         }
+    }
+
+    void LateUpdate()
+    {
+        // ラベルを常にカメラの方向に向ける
+        label.transform.rotation = Quaternion.LookRotation(label.transform.position - mainCamera.transform.position);
     }
 }

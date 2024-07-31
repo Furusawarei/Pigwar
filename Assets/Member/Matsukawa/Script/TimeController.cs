@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class TimerController : MonoBehaviour
 {
-    // タイマー
     public float countdownMinutes;
     private float countdownSeconds;
 
@@ -19,24 +18,19 @@ public class TimerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finishText;
 
     [SerializeField] private GameObject startImage;
-    //[SerializeField] private GameObject resultButton;
 
-    
+    private bool isTimerFinished = false;
 
     void Start()
     {
         countdownSeconds = countdownMinutes * 60;
 
-
-        // 初期化
         Scoremaneger.Instance().SetScore(0, 1);
         Scoremaneger.Instance().SetScore(0, 2);
-       
     }
 
     void Update()
     {
-        // タイマーの開始
         if (startImage.activeSelf) return;
         if (countdownSeconds > 0)
         {
@@ -46,17 +40,21 @@ public class TimerController : MonoBehaviour
         }
 
         if (FadeManager.Instance.IsFading) return;
-        // タイマーが0になった時の処理
-        if (countdownSeconds < 0)
+        if (countdownSeconds < 0 && !isTimerFinished)
         {
-            // 終了メッセージを表示
-            finishText.text = ("終了！");
+            isTimerFinished = true;
+            finishText.text = ("Finnish!");
 
-            // タイマーを0に設定
             timeText.text = ("00:00");
 
-            // シーン遷移
+            // プレイヤーの動きを停止
+            foreach (var player in FindObjectsOfType<PyMv>())
+            {
+                player.DisableMovement();
+            }
+
             FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
         }
     }
 }
+

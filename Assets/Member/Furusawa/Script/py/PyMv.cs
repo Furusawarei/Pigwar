@@ -10,38 +10,49 @@ public class PyMv : MonoBehaviour
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
-    public float moveSpeed = 5f; // 移動スピードを設定
+    public float moveSpeed = 5f;
     private TouchObject touchObject;
 
     public AudioClip jumpSound;
-    public AudioClip playerCollisionSound; // プレイヤー同士の衝突音
+    public AudioClip playerCollisionSound;
     public AudioSource audioSource;
+
+    private bool canMove = true;
 
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
 
         upForce = 150;
-        rb = GetComponent<Rigidbody>(); // リジッドボディの取得
+        rb = GetComponent<Rigidbody>();
 
         touchObject = GetComponent<TouchObject>();
     }
 
     void Update()
     {
-        // プレイヤーの移動
+        if (!canMove)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
+        if (!FadeText.canMove)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
         var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
         Vector3 move = new Vector3(pos.x, 0, pos.y) * moveSpeed;
 
         rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
 
-        // プレイヤーの向きを移動方向に変更
         if (move.magnitude > 0.01f)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(move.x, 0, move.z));
         }
 
-        // ジャンプの処理
         if (_playerInput.actions["Jump"].triggered && !Jumping && (touchObject == null || !touchObject.IsHoldingObject))
         {
             rb.AddForce(new Vector3(0, upForce, 0));
@@ -62,11 +73,7 @@ public class PyMv : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            Jumping = false;
-        }
-        if(collision.gameObject.CompareTag("boxPrefab"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("boxPrefab"))
         {
             Jumping = false;
         }
@@ -81,6 +88,15 @@ public class PyMv : MonoBehaviour
             {
                 Debug.LogWarning("playerCollisionSound or audioSource is null.");
             }
+        }
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+        if (touchObject != null)
+        {
+            touchObject.DisableInteraction();
         }
     }
 }

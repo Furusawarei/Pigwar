@@ -6,6 +6,5 @@ public class TitleManager : MonoBehaviour
     {
         // タイトルシーンでの処理
         Scoremaneger.Instance().ToTitle();
-    
     }
 }

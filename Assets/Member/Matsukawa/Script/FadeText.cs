@@ -22,6 +22,9 @@ public class FadeText : MonoBehaviour
     // スタートの際に再生するSE
     [SerializeField] AudioClip startSE;
 
+    // プレイヤーが動けるかどうかを示すフラグ
+    public static bool canMove = false;
+
     void Start()
     {
         ready.text = "ready";
@@ -66,6 +69,9 @@ public class FadeText : MonoBehaviour
         }
 
         PlayStartSE(); // スタートSEを再生
+
+        // プレイヤーの動きを許可
+        canMove = true;
 
         StartCoroutine("FadeOut");
 
