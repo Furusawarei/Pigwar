@@ -53,7 +53,7 @@ public class BGMSoundData
 {
     public enum BGM
     {
-        Title,
+        MainTitle,
         MainScenes,
         Result, // ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
     }

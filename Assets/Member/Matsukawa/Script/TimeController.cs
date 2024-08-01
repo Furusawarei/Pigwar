@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// タイマー管理用のクラス
+/// ?^?C?}?[????p??N???X
 /// </summary>
 public class TimerController : MonoBehaviour
 {
@@ -46,12 +46,6 @@ public class TimerController : MonoBehaviour
             finishText.text = ("Finnish!");
 
             timeText.text = ("00:00");
-
-            // プレイヤーの動きを停止
-            foreach (var player in FindObjectsOfType<PyMv>())
-            {
-                player.DisableMovement();
-            }
 
             FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
         }

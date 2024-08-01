@@ -68,7 +68,7 @@ public class ResultTest : MonoBehaviour
     /// </summary>
     private void judge()
     {
-        //Scoremaneger.Instance().ScoreRandomSwitch();//ランダム止め
+        Scoremaneger.Instance().ScoreRandomSwitch();//ランダム止め
         _isSettled=Scoremaneger.Instance().Judge(out int winer,out int loser);//プレイヤー番号
         //決着がついていないなら
         if (!_isSettled)
@@ -86,8 +86,8 @@ public class ResultTest : MonoBehaviour
         //勝ち負けの処理
         WinText(_winOrLoseText[winer]);
         LoseText(_winOrLoseText[loser]);
-        _playerScale[winer].localScale = _defScale * 0.8f;
-        _playerScale[loser].localScale = _defScale * 0.3f;
+        _playerScale[winer].localScale = _defScale * 1f;
+        _playerScale[loser].localScale = _defScale * 0.5f;
         
     }
     #region　テキスト変更関数

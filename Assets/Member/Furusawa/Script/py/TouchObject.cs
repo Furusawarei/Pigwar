@@ -66,6 +66,7 @@ public class TouchObject : MonoBehaviour
             if (closestObject != null)
             {
                 GrabObject(closestObject);
+                RearrangePearls(); // Ensure pearls are correctly positioned
             }
         }
 
@@ -115,13 +116,18 @@ public class TouchObject : MonoBehaviour
         obj.transform.rotation = Quaternion.identity;
         obj.transform.SetParent(transform);
         grabObjects.Add(obj);
+
+        Debug.Log($"Object grabbed: {obj.name}, Position: {obj.transform.position}");
     }
 
     private void RearrangePearls()
     {
         for (int i = 0; i < grabObjects.Count; i++)
         {
-            grabObjects[i].transform.position = grabPoint.position + Vector3.up * heightOffset * i;
+            if (grabObjects[i].CompareTag("Pearl"))
+            {
+                grabObjects[i].transform.position = grabPoint.position + Vector3.up * heightOffset * i;
+            }
         }
     }
 
@@ -151,7 +157,10 @@ public class TouchObject : MonoBehaviour
     {
         if (other.CompareTag("Pearl") || other.CompareTag("boxPrefab"))
         {
-            objectsInTrigger.Add(other.gameObject);
+            if (!objectsInTrigger.Contains(other.gameObject))
+            {
+                objectsInTrigger.Add(other.gameObject);
+            }
         }
     }
 
@@ -174,4 +183,3 @@ public class TouchObject : MonoBehaviour
         canInteract = false;
     }
 }
-

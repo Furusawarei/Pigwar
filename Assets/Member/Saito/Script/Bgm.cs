@@ -9,11 +9,11 @@ public class Bgm : MonoBehaviour
     private void Start()
     {
         #region 
-        //if (SceneManager.GetActiveScene().name == "Title")
-        //{ // Titleシーンでのみやりたい処理
-        //    SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
-        //    Debug.Log("切り替えタイトル");
-        //}
+        if (SceneManager.GetActiveScene().name == "MainTitle")
+        { // Titleシーンでのみやりたい処理
+            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainTitle);
+            Debug.Log("切り替えタイトル");
+        }
         //else if (SceneManager.GetActiveScene().name == "MainScenes")
         //{ //MainScenesのシーンでやりたい処理
         //    SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
@@ -32,7 +32,7 @@ public class Bgm : MonoBehaviour
         //if (SceneManager.GetActiveScene().name == "CP_Title")
         if (SceneManager.GetActiveScene().name == "MainTitle")
         { // Titleシーンでのみやりたい処理
-            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
+            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainTitle);
             Debug.Log("切り替えタイトル");
         }
         else if (SceneManager.GetActiveScene().name == "MainScenes2")
