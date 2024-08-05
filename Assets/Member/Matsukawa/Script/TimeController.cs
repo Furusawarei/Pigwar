@@ -43,7 +43,7 @@ public class TimerController : MonoBehaviour
         if (countdownSeconds < 0 && !isTimerFinished)
         {
             isTimerFinished = true;
-            finishText.text = ("Finnish!");
+            finishText.text = ("Finish!");
 
             timeText.text = ("00:00");
 
