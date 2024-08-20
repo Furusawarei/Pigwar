@@ -13,7 +13,7 @@ namespace ConveyorSamples
         /// <summary>
         /// ベルトコンベアの設定速度
         /// </summary>
-        public float TargetDriveSpeed = 3.0f;
+        public float TargetDriveSpeed = 1.0f;
 
         /// <summary>
         /// 現在のベルトコンベアの速度
@@ -28,7 +28,7 @@ namespace ConveyorSamples
         /// <summary>
         /// コンベアが物体を押す力（加速力）
         /// </summary>
-        [SerializeField] private float _forcePower = 50f;
+        [SerializeField] private float _forcePower = 5f;
 
         private float _currentSpeed = 0;
         private List<Rigidbody> _rigidbodies = new List<Rigidbody>();
