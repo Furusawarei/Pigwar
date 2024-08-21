@@ -5,14 +5,19 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     private PlayerInput _playerInput;
-    public Animator _animator;
-
     private Rigidbody rb;
     private float upForce;
     private bool Jumping = false;
+    public float moveSpeed = 5f; // 移動スピードを設定
+    private TouchObject touchObject;
 
     public AudioClip jumpSound;
+    public AudioClip playerCollisionSound; // プレイヤー同士の衝突音
     public AudioSource audioSource;
+
+    public bool GameFinished { get; set; } = false; // ゲームが終了したかどうかを示すフラグ
+
+    public Animator _animator; // プレイヤーのアニメーター
 
     void Start()
     {
@@ -21,18 +26,22 @@ public class PlayerMove : MonoBehaviour
 
         upForce = 150;
         rb = GetComponent<Rigidbody>(); // リジッドボディの取得
+        touchObject = GetComponent<TouchObject>();
     }
 
     void Update()
     {
-        // プレイヤーの移動
-        var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
-        Vector3 move = new Vector3(pos.x, 0, pos.y) * 0.03f;
-        transform.position += move;
-
         /*
-        //変更前
-        Vector3 diff = transform.position - BefoPos; // 前フレームとの位置の差分を計算
+        // ゲーム終了時や動けないときに操作を無効にする処理（変更前コード）
+        if (GameFinished || !FadeText.canMove)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+        
+
+        // 前フレームとの位置の差分を計算してプレイヤーの向きを変更する処理（変更前コード）
+        Vector3 diff = transform.position - BefoPos;
         diff.y = 0;
         BefoPos = transform.position;
         if (diff.magnitude > 0.01f)
@@ -41,19 +50,35 @@ public class PlayerMove : MonoBehaviour
         }
         */
 
+        // プレイヤーの移動
+        var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
+        Vector3 move = new Vector3(pos.x, 0, pos.y) * moveSpeed;
+
+        rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+
         // プレイヤーの向きを移動方向に変更
         if (move.magnitude > 0.01f)
         {
-            transform.rotation = Quaternion.LookRotation(move);
-            _animator.SetBool("running", true);
+            transform.rotation = Quaternion.LookRotation(new Vector3(move.x, 0, move.z));
+
+            if (touchObject != null && touchObject.IsHoldingObject)
+            {
+                _animator.SetBool("HoldMoveBool", true); // オブジェクトを持っていて動いているとき
+            }
+            else
+            {
+                _animator.SetBool("MoveBool", true); // オブジェクトを持っていないとき
+            }
         }
         else
         {
-            _animator.SetBool("running", false);
+            _animator.SetBool("MoveBool", false);
+            _animator.SetBool("HoldMoveBool", false); // 動いていないとき
         }
 
+
         // ジャンプの処理
-        if (_playerInput.actions["Jump"].triggered && !Jumping)
+        if (_playerInput.actions["Jump"].triggered && !Jumping && (touchObject == null || !touchObject.IsHoldingObject))
         {
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;
@@ -69,15 +94,25 @@ public class PlayerMove : MonoBehaviour
         }
 
         Debug.Log(Jumping);
-
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("boxPrefab"))
         {
             Jumping = false;
         }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (playerCollisionSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(playerCollisionSound);
+            }
+            else
+            {
+                Debug.LogWarning("playerCollisionSound or audioSource is null.");
+            }
+        }
     }
 }
-
