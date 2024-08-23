@@ -47,7 +47,7 @@ public class MainScene : MonoBehaviour
         PlaySE(sceneChangeSE); // SEを再生
         FadeManager.Instance.TransScene("MainScenes2", 2.0f);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         isScneChanging = false;
     }
 

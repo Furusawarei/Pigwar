@@ -39,7 +39,7 @@ public class FadeText : MonoBehaviour
 
     IEnumerator FadeInR()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.05f);
 
         ready.text = ("ÇÊÅ`Ç¢");
         while (true)
@@ -47,7 +47,7 @@ public class FadeText : MonoBehaviour
             for (int i = 0; i < 255; i++)
             {
                 ready.color = ready.color + new Color32(1, 1, 1, 1);
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(0.0005f);
             }
             break;
         }
