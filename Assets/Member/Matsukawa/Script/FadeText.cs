@@ -87,7 +87,7 @@ public class FadeText : MonoBehaviour
                 ready.color = ready.color + new Color32(0, 0, 0, 0);
                 start.color = start.color + new Color32(0, 0, 0, 0);
 
-                yield return new WaitForSeconds(0.005f);
+                yield return new WaitForSeconds(0f);
             }
             break;
         }
