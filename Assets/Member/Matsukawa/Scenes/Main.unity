@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1247,6 +1247,8 @@ MonoBehaviour:
   start: {fileID: 1639084247}
   startCanvas: {fileID: 1905723576}
   imageToFade: {fileID: 1116826869}
+  audioSource: {fileID: 0}
+  startSE: {fileID: 8300000, guid: f1f1f0f2bb91fda4abdaada907288b9a, type: 3}
 --- !u!4 &1833021073
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,6 +1292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 071255b3280324548bc1513273b9ed23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  sceneChangeSE: {fileID: 8300000, guid: d3d7a4aeb613d1c4cac20c97219fbd1b, type: 3}
 --- !u!1 &1905723576
 GameObject:
   m_ObjectHideFlags: 0
