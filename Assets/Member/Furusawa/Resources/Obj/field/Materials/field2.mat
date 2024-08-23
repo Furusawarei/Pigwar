@@ -772,7 +772,7 @@ Material:
     - _MatCapVRParallaxStrength: 1
     - _MatCapZRotCancel: 1
     - _MaterialID: 1
-    - _Metallic: 0
+    - _Metallic: 0.614
     - _Mode: 0
     - _MonochromeLighting: 0
     - _Nearest_Distance: 0.5

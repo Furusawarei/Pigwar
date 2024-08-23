@@ -46,54 +46,56 @@ public class Test1 : MonoBehaviour
         }
     }
 
-    public void SummonBox()
+  public void SummonBox()
+{
+    int scoreToConsume = 2; // 消費するスコア
+
+    // スコアが2以上か確認
+    if (scoreManager.GetScore(playerNumber) >= scoreToConsume)
     {
-        int scoreToConsume = 2; // 消費するスコア
+        // スコアを減らす
+        scoreManager.ScoreChenge(-scoreToConsume, playerNumber);
 
-        // スコアが2以上か確認
-        if (scoreManager.GetScore(playerNumber) >= scoreToConsume)
+        // プレイヤーの現在位置を取得
+        Vector3 playerPosition = transform.position;
+
+        // プレイヤーの前方向に1.5メートル進んだ位置を計算
+        // さらにY軸方向に+1メートルのオフセットを追加
+        Vector3 spawnPosition = playerPosition + transform.forward * 1.5f + Vector3.up * 1.0f;
+
+        // プレハブを生成
+        GameObject newBox = Instantiate(boxPrefab, spawnPosition, Quaternion.identity);
+
+        // プレハブの名前を設定（例：cube0, cube1など）
+        newBox.name = "BoxPlafab" + playerNumber;
+
+        // 生成したプレハブをリストに追加
+        instantiatedPrefabs.Add(newBox);
+
+        // プレハブの数が最大数を超えたら古いものから削除
+        if (instantiatedPrefabs.Count > maxPrefabs)
         {
-            // スコアを減らす
-            scoreManager.ScoreChenge(-scoreToConsume, playerNumber);
-
-            // プレイヤーの現在位置を取得
-            Vector3 playerPosition = transform.position;
-
-            // プレイヤーの前方向に1メートル進んだ位置を計算
-            Vector3 spawnPosition = playerPosition + transform.forward * 1.0f;
-
-            // プレハブを生成
-            GameObject newBox = Instantiate(boxPrefab, spawnPosition, Quaternion.identity);
-
-            // プレハブの名前を設定（例：cube0, cube1など）
-            newBox.name = "BoxPlafab" + playerNumber;
-
-            // 生成したプレハブをリストに追加
-            instantiatedPrefabs.Add(newBox);
-
-            // プレハブの数が最大数を超えたら古いものから削除
-            if (instantiatedPrefabs.Count > maxPrefabs)
-            {
-                GameObject oldPrefab = instantiatedPrefabs[0];
-                instantiatedPrefabs.RemoveAt(0);
-                Destroy(oldPrefab);
-            }
-
-            // スプライトの更新
-            UpdateSprite();
-
-            // 他の処理（UIの更新、SEの再生など）
-            if (summonSE != null)
-            {
-                audioSource.PlayOneShot(summonSE);
-            }
+            GameObject oldPrefab = instantiatedPrefabs[0];
+            instantiatedPrefabs.RemoveAt(0);
+            Destroy(oldPrefab);
         }
-        else
+
+        // スプライトの更新
+        UpdateSprite();
+
+        // 他の処理（UIの更新、SEの再生など）
+        if (summonSE != null)
         {
-            // スコアが足りない場合の処理を記述
-            Debug.Log("Score is not enough to summon the box.");
+            audioSource.PlayOneShot(summonSE);
         }
     }
+    else
+    {
+        // スコアが足りない場合の処理を記述
+        Debug.Log("Score is not enough to summon the box.");
+    }
+}
+
 
     private void UpdateSprite()
     {

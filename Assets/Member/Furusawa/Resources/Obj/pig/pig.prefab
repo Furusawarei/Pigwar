@@ -171,6 +171,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8774819609430732953}
   m_maskType: 0
+--- !u!1 &1119796745638159479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 714653883294717066}
+  m_Layer: 8
+  m_Name: BoxSummonObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &714653883294717066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119796745638159479}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5958270339520593694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2499115027472643477
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +590,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7599486158766759722}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 714653883294717066}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       insertIndex: -1
@@ -585,9 +619,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5233797524278872584}
   m_SourcePrefab: {fileID: 100100000, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
---- !u!95 &310796317727335780 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
+--- !u!4 &2729778577965524582 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8131426235016855187, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
   m_PrefabInstance: {fileID: 6141430169340188917}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5958270339520593694 stripped
@@ -678,7 +712,6 @@ MonoBehaviour:
   CollPoint: {fileID: 7599486158766759722}
   grabPoint: {fileID: 7609461819841163906}
   heightOffset: 0.5
-  _HoldAnimaotr: {fileID: 310796317727335780}
 --- !u!114 &8024245479143224767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,7 +852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   boxPrefab: {fileID: 7250138494554154814, guid: 330ed80736f01c947bf6d25a1cbac4b5, type: 3}
-  boxGeneratePos: {fileID: 5958270339520593694}
+  boxGeneratePos: {fileID: 2729778577965524582}
   maxPrefabs: 8
   summonSE: {fileID: 8300000, guid: ae5614eb42ec17441a4822b2d36fd336, type: 3}
   uiSprite: {fileID: 0}
@@ -842,4 +875,3 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: e5ea77c392556c44b81f6fc655c62903, type: 3}
   playerCollisionSound: {fileID: 8300000, guid: ee8030cae7793ed44a5102f8a94cc484, type: 3}
   audioSource: {fileID: 4473850630530059382}
-  _animator: {fileID: 310796317727335780}

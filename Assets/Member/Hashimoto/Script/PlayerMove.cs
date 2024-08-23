@@ -1,4 +1,5 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,39 +18,21 @@ public class PlayerMove : MonoBehaviour
 
     public bool GameFinished { get; set; } = false; // ゲームが終了したかどうかを示すフラグ
 
-    public Animator _animator; // プレイヤーのアニメーター
+    private Animator _animator; // プレイヤーのアニメーター
 
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
-        _animator = GetComponent<Animator>();
-
-        upForce = 150;
         rb = GetComponent<Rigidbody>(); // リジッドボディの取得
         touchObject = GetComponent<TouchObject>();
+        _animator = GetComponent<Animator>(); // アニメーターの取得
+
+        upForce = 150;
     }
 
     void Update()
     {
-        /*
-        // ゲーム終了時や動けないときに操作を無効にする処理（変更前コード）
-        if (GameFinished || !FadeText.canMove)
-        {
-            rb.velocity = Vector3.zero;
-            return;
-        }
-        
-
-        // 前フレームとの位置の差分を計算してプレイヤーの向きを変更する処理（変更前コード）
-        Vector3 diff = transform.position - BefoPos;
-        diff.y = 0;
-        BefoPos = transform.position;
-        if (diff.magnitude > 0.01f)
-        {
-           transform.rotation = Quaternion.LookRotation(diff);
-        }
-        */
-
+         
         // プレイヤーの移動
         var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
         Vector3 move = new Vector3(pos.x, 0, pos.y) * moveSpeed;
@@ -60,22 +43,12 @@ public class PlayerMove : MonoBehaviour
         if (move.magnitude > 0.01f)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(move.x, 0, move.z));
-
-            if (touchObject != null && touchObject.IsHoldingObject)
-            {
-                _animator.SetBool("HoldMoveBool", true); // オブジェクトを持っていて動いているとき
-            }
-            else
-            {
-                _animator.SetBool("MoveBool", true); // オブジェクトを持っていないとき
-            }
+            _animator.SetBool("Move", true); // 移動している時にMoveBoolをtrueに設定
         }
         else
         {
-            _animator.SetBool("MoveBool", false);
-            _animator.SetBool("HoldMoveBool", false); // 動いていないとき
+            _animator.SetBool("Move", false); // 移動していない時にMoveBoolをfalseに設定
         }
-
 
         // ジャンプの処理
         if (_playerInput.actions["Jump"].triggered && !Jumping && (touchObject == null || !touchObject.IsHoldingObject))

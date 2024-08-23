@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f7d181e8d78ed45b49a190fe874ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeColor: {r: 0.01886791, g: 0.01861871, b: 0.01861871, a: 1}
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
   _canvasGroup: {fileID: 4089724615593558283}
 --- !u!1 &7203234451720331270
 GameObject:
