@@ -55,7 +55,7 @@ public class BGMSoundData
     {
         MainTitle,
         MainScenes,
-        Result, // ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
+        Result, 
     }
 
     public BGM bgm;
@@ -71,7 +71,7 @@ public class SESoundData
     {
         Attack,
         MainScenes,
-        Result// ‚±‚ê‚ªƒ‰ƒxƒ‹‚É‚È‚é
+        Result
     }
 
     public SE se;

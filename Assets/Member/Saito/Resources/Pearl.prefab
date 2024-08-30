@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2352956863021998661}
   - component: {fileID: 2352956863021998662}
   - component: {fileID: 1123377908373755033}
+  - component: {fileID: -2932569136349109736}
   m_Layer: 0
   m_Name: Pearl
   m_TagString: Pearl
@@ -146,3 +147,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7def13edaf44a4992d534a4f0b80a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2932569136349109736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2352956863021998663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0934da640734e3c4b976f0a18ab9516b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit_effect: {fileID: 2428286355366209872, guid: 4548690e30d7ea9459ccd18f799b7fbd, type: 3}
