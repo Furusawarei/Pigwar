@@ -1179,6 +1179,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2100871193085159758, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668509088942293783, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668509088942293783, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668509088942293783, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3710248425502138139, guid: 8bcfafece506639428057524ad606ac7, type: 3}
@@ -1204,6 +1216,34 @@ PrefabInstance:
     - target: {fileID: 6572720769523485645, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: DebugMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572720769523485645, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: fadeColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572720769523485645, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: fadeColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572720769523485645, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: fadeColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887351962509852876, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887351962509852876, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887351962509852876, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887351962509852876, guid: 8bcfafece506639428057524ad606ac7, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8752862991022105268, guid: 8bcfafece506639428057524ad606ac7, type: 3}
       propertyPath: m_Pivot.x

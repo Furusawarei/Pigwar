@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     public AudioClip playerCollisionSound; // プレイヤー同士の衝突音
     public AudioSource audioSource;
 
+    public FadeText fadeText;
     public bool GameFinished { get; set; } = false; // ゲームが終了したかどうかを示すフラグ
 
     private Animator _animator; // プレイヤーのアニメーター
@@ -26,13 +27,38 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // リジッドボディの取得
         touchObject = GetComponent<TouchObject>();
         _animator = GetComponent<Animator>(); // アニメーターの取得
-
         upForce = 150;
     }
 
     void Update()
     {
-         
+        /*
+        // ゲーム終了時や動けないときに操作を無効にする処理（変更前コード）
+        if (GameFinished || !FadeText.canMove)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
+        // 前フレームとの位置の差分を計算してプレイヤーの向きを変更する処理（変更前コード）
+        Vector3 diff = transform.position - BefoPos;
+        diff.y = 0;
+        BefoPos = transform.position;
+        if (diff.magnitude > 0.01f)
+        {
+           transform.rotation = Quaternion.LookRotation(diff);
+        }
+        */
+
+        _animator.SetBool("Idel", true);
+
+        // ゲーム終了時や動けないときに操作を無効にする処理（コメントアウト）
+        // if (GameFinished || !FadeText.canMove)
+        // {
+        //     rb.velocity = Vector3.zero;
+        //     return;
+        // }
+
         // プレイヤーの移動
         var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
         Vector3 move = new Vector3(pos.x, 0, pos.y) * moveSpeed;
@@ -44,10 +70,12 @@ public class PlayerMove : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(move.x, 0, move.z));
             _animator.SetBool("Move", true); // 移動している時にMoveBoolをtrueに設定
+            //_animator.SetBool("Idel", false);
         }
         else
         {
             _animator.SetBool("Move", false); // 移動していない時にMoveBoolをfalseに設定
+            //_animator.SetBool("Idel", true);
         }
 
         // ジャンプの処理
@@ -55,6 +83,7 @@ public class PlayerMove : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;
+            _animator.SetTrigger("Jumping");
 
             if (jumpSound != null && audioSource != null)
             {
@@ -74,6 +103,7 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("boxPrefab"))
         {
             Jumping = false;
+            _animator.SetBool("Idel", false);
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -87,5 +117,10 @@ public class PlayerMove : MonoBehaviour
                 Debug.LogWarning("playerCollisionSound or audioSource is null.");
             }
         }
+    }
+
+    void JumpFlug()
+    {
+        Jumping = false;
     }
 }

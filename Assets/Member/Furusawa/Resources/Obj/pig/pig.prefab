@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 3502393636174934479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.27, z: 0.636}
+  m_LocalPosition: {x: 0, y: 1.27, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollPoint: {fileID: 7599486158766759722}
   grabPoint: {fileID: 7609461819841163906}
-  heightOffset: 0.5
+  heightOffset: 0.4
 --- !u!114 &8024245479143224767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,3 +875,4 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: e5ea77c392556c44b81f6fc655c62903, type: 3}
   playerCollisionSound: {fileID: 8300000, guid: ee8030cae7793ed44a5102f8a94cc484, type: 3}
   audioSource: {fileID: 4473850630530059382}
+  fadeText: {fileID: 0}
