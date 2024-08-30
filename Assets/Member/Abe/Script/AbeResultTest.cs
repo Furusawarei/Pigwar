@@ -6,39 +6,51 @@ using UnityEngine.UI;
 
 public class ResultTest : MonoBehaviour
 {
-    [SerializeField, Header("勝った人に当たるライト")] private Transform _winerLightTransfrom;
-    [SerializeField, Header("勝った人に当たるライト")] private Image _winerLightImage;
-
-    [SerializeField, Header("勝ち負けを表示するtext")] private List<TextMeshProUGUI> _winOrLoseText;
-    [SerializeField, Header("勝ち負けを表示するtext")] private List<Transform> _winOrLoseTransform;
-
-    [SerializeField, Header("プレイヤー")] private List<Transform> _playerScale;
-
-    [SerializeField, Header("何秒後に発表するか")] private float _waitTime;
-    private float _timer;
-    private bool _isSettled=true;//決着がついたか
-    private Vector3 _winerPos= Vector3.zero;//勝ったプレイヤーの場所
-
-    private Coroutine _scaleCoroutine;//プレイヤースケールを変えるコルーチン
-
-    private bool _resulted=false;//結果発表済みか
-
+    [SerializeField, Header("勝った人に当たるライト")] private GameObject _winerLight;
+    private Transform _winerLightTransfrom;//ライトの位置
+    private Image _winerLightImage;//ライトの本体image
     private float _lightPower = 0;//光の大きさ
 
+    [SerializeField, Header("紙吹雪")] private GameObject _kamifubuki;
+    private Transform _kamiTransform;//紙吹雪の位置
+
+    [SerializeField, Header("勝ち負けを表示するtext")] private List<GameObject> _winOrLoseText;
+    private List<TextMeshProUGUI> _winOrLoseTMP=new List<TextMeshProUGUI>();//勝ち負けを表示するtext
+    private List<Transform> _winOrLoseTransform=new List<Transform>();//勝ち負けを表示するtextの位置
+
+    [SerializeField, Header("プレイヤー")] private List<Transform> _playerScale;
+    private Vector3 _winerPos = Vector3.zero;//勝ったプレイヤーの場所
     private Vector3 _defScale;//最初のプレイヤースケール
     private Vector3 _scale;//プレイヤースケールの大きさ
     private float _f_scale;//floatのスケール
-    private bool _isScaleUp=false;
+
+    [SerializeField, Header("何秒後に発表するか")] private float _waitTime;
+    private float _timer;
+    private bool _isSettled = true;//決着がついたか
+    private bool _resulted = false;//結果発表済みか
+    private bool _isScaleUp = false;//スケール変更用フラグ
+
+    private Coroutine _scaleCoroutine;//プレイヤースケールを変えるコルーチン
     #region 初期化 start(){
     private void Awake()
     {
+
+        _winerLightTransfrom = _winerLight.GetComponent<Transform>();
+        _winerLightImage = _winerLight.GetComponent<Image>();
+
+        for (int i = 0; i < _winOrLoseText.Count; i++)
+        {
+            _winOrLoseTMP.Add(_winOrLoseText[i].GetComponent<TextMeshProUGUI>());
+            _winOrLoseTransform.Add(_winOrLoseText[i].GetComponent<Transform>());
+        }
+
+        _kamiTransform = _kamifubuki.GetComponent<Transform>();
+
         _winerPos = _winerLightTransfrom.position;//勝った人に当たるライト
         _defScale = _playerScale[0].lossyScale;
     }
     void Start() {
        
-        
-
         _timer = 0;
         _resulted = false;
         _lightPower = 0;
@@ -47,7 +59,7 @@ public class ResultTest : MonoBehaviour
         _scale.x = _f_scale;
         _scale.y = _f_scale; 
         _scale.z = _f_scale;//スケール適用
-
+        _kamifubuki.SetActive(false);
         #endregion
         _scaleCoroutine = StartCoroutine(PlayerScaleChenge());
     }
@@ -74,8 +86,8 @@ public class ResultTest : MonoBehaviour
         if (!_isSettled)
         {
             //引き分け処理
-            DrawText(_winOrLoseText[0]);
-            DrawText(_winOrLoseText[1]);
+            DrawText(_winOrLoseTMP[0]);
+            DrawText(_winOrLoseTMP[1]);
             _playerScale[0].localScale = _defScale * 0.5f;
             _playerScale[1].localScale = _defScale * 0.5f;
             return;
@@ -83,9 +95,13 @@ public class ResultTest : MonoBehaviour
 
         _winerPos.x= _winOrLoseTransform[winer].position.x;//勝った方の位置をxだけ保存
         _winerLightTransfrom.position = _winerPos;//上から来る光を↑で保存した位置へ移動
+        _kamiTransform.position = new Vector3(_winerPos.x, _kamiTransform.position.y, _kamiTransform.position.z);//紙吹雪も移動
+        _kamifubuki.SetActive(true);//紙吹雪オン
+
+
         //勝ち負けの処理
-        WinText(_winOrLoseText[winer]);
-        LoseText(_winOrLoseText[loser]);
+        WinText(_winOrLoseTMP[winer]);
+        LoseText(_winOrLoseTMP[loser]);
         _playerScale[winer].localScale = _defScale * 1f;
         _playerScale[loser].localScale = _defScale * 0.5f;
         
