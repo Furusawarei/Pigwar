@@ -26,6 +26,7 @@ public class TouchObject : MonoBehaviour
 
     private bool canInteract = true; // インタラクション可能かどうかのフラグ
 
+
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>(); // PlayerInputコンポーネントを取得
@@ -51,10 +52,20 @@ public class TouchObject : MonoBehaviour
         // "Throw"アクションがトリガーされ、オブジェクトを持っている場合の処理
         if (_playerInput.actions["Throw"].triggered && grabObjects.Count > 0)
         {
-            ThrowObject();
-            _animator.SetTrigger("Throw");
+            StartCoroutine(ThrowObjectCoroutine()); // コルーチンを呼び出す
         }
     }
+
+    // コルーチンを使用して投げるアクションをスムーズに処理
+    private IEnumerator ThrowObjectCoroutine()
+    {
+        _animator.SetTrigger("Throw"); // アニメーションをトリガー
+
+        yield return new WaitForSeconds(0.1f); // 少し待ってから実際にオブジェクトを投げる処理を開始
+
+        ThrowObject(); // オブジェクトを投げる処理
+    }
+
 
     private GameObject GetClosestObject()
     {
@@ -107,6 +118,8 @@ public class TouchObject : MonoBehaviour
             obj.tag = "HeldObject";  // パールのタグを変更
         }
 
+        //ResetObjectPosition(obj);
+
         obj.layer = LayerMask.NameToLayer("HeldObjectLayer");  // 新しいレイヤーに変更
 
         obj.GetComponent<Rigidbody>().isKinematic = true;  // 物理演算を無効化
@@ -120,32 +133,40 @@ public class TouchObject : MonoBehaviour
     }
 
     private void ThrowObject()
-{
-    if (grabObjects.Count == 0) return; // 持っているオブジェクトがない場合は処理を終了
-
-    GameObject throwObj = grabObjects[0]; // 最初のオブジェクトを取得
-    grabObjects.RemoveAt(0); // リストから削除
-    objectsInTrigger.Remove(throwObj); // トリガー内オブジェクトリストから削除
-    Rigidbody rb = throwObj.GetComponent<Rigidbody>(); // Rigidbodyを取得
-
-    throwObj.transform.SetParent(null); // 親子関係を解除
-    throwObj.transform.rotation = Quaternion.identity; // 回転をリセット
-
-    rb.isKinematic = false; // 物理演算を有効化
-    rb.AddForce(transform.forward * 10f, ForceMode.Impulse); // オブジェクトを前方に投げる
-
-   // _animator.SetTrigger("Throw");
-
-    // 元のレイヤーとタグに戻す処理
-    RestoreOriginalState(throwObj, rb);
-
-    // 持っているオブジェクトがゼロになったら Hold を false に設定
-    if (grabObjects.Count == 0)
     {
-        _animator.SetBool("Hold", false);
+        if (grabObjects.Count == 0) return; // 持っているオブジェクトがない場合は処理を終了
+
+        GameObject throwObj = grabObjects[0]; // 最初のオブジェクトを取得
+        grabObjects.RemoveAt(0); // リストから削除
+        objectsInTrigger.Remove(throwObj); // トリガー内オブジェクトリストから削除
+        Rigidbody rb = throwObj.GetComponent<Rigidbody>(); // Rigidbodyを取得
+
+        throwObj.transform.SetParent(null); // 親子関係を解除
+        throwObj.transform.rotation = Quaternion.identity; // 回転をリセット
+
+        // プレイヤーのRigidbodyコンポーネントを取得して速度を加える
+        Rigidbody playerRb = GetComponent<Rigidbody>(); // プレイヤーのRigidbodyを取得
+        Vector3 playerVelocity = playerRb != null ? playerRb.velocity : Vector3.zero; // プレイヤーの速度を取得
+
+        rb.isKinematic = false; // 物理演算を有効化
+        rb.AddForce(transform.forward * 10f + playerVelocity, ForceMode.Impulse); // オブジェクトを前方にプレイヤーの速度を加えて投げる
+
+        // CP_ThrowableObject コンポーネントを取得して isThrown を true に設定
+        CP_ThrowableObject throwable = throwObj.GetComponent<CP_ThrowableObject>();
+        if (throwable != null)
+        {
+            throwable.isThrown = true;
+        }
+
+        // 元のレイヤーとタグに戻す処理
+        RestoreOriginalState(throwObj, rb);
+
+        // 持っているオブジェクトがゼロになったら Hold を false に設定
+        if (grabObjects.Count == 0)
+        {
+            _animator.SetBool("Hold", false);
+        }
     }
-    
-}
 
 
     private void RestoreOriginalState(GameObject obj, Rigidbody rb)
@@ -154,7 +175,7 @@ public class TouchObject : MonoBehaviour
         if (originalLayers.ContainsKey(obj))
         {
             int originalLayer = originalLayers[obj];
-            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.01f)); // レイヤーを元に戻す
+            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.015f)); // レイヤーを元に戻す
             originalLayers.Remove(obj);
         }
 
@@ -162,7 +183,7 @@ public class TouchObject : MonoBehaviour
         if (originalTags.ContainsKey(obj))
         {
             string originalTag = originalTags[obj];
-            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.01f)); // タグを元に戻す
+            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.015f)); // タグを元に戻す
             originalTags.Remove(obj);
         }
 
