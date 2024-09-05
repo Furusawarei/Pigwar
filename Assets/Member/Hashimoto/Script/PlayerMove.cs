@@ -84,7 +84,6 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(new Vector3(0, upForce, 0));
             Jumping = true;
             _animator.SetTrigger("Jumping");
-
             if (jumpSound != null && audioSource != null)
             {
                 audioSource.PlayOneShot(jumpSound);

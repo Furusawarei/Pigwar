@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 
 public class DestroyBox : MonoBehaviour
@@ -10,11 +11,20 @@ public class DestroyBox : MonoBehaviour
     /// <param name="collision"></param>
     void OnCollisionEnter(Collision collision)
     {
-        // 衝突した相手にPlayerタグが付いているとき
-        if (collision.gameObject.tag == "Pearl")
+        CP_ThrowableObject throwable = collision.gameObject.GetComponent<CP_ThrowableObject>();
+        if(throwable != null)
         {
-            // 0.2秒後に消える
-            Destroy(gameObject, 0.2f);
+            if(throwable.isThrown)
+            {
+                Destroy(gameObject, 0.2f);
+            }
         }
+        
+        // // 衝突した相手にPlayerタグが付いているとき
+        // if (collision.gameObject.tag == "Pearl")
+        // {
+        //     // 0.2秒後に消える
+        //     Destroy(gameObject, 0.2f);
+        // }
     }
 }

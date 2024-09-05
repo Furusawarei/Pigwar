@@ -7,30 +7,26 @@ using UnityEngine.InputSystem;
 
 public class TouchObject : MonoBehaviour
 {
-    private PlayerInput _playerInput;
-    private Animator _animator; // プレイヤーのアニメーター
+    private PlayerInput _playerInput; // プレイヤーの入力を管理するための変数
+    private Animator _animator; // アニメーションを制御するための変数
 
-    [SerializeField] private Transform CollPoint;  // 持っているオブジェクトの位置
-    [SerializeField] private Transform grabPoint;
-    [SerializeField] private float heightOffset = 0.5f; // オブジェクトを積む際の高さオフセット
-
+    [SerializeField] private Transform CollPoint; // オブジェクトを保持する位置を示すTransform
     private List<GameObject> grabObjects = new List<GameObject>(); // 持っているオブジェクトのリスト
     private List<GameObject> objectsInTrigger = new List<GameObject>(); // トリガー内にあるオブジェクトのリスト
-    public bool IsHoldingObject { get; private set; } // オブジェクトを持っているかどうか
 
-    private int maxPearlCount = 3; // 持てるパールの最大数
-    private int maxBoxCount = 1; // 持てる箱の最大数
+    private int maxPearlCount = 3; // 最大で持てるパールの数
+    private int maxBoxCount = 1; // 最大で持てる箱の数
 
-    private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>(); // オブジェクトの元のレイヤーを保持するディクショナリ
-    private Dictionary<GameObject, string> originalTags = new Dictionary<GameObject, string>(); // オブジェクトの元のタグを保持するディクショナリ
+    private Dictionary<GameObject, int> originalLayers = new Dictionary<GameObject, int>(); // オブジェクトの元のレイヤーを記憶する辞書
+    private Dictionary<GameObject, string> originalTags = new Dictionary<GameObject, string>(); // オブジェクトの元のタグを記憶する辞書
+    public bool IsHoldingObject { get; private set; } // オブジェクトを持っているかどうかを示すプロパティ
 
-    private bool canInteract = true; // インタラクション可能かどうかのフラグ
-
+    private bool canInteract = true; // インタラクションが可能かどうかを示すフラグ
 
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>(); // PlayerInputコンポーネントを取得
-        _animator = GetComponent<Animator>(); // アニメーターの取得
+        _animator = GetComponent<Animator>(); // Animatorコンポーネントを取得
     }
 
     void Update()
@@ -41,32 +37,22 @@ public class TouchObject : MonoBehaviour
         // "Have"アクションがトリガーされたときの処理
         if (_playerInput.actions["Have"].triggered)
         {
-            GameObject closestObject = GetClosestObject(); // 近いオブジェクトを取得
+            GameObject closestObject = GetClosestObject(); // 最も近いオブジェクトを取得
             if (closestObject != null)
             {
-                _animator.SetTrigger("Pick");  // オブジェクトがある場合にアニメーションをトリガー
-                GrabObject(closestObject);
+                _animator.SetTrigger("Pick"); // "Pick"トリガーをアニメーターに設定
+                GrabObject(closestObject); // オブジェクトを掴む
             }
         }
 
         // "Throw"アクションがトリガーされ、オブジェクトを持っている場合の処理
         if (_playerInput.actions["Throw"].triggered && grabObjects.Count > 0)
         {
-            StartCoroutine(ThrowObjectCoroutine()); // コルーチンを呼び出す
+            _animator.SetTrigger("Throw"); // アニメーションをトリガー
         }
     }
 
-    // コルーチンを使用して投げるアクションをスムーズに処理
-    private IEnumerator ThrowObjectCoroutine()
-    {
-        _animator.SetTrigger("Throw"); // アニメーションをトリガー
-
-        yield return new WaitForSeconds(0.1f); // 少し待ってから実際にオブジェクトを投げる処理を開始
-
-        ThrowObject(); // オブジェクトを投げる処理
-    }
-
-
+    // 最も近いオブジェクトを取得するメソッド
     private GameObject GetClosestObject()
     {
         GameObject closestObject = null;
@@ -102,36 +88,37 @@ public class TouchObject : MonoBehaviour
         return closestObject;
     }
 
+    // オブジェクトを掴むメソッド
     private void GrabObject(GameObject obj)
     {
         if (!originalLayers.ContainsKey(obj))
         {
-            originalLayers[obj] = obj.layer;  // 元のレイヤーを保存
+            originalLayers[obj] = obj.layer; // 元のレイヤーを記憶
         }
 
         if (obj.CompareTag("Pearl"))
         {
             if (!originalTags.ContainsKey(obj))
             {
-                originalTags[obj] = obj.tag;  // 元のタグを保存
+                originalTags[obj] = obj.tag; // 元のタグを記憶
             }
-            obj.tag = "HeldObject";  // パールのタグを変更
+            obj.tag = "HeldObject"; // タグを "HeldObject" に変更
         }
 
-        //ResetObjectPosition(obj);
+        obj.layer = LayerMask.NameToLayer("HeldObjectLayer"); // レイヤーを "HeldObjectLayer" に変更
+        obj.GetComponent<Rigidbody>().isKinematic = true; // Rigidbodyをキネマティックに設定
 
-        obj.layer = LayerMask.NameToLayer("HeldObjectLayer");  // 新しいレイヤーに変更
+        IsHoldingObject = true; // オブジェクトを保持していることを示すフラグを立てる
 
-        obj.GetComponent<Rigidbody>().isKinematic = true;  // 物理演算を無効化
+        StartCoroutine(MoveObjectWithAnimation(obj, CollPoint, 0.5f)); // アニメーションでオブジェクトを移動
 
-        StartCoroutine(MoveObjectWithAnimation(obj, CollPoint, 0.5f));  // オブジェクトを移動しつつアニメーションを再生
-
-        grabObjects.Add(obj);  // 持っているオブジェクトのリストに追加
-        _animator.SetBool("Hold", true);  // Holdアニメーションを開始
-
-        Debug.Log($"Object grabbed: {obj.name}, Position: {obj.transform.position}");  // デバッグメッセージを表示
+        grabObjects.Add(obj); // オブジェクトをリストに追加
+        _animator.SetBool("Hold", true); // "Hold" フラグをアニメーターに設定
     }
 
+
+
+    // オブジェクトを投げるメソッド
     private void ThrowObject()
     {
         if (grabObjects.Count == 0) return; // 持っているオブジェクトがない場合は処理を終了
@@ -165,31 +152,13 @@ public class TouchObject : MonoBehaviour
         if (grabObjects.Count == 0)
         {
             _animator.SetBool("Hold", false);
+            IsHoldingObject = false;
         }
+
+        Debug.Log("死ね");
     }
 
-
-    private void RestoreOriginalState(GameObject obj, Rigidbody rb)
-    {
-        // 元のレイヤーに戻す
-        if (originalLayers.ContainsKey(obj))
-        {
-            int originalLayer = originalLayers[obj];
-            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.015f)); // レイヤーを元に戻す
-            originalLayers.Remove(obj);
-        }
-
-        // 元のタグに戻す
-        if (originalTags.ContainsKey(obj))
-        {
-            string originalTag = originalTags[obj];
-            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.015f)); // タグを元に戻す
-            originalTags.Remove(obj);
-        }
-
-        StartCoroutine(ResetKinematicAfterDelay(rb, 2.0f)); // キネマティックをリセット
-    }
-
+    // すべてのパールをドロップするメソッド
     public void DropAllPearls()
     {
         for (int i = grabObjects.Count - 1; i >= 0; i--)
@@ -197,86 +166,122 @@ public class TouchObject : MonoBehaviour
             GameObject obj = grabObjects[i];
             if (obj.CompareTag("Pearl"))
             {
-                grabObjects.RemoveAt(i); // リストから削除
-                Rigidbody rb = obj.GetComponent<Rigidbody>(); // Rigidbodyを取得
-                obj.transform.SetParent(null); // 親子関係を解除
+                grabObjects.RemoveAt(i); // リストからオブジェクトを削除
+                Rigidbody rb = obj.GetComponent<Rigidbody>();
+                obj.transform.SetParent(null); // 親オブジェクトから切り離す
                 obj.transform.rotation = Quaternion.identity; // 回転をリセット
-                rb.isKinematic = false; // 物理演算を有効化
+                rb.isKinematic = false; // キネマティックを解除
 
-                RestoreOriginalState(obj, rb);
+                RestoreOriginalState(obj, rb); // 元のレイヤーとタグに戻す
+
+                _animator.SetBool("Hold", false);
             }
         }
 
         // 持っているオブジェクトがゼロになったら Hold を false に設定
         if (grabObjects.Count == 0)
         {
+            _animator.SetBool("Idel", true); // アニメーションの "Idel" フラグを設定
             _animator.SetBool("Hold", false);
+            IsHoldingObject = false; // オブジェクトを保持していないことを示すフラグを下ろす
         }
     }
 
-    // コルーチン: オブジェクトを移動しつつアニメーションを再生
+    // オブジェクトの元のレイヤーとタグに戻す処理
+    private void RestoreOriginalState(GameObject obj, Rigidbody rb)
+    {
+        if (originalLayers.ContainsKey(obj))
+        {
+            int originalLayer = originalLayers[obj];
+            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.015f)); // レイヤーをリセット
+            originalLayers.Remove(obj); // 辞書から削除
+        }
+
+        if (originalTags.ContainsKey(obj))
+        {
+            string originalTag = originalTags[obj];
+            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.015f)); // タグをリセット
+            originalTags.Remove(obj); // 辞書から削除
+        }
+
+        StartCoroutine(ResetKinematicAfterDelay(rb, 2.0f)); // キネマティックをリセット
+    }
+
+    // オブジェクトをアニメーションで移動させるメソッド
     private IEnumerator MoveObjectWithAnimation(GameObject obj, Transform targetPosition, float duration)
     {
-        Vector3 startPos = obj.transform.position;  // オブジェクトの初期位置
+        Vector3 startPos = obj.transform.position;
         float elapsedTime = 0.01f;
 
-        _animator.SetTrigger("Pick");  // アニメーションを開始
+        obj.transform.SetParent(CollPoint); // 親オブジェクトに設定
 
         while (elapsedTime < duration)
         {
-            obj.transform.position = Vector3.Lerp(startPos, targetPosition.position, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            obj.transform.position = Vector3.Lerp(startPos, targetPosition.position, t); // 線形補間で移動
+
+            // デバッグ用ログ
+            Debug.Log($"Moving {obj.name} from {startPos} to {targetPosition.position}. Current position: {obj.transform.position}");
+
             yield return null;
         }
 
-        obj.transform.position = targetPosition.position;  // 最終位置に配置
-        obj.transform.SetParent(targetPosition);  // オブジェクトをCollPointの子オブジェクトに設定
+        obj.transform.position = targetPosition.position; // 最終位置に設定
 
-        _animator.SetBool("Hold", true);  // 持っているアニメーションを開始
+        // デバッグ用ログ
+        Debug.Log($"{obj.name} reached final position: {obj.transform.position}");
     }
 
-    // コルーチン: オブジェクトのレイヤーを遅延後にリセット
+
+    // レイヤーを元に戻すコルーチン
     private IEnumerator ResetLayerAfterDelay(GameObject obj, int originalLayer, float delay)
     {
         yield return new WaitForSeconds(delay);
         obj.layer = originalLayer;
     }
 
-    // コルーチン: オブジェクトのタグを遅延後にリセット
+    // タグを元に戻すコルーチン
     private IEnumerator ResetTagAfterDelay(GameObject obj, string originalTag, float delay)
     {
         yield return new WaitForSeconds(delay);
         obj.tag = originalTag;
     }
 
-    // コルーチン: Rigidbodyのキネマティックを遅延後にリセット
+    // キネマティックをリセットするコルーチン
     private IEnumerator ResetKinematicAfterDelay(Rigidbody rb, float delay)
     {
         yield return new WaitForSeconds(delay);
-        rb.isKinematic = false;
+        rb.isKinematic = true;
     }
 
+    // オブジェクトがトリガーに入ったときの処理
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pearl") || other.CompareTag("boxPrefab"))
         {
-            objectsInTrigger.Add(other.gameObject); // トリガー内にオブジェクトを追加
+            objectsInTrigger.Add(other.gameObject); // トリガー内オブジェクトリストに追加
         }
     }
 
+    // オブジェクトがトリガーから出たときの処理
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Pearl") || other.CompareTag("boxPrefab"))
+        if (objectsInTrigger.Contains(other.gameObject))
         {
-            objectsInTrigger.Remove(other.gameObject); // トリガーからオブジェクトを削除
+            objectsInTrigger.Remove(other.gameObject); // トリガー内オブジェクトリストから削除
         }
     }
 
-    // コルーチン: インタラクションが可能になるまで待機
-    private IEnumerator WaitForInteraction()
+    // インタラクションを無効化するメソッド
+    public void DisableInteraction()
     {
         canInteract = false;
-        yield return new WaitForSeconds(1.0f); // 1秒待機
+    }
+
+    // インタラクションを有効化するメソッド
+    public void EnableInteraction()
+    {
         canInteract = true;
     }
 }

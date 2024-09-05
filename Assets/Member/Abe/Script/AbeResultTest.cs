@@ -88,8 +88,8 @@ public class ResultTest : MonoBehaviour
             //引き分け処理
             DrawText(_winOrLoseTMP[0]);
             DrawText(_winOrLoseTMP[1]);
-            _playerScale[0].localScale = _defScale * 0.5f;
-            _playerScale[1].localScale = _defScale * 0.5f;
+            _playerScale[0].localScale = _defScale * 0.8f;
+            _playerScale[1].localScale = _defScale * 0.8f;
             return;
         }
 
@@ -102,8 +102,8 @@ public class ResultTest : MonoBehaviour
         //勝ち負けの処理
         WinText(_winOrLoseTMP[winer]);
         LoseText(_winOrLoseTMP[loser]);
-        _playerScale[winer].localScale = _defScale * 1f;
-        _playerScale[loser].localScale = _defScale * 0.5f;
+        _playerScale[winer].localScale = _defScale * 1.3f;
+        _playerScale[loser].localScale = _defScale * 0.8f;
         
     }
     #region　テキスト変更関数
