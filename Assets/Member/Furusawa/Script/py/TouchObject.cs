@@ -11,6 +11,7 @@ public class TouchObject : MonoBehaviour
     private Animator _animator; // アニメーションを制御するための変数
 
     [SerializeField] private Transform CollPoint; // オブジェクトを保持する位置を示すTransform
+    [SerializeField] private float heightOffset = 0.5f; // オブジェクトを積む際の高さオフセット
     private List<GameObject> grabObjects = new List<GameObject>(); // 持っているオブジェクトのリスト
     private List<GameObject> objectsInTrigger = new List<GameObject>(); // トリガー内にあるオブジェクトのリスト
 
@@ -110,10 +111,28 @@ public class TouchObject : MonoBehaviour
 
         IsHoldingObject = true; // オブジェクトを保持していることを示すフラグを立てる
 
-        StartCoroutine(MoveObjectWithAnimation(obj, CollPoint, 0.5f)); // アニメーションでオブジェクトを移動
-
+        // コルーチンを開始し、その完了を待ってから RecalculateHeldObjectPositions1 を呼び出す
+        StartCoroutine(MoveObjectAndRecalculatePositions(obj, CollPoint, 0.5f));
         grabObjects.Add(obj); // オブジェクトをリストに追加
         _animator.SetBool("Hold", true); // "Hold" フラグをアニメーターに設定
+    }
+
+    // MoveObjectWithAnimation と RecalculateHeldObjectPositions1 を連続して実行するコルーチン
+    private IEnumerator MoveObjectAndRecalculatePositions(GameObject obj, Transform targetPosition, float duration)
+    {
+        yield return StartCoroutine(MoveObjectWithAnimation(obj, targetPosition, duration));
+        RecalculateHeldObjectPositions1();
+    }
+
+    // 持っているオブジェクトの位置を再計算して設定するメソッド
+    private void RecalculateHeldObjectPositions1()
+    {
+        for (int i = 0; i < grabObjects.Count; i++)
+        {
+            // 各オブジェクトの位置を設定
+            grabObjects[i].transform.localPosition = Vector3.up * heightOffset * i;
+            grabObjects[i].transform.localRotation = Quaternion.identity; // 回転をリセット
+        }
     }
 
 
@@ -148,6 +167,9 @@ public class TouchObject : MonoBehaviour
         // 元のレイヤーとタグに戻す処理
         RestoreOriginalState(throwObj, rb);
 
+        // 少し遅れてオブジェクトの位置を下げるためにコルーチンを呼び出す
+        StartCoroutine(DelayRecalculateHeldObjectPositions());
+
         // 持っているオブジェクトがゼロになったら Hold を false に設定
         if (grabObjects.Count == 0)
         {
@@ -155,7 +177,26 @@ public class TouchObject : MonoBehaviour
             IsHoldingObject = false;
         }
 
-        Debug.Log("死ね");
+    }
+
+    // オブジェクトの位置を下げる処理を遅延させるコルーチン
+    private IEnumerator DelayRecalculateHeldObjectPositions()
+    {
+        // 0.5秒待機してからオブジェクトの位置を下げる
+        yield return new WaitForSeconds(0.5f);
+
+        RecalculateHeldObjectPositions2(); // オブジェクトの位置を再計算して下げる
+    }
+
+    // 持っているオブジェクトの位置を再計算して設定するメソッド
+    private void RecalculateHeldObjectPositions2()
+    {
+        for (int i = 0; i < grabObjects.Count; i++)
+        {
+            // 各オブジェクトの位置を設定（空いたスペースを埋めるため、一段下げる）
+            grabObjects[i].transform.localPosition = Vector3.up * heightOffset * i;
+            grabObjects[i].transform.localRotation = Quaternion.identity; // 回転をリセット
+        }
     }
 
     // すべてのパールをドロップするメソッド

@@ -53,11 +53,11 @@ public class PlayerMove : MonoBehaviour
         _animator.SetBool("Idel", true);
 
         // ゲーム終了時や動けないときに操作を無効にする処理（コメントアウト）
-        // if (GameFinished || !FadeText.canMove)
-        // {
-        //     rb.velocity = Vector3.zero;
-        //     return;
-        // }
+        if (GameFinished || !FadeText.canMove)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
 
         // プレイヤーの移動
         var pos = _playerInput.actions["Move"].ReadValue<Vector2>();
@@ -102,7 +102,6 @@ public class PlayerMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("boxPrefab"))
         {
             Jumping = false;
-            _animator.SetBool("Idel", false);
         }
 
         if (collision.gameObject.CompareTag("Player"))
