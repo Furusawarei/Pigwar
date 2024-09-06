@@ -204,9 +204,11 @@ public class TouchObject : MonoBehaviour
     {
         for (int i = grabObjects.Count - 1; i >= 0; i--)
         {
+            Debug.Log("aaa");
             GameObject obj = grabObjects[i];
-            if (obj.CompareTag("Pearl"))
+            if (obj.CompareTag("HeldObject"))
             {
+                Debug.Log("bbb");
                 grabObjects.RemoveAt(i); // リストからオブジェクトを削除
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
                 obj.transform.SetParent(null); // 親オブジェクトから切り離す
@@ -263,7 +265,7 @@ public class TouchObject : MonoBehaviour
             obj.transform.position = Vector3.Lerp(startPos, targetPosition.position, t); // 線形補間で移動
 
             // デバッグ用ログ
-            Debug.Log($"Moving {obj.name} from {startPos} to {targetPosition.position}. Current position: {obj.transform.position}");
+            //Debug.Log($"Moving {obj.name} from {startPos} to {targetPosition.position}. Current position: {obj.transform.position}");
 
             yield return null;
         }
@@ -271,7 +273,7 @@ public class TouchObject : MonoBehaviour
         obj.transform.position = targetPosition.position; // 最終位置に設定
 
         // デバッグ用ログ
-        Debug.Log($"{obj.name} reached final position: {obj.transform.position}");
+        //Debug.Log($"{obj.name} reached final position: {obj.transform.position}");
     }
 
 
