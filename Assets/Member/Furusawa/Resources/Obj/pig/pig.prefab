@@ -171,6 +171,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8774819609430732953}
   m_maskType: 0
+--- !u!1 &531361051561166626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5468433938877066860}
+  m_Layer: 8
+  m_Name: Assist
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5468433938877066860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531361051561166626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.92, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5958270339520593694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119796745638159479
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +621,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7599486158766759722}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5468433938877066860}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 714653883294717066}
