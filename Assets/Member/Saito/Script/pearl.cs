@@ -24,7 +24,7 @@ public class pearl : MonoBehaviour
 
     private void Update()
     {
-        rnd = Random.Range(2.6f, 2.3f);
+        rnd = Random.Range(2.8f, 2.2f);
     }
 
     private void Production()
