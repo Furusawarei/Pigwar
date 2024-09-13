@@ -5,13 +5,15 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using Unity.VisualScripting;
 
 /// <summary>
-/// ?^?C?}?[????p??N???X
+/// Time manager
 /// </summary>
 public class TimerController : MonoBehaviour
 {
-    public float countdownMinutes;
+    public static float countdownMinutes = 0.5f;
     private float countdownSeconds;
 
     [SerializeField] private TextMeshProUGUI timeText;
@@ -27,8 +29,8 @@ public class TimerController : MonoBehaviour
 
         Scoremaneger.Instance().SetScore(0, 1);
         Scoremaneger.Instance().SetScore(0, 2);
-    }
 
+    }
     void Update()
     {
         if (startImage.activeSelf) return;
@@ -43,11 +45,16 @@ public class TimerController : MonoBehaviour
         if (countdownSeconds < 0 && !isTimerFinished)
         {
             isTimerFinished = true;
-            finishText.text = ("Finish!");
 
+            //  finishText‚ªFadeIn‚·‚é
+            finishText.color = new Color(1, 1, 1, 0);
+            finishText.DOFade(1.0f, FadeText.fadeinDuration);
             timeText.text = ("00:00");
 
-            FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
+            DOVirtual.DelayedCall(2.0f, () => FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f));
+
+
+           
         }
     }
 }
