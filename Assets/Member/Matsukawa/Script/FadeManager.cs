@@ -118,16 +118,19 @@ public class FadeManager : MonoBehaviour
     /// <param name='interval'>遷移にかける時間(秒)</param>
     public async void TransScene(string scene, float interval)
     {
-        await FadeIn(scene, interval);
+
+        if(IsFading)return;
+
+        await FadeOut(scene, interval);
 
         //シーン遷移
         await SceneManager.LoadSceneAsync(scene);
 
-        await FadeOut(scene, interval);
+        await FadeIn(scene, interval);
 
     }
 
-    public async UniTask FadeIn(string scene, float interval)
+    public async UniTask FadeOut(string scene, float interval)
     {
         //フェードインの開始 .
         this.isFading = true;
@@ -145,13 +148,10 @@ public class FadeManager : MonoBehaviour
                 await UniTask.Yield();
             }
         }
-
-        this.isFading = false;
     }
 
-    public async UniTask FadeOut(string scene, float interval)
+    public async UniTask FadeIn(string scene, float interval)
     {
-        this.isFading = true;
 
         //フェードアウトの開始 .
         float time = 0;

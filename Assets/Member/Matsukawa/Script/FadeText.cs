@@ -38,36 +38,37 @@ public class FadeText : MonoBehaviour
         // readyがFadeIn
         FadeInTx(readyText, fadeinDuration);
         // 0.5秒後にStartがFadeIn
-        DOVirtual.DelayedCall(0.5f, () => FadeInTx(startText, fadeinDuration));
-
+        DOVirtual.DelayedCall(0.5f, () => FadeInTx(startText, fadeinDuration, true));  // SEを再生するタイミングを追加
     }
-
 
     /// <summary>
     /// 文字のフェードインを管理する関数
     /// </summary>
-    /// <param name="tx"><フェードインさせたい Text/param>
-    /// <param name="inDuraton">< フェードインする時間FadeInDurarionを使う/param>
-    public void FadeInTx(TextMeshProUGUI tx, float inDuraton)
+    /// <param name="tx">フェードインさせたい Text</param>
+    /// <param name="inDuration">フェードインする時間</param>
+    /// <param name="playSE">SEを再生するかどうかのフラグ</param>
+    public void FadeInTx(TextMeshProUGUI tx, float inDuration, bool playSE = false)
     {
         //  白い文字がFadeInする
         tx.color = new Color(1, 1, 1, 0);
-        DOVirtual.DelayedCall(1, () => tx.DOFade(1.0f, inDuraton));
+        tx.DOFade(1.0f, inDuration).OnComplete(() =>
+        {
+            // フェードインが完了したらSEを再生
+            if (playSE) PlayStartSE();  // スタートのフェードイン完了時にのみSE再生
 
-        PlayStartSE();          // スタートSEを再生
-        canMove = true;         // プレイヤーの動きを許可
+            // startとreadyの文字がFadeOut
+            DOVirtual.DelayedCall(2.0f, () => FadeOutTx(readyText, fadeoutDuration));
+            DOVirtual.DelayedCall(2.0f, () => FadeOutTx(startText, fadeoutDuration));
+            DOVirtual.DelayedCall(3.5f, () => imageToFade.DOFade(0.0f, fadeinDuration));
 
-        // startとreadyの文字がFadeOut
-        DOVirtual.DelayedCall(2.0f, () => FadeOutTx(readyText, fadeoutDuration));
-        DOVirtual.DelayedCall(2.0f, () => FadeOutTx(startText, fadeoutDuration));
-        DOVirtual.DelayedCall(3.5f, () => imageToFade.DOFade(0.0f, fadeinDuration));
-
+            canMove = true;  // プレイヤーの動きを許可
+        });
     }
 
-    public void FadeOutTx(TextMeshProUGUI tx, float  outDuraton)
+    public void FadeOutTx(TextMeshProUGUI tx, float outDuration)
     {
         tx.color = new Color(1, 1, 1, 1);
-        DOVirtual.DelayedCall(1, () => tx.DOFade(0.0f, outDuraton));
+        tx.DOFade(0.0f, outDuration);
 
         // startCanvasを非表示にする（でないとタイマーが始まらない）
         DOVirtual.DelayedCall(2.0f, () => startCanvas.SetActive(false));
@@ -76,12 +77,8 @@ public class FadeText : MonoBehaviour
     // スタートSEを再生するメソッド
     private void PlayStartSE()
     {
-        if (audioSource != null && startSE != null)
-        {
-            audioSource.PlayOneShot(startSE);
-        }
+        audioSource.PlayOneShot(startSE);
     }
-
 
     //IEnumerator FadeInR()
     //{
