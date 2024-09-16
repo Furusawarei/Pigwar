@@ -2,56 +2,54 @@ using UnityEngine;
 
 public class AimAssist : MonoBehaviour
 {
-    public float rayDistance = 2f; // Rayを飛ばす距離
-    public float followSpeed = 1f; // 追尾速度
-    public LayerMask targetLayer;  // ターゲットのレイヤー（プレイヤーなど）
-    
-    private Transform target; // 追尾するターゲット
+    public float rayLength = 10f;       // Rayの長さ
+    public Transform rayOrigin;         // Rayを飛ばす開始位置
+    public float rotationSpeed = 5f;    // 回転速度
+    public string targetTag = "Player"; // タグを設定する（例: "Player"）
+
+    private Transform targetPlayer;     // 追尾するプレイヤー
 
     void Update()
     {
-        // Rayの開始位置はこのオブジェクトの位置
-        Vector3 rayOrigin = transform.position;
+        AimAssistRay();
+    }
 
-        // Rayを正面に飛ばす
-        Ray ray = new Ray(rayOrigin, transform.forward);
+    void AimAssistRay()
+    {
+        // Rayを飛ばす
         RaycastHit hit;
-
-        // Rayが何かに当たった場合
-        if (Physics.Raycast(ray, out hit, rayDistance, targetLayer))
+        if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, rayLength))
         {
-            // 当たったオブジェクトが"Player"タグを持っているかを確認
-            if (hit.collider.CompareTag("Player"))
+            // タグが指定されたプレイヤーかを確認
+            if (hit.transform.CompareTag(targetTag))
             {
-                Debug.Log("Aaa");
-                // ターゲットを設定
-                target = hit.transform;
+                targetPlayer = hit.transform; // ヒットしたプレイヤーをターゲットとして設定
             }
         }
         else
         {
-            // Rayが何にも当たっていない場合はターゲットをリセット
-            target = null;
+            targetPlayer = null; // プレイヤーにヒットしていなければターゲットを解除
         }
 
-        // ターゲットがいる場合は追尾処理を行う
-        if (target != null)
+        // ターゲットが存在する場合、その方向に回転させる
+        if (targetPlayer != null)
         {
-            FollowTarget();
+            // ターゲットの位置を取得し、Y軸を中心に回転
+            Vector3 directionToTarget = targetPlayer.position - transform.position;
+            directionToTarget.y = 0; // Y軸の回転のみを行うため、Y成分を無視する
+
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 
-    // ターゲットを追尾する処理
-    private void FollowTarget()
-    {
-        // このオブジェクトをターゲットの位置へ1fの速度で追尾
-        transform.position = Vector3.MoveTowards(transform.position, target.position, followSpeed * Time.deltaTime);
-    }
-
-    // デバッグ用にRayをシーンビューに表示
+    // デバッグ用にRayを視覚化
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * rayDistance);
+        if (rayOrigin != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(rayOrigin.position, rayOrigin.forward * rayLength);
+        }
     }
 }
