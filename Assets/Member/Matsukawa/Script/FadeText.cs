@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 
 /// <summary>
@@ -11,40 +7,38 @@ using DG.Tweening;
 /// </summary>
 public class FadeText : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI ready;
-    [SerializeField] TextMeshProUGUI start;
+    [SerializeField] TextMeshProUGUI readyText;
+    [SerializeField] TextMeshProUGUI startText;
 
     public static float fadeinDuration = 0.5f;     // FadeInにかかる時間
     public static float fadeoutDuration = 0.5f;    // FadeOutにかかる時間
 
-    // カウントダウンに使うcanvas
-    [SerializeField] GameObject startCanvas;
+    [SerializeField] GameObject startCanvas;       // カウントダウンに使うcanvas
     [SerializeField] CanvasGroup imageToFade;
 
-    // SE再生用のAudioSource
-    [SerializeField] AudioSource audioSource;
-    // スタートの際に再生するSE
-    [SerializeField] AudioClip startSE;
+    [SerializeField] AudioSource audioSource;      // SE再生用のAudioSource
+    [SerializeField] AudioClip startSE;            // スタートの際に再生するSE
 
     // プレイヤーが動けるかどうかを示すフラグ
     public static bool canMove = false;
 
     void Start()
     {
-        ready.gameObject.SetActive(true);
-        start.gameObject.SetActive(true);
+        readyText.gameObject.SetActive(true);
+        startText.gameObject.SetActive(true);
+        imageToFade.gameObject.SetActive(true);
 
         // 文字の透明度を0にしておく
-        ready.text = "よ～い";
-        ready.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        readyText.text = "よ～い";
+        readyText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-        start.text = "スタート！";
-        start.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        startText.text = "スタート！";
+        startText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
         // readyがFadeIn
-        FadeInTx(ready, fadeinDuration);
+        FadeInTx(readyText, fadeinDuration);
         // 0.5秒後にStartがFadeIn
-        DOVirtual.DelayedCall(0.5f, () => FadeInTx(start, fadeinDuration));
+        DOVirtual.DelayedCall(0.5f, () => FadeInTx(startText, fadeinDuration));
 
     }
 
@@ -53,7 +47,7 @@ public class FadeText : MonoBehaviour
     /// 文字のフェードインを管理する関数
     /// </summary>
     /// <param name="tx"><フェードインさせたい Text/param>
-    /// <param name="inDuraton">< フェードインする時間FadeInDurarion（インスペクター上で設定）を使う/param>
+    /// <param name="inDuraton">< フェードインする時間FadeInDurarionを使う/param>
     public void FadeInTx(TextMeshProUGUI tx, float inDuraton)
     {
         //  白い文字がFadeInする
@@ -64,8 +58,8 @@ public class FadeText : MonoBehaviour
         canMove = true;         // プレイヤーの動きを許可
 
         // startとreadyの文字がFadeOut
-        DOVirtual.DelayedCall(2.0f, () => FadeOutTx(ready, fadeoutDuration));
-        DOVirtual.DelayedCall(2.0f, () => FadeOutTx(start, fadeoutDuration));
+        DOVirtual.DelayedCall(2.0f, () => FadeOutTx(readyText, fadeoutDuration));
+        DOVirtual.DelayedCall(2.0f, () => FadeOutTx(startText, fadeoutDuration));
         DOVirtual.DelayedCall(3.5f, () => imageToFade.DOFade(0.0f, fadeinDuration));
 
     }
@@ -74,6 +68,9 @@ public class FadeText : MonoBehaviour
     {
         tx.color = new Color(1, 1, 1, 1);
         DOVirtual.DelayedCall(1, () => tx.DOFade(0.0f, outDuraton));
+
+        // startCanvasを非表示にする（でないとタイマーが始まらない）
+        DOVirtual.DelayedCall(2.0f, () => startCanvas.SetActive(false));
     }
 
     // スタートSEを再生するメソッド
