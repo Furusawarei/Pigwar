@@ -7115,8 +7115,9 @@ GameObject:
   - component: {fileID: 1400376311}
   - component: {fileID: 1400376310}
   - component: {fileID: 1400376309}
+  - component: {fileID: 1400376312}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ImageToFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7179,6 +7180,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
+--- !u!225 &1400376312
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400376308}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1412301398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7365,7 +7378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1429550376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7779,7 +7792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 0}
+  m_AnchoredPosition: {x: 10, y: -50}
   m_SizeDelta: {x: 1200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471516601
@@ -7802,7 +7815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\u304A\u308F\u308A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2a0e7523c18dc74183e49c01c25a1b3, type: 2}
   m_sharedMaterial: {fileID: -7127788838149314064, guid: e2a0e7523c18dc74183e49c01c25a1b3, type: 2}
@@ -7811,8 +7824,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8520,7 +8533,7 @@ GameObject:
   - component: {fileID: 1590512108}
   - component: {fileID: 1590512107}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10879,7 +10892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ab55c32ced70c4baf71ae05a59746a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownMinutes: 1.5
   timeText: {fileID: 1133562797}
   finishText: {fileID: 1471516601}
   startImage: {fileID: 1429550375}
@@ -10895,10 +10907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7ae120b6a34e34b9be07e6f2031e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ready: {fileID: 1295884163}
-  start: {fileID: 137740481}
+  readyText: {fileID: 1295884163}
+  startText: {fileID: 137740481}
   startCanvas: {fileID: 1429550375}
-  imageToFade: {fileID: 1400376309}
+  imageToFade: {fileID: 1400376312}
   audioSource: {fileID: 1976417192}
   startSE: {fileID: 8300000, guid: f1f1f0f2bb91fda4abdaada907288b9a, type: 3}
 --- !u!4 &1976417191
