@@ -43,18 +43,17 @@ public class Score_InGame : MonoBehaviour
             Scoremaneger.Instance().ScoreChenge(-2, 1);
             Debug.Log("1P-2"); ;
         }
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.R))
         {
-            Scoremaneger.Instance().ToResult();//これでスコア表示をリザルト型に移動
+            Scoremaneger.Instance().ResultStart();//リザルトで呼ばれるべきもの
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.G))
         {
-            Scoremaneger.Instance().ToInGame();//これでスコア表示をゲーム型に移動
-            Scoremaneger.Instance().ScoreRandomSwitch();
+            Scoremaneger.Instance().InGameStart();//ingameで呼ばれるべきもの
         }
-        if (Input.GetKeyUp(KeyCode.S))
+        if (Input.GetKeyUp(KeyCode.T))
         {
-            Scoremaneger.Instance().RenderSwitch();//これでスコア表示のオンオフ
+            Scoremaneger.Instance().TitleStart();//タイトルで呼ばれるべきもの
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
