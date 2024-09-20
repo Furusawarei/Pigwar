@@ -254,7 +254,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.2, y: 2, z: 1}
-  m_Center: {x: -0.050000012, y: 0, z: -0.1}
+  m_Center: {x: -0.07, y: 0, z: -0.2}
 --- !u!1 &3502393636174934479
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +484,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -4121643124817759756, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 904ce3d9bbef1194ba4cccd9a68a5876, type: 2}
     - target: {fileID: -3939065881963271367, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -567,6 +571,10 @@ PrefabInstance:
     - target: {fileID: 7828657377872716343, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131426235016855187, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 8174379378604371368, guid: ca968bb0af2198c4c9c49853f5ee39c1, type: 3}
       propertyPath: m_Layer

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Test1 : MonoBehaviour
+public class ObstacleSummon : MonoBehaviour
 {
     [SerializeField] private int playerNumber; // プレイヤー番号を設定するための変数
     [SerializeField] private GameObject boxPrefab; // プレハブを設定するための変数
@@ -48,7 +48,7 @@ public class Test1 : MonoBehaviour
 
   public void SummonBox()
 {
-    int scoreToConsume = 2; // 消費するスコア
+    int scoreToConsume = 1; // 消費するスコア
 
     // スコアが2以上か確認
     if (scoreManager.GetScore(playerNumber) >= scoreToConsume)

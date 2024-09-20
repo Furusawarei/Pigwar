@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class DestroyBox : MonoBehaviour
 {
+
+    private int HitCount = 0;
+
     /// <summary>
     /// Õ“Ë‚µ‚½
     /// </summary>
@@ -12,14 +15,19 @@ public class DestroyBox : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         CP_ThrowableObject throwable = collision.gameObject.GetComponent<CP_ThrowableObject>();
-        if(throwable != null)
+        if (throwable != null)
         {
-            if(throwable.isThrown)
+            if (throwable.isThrown)
             {
-                Destroy(gameObject, 0.2f);
+                HitCount++;
+                if (HitCount >= 2)
+                {
+                    Destroy(gameObject, 0.2f);
+                }
+
             }
         }
-        
+
         // // Õ“Ë‚µ‚½‘Šè‚ÉPlayerƒ^ƒO‚ª•t‚¢‚Ä‚¢‚é‚Æ‚«
         // if (collision.gameObject.tag == "Pearl")
         // {
