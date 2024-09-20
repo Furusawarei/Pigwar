@@ -21,7 +21,8 @@ public class Scoremaneger : MonoBehaviour
     [SerializeField, Header("リザルトに遷移したときに移動する場所")] public Transform[] _resultPos = new Transform[2];
 
     private Vector3[] _defPos = new Vector3[2];
-    private float _originalFontSize = 180;  // 元のフォントサイズを保持する配列
+    [SerializeField, Header("元のフォントサイズ")] private float _defFontSize = 180;
+    [SerializeField,Header("リザルト時のフォントサイズ")] private float _resultFontSize = 220;
 
     private bool _scoreRandomSwitch = false;
     private bool _RenderSwitch = true;
@@ -93,30 +94,34 @@ public class Scoremaneger : MonoBehaviour
     }
 
     /// <summary>
-    /// スコア位置移動
+    /// スコア表示位置をリザルトに移動
     /// </summary>
     public void ToResult()
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
             _scoreboardTransform[i].position = _resultPos[i].position;
-            _scoreborad[i].fontSize *= 1.2f;
+            _scoreborad[i].fontSize = _resultFontSize; //フォントサイズを大きくする
         }
-        ScoreRandomSwitch();
     }
-
-    public void ToInGame()
+    /// <summary>
+    /// スコア表示位置をデフォルトに移動
+    /// </summary>
+    private void ToInGame()
     {
         for (int i = 0; i < _scoreboardTransform.Length; i++)
         {
             _scoreboardTransform[i].position = _defPos[i];
-            _scoreborad[i].fontSize = _originalFontSize;  // 元のフォントサイズに戻す
+            _scoreborad[i].fontSize = _defFontSize;  // 元のフォントサイズに戻す
         }
     }
 
-    public void RenderSwitch()
+    /// <summary>
+    /// 表示切り替え
+    /// </summary>
+    private void RenderSwitch(bool Mode)
     {
-        _RenderSwitch = !_RenderSwitch;
+        _RenderSwitch = Mode;
         for (int i = 0; i < _scoreborad.Length; i++)
         {
             _scoreborad[i].enabled = _RenderSwitch;
@@ -124,13 +129,15 @@ public class Scoremaneger : MonoBehaviour
     }
 
     /// <summary>
-    /// ランダムのやつのトグルスイッチ 
+    /// ランダムのやつのスイッチ
     /// </summary>
-    public void ScoreRandomSwitch()
+    public void ScoreRandomSwitch(bool Mode)
     {
-        _scoreRandomSwitch = !_scoreRandomSwitch;
-        _scoreborad[0].text = PlayerScore[0].ToString();
-        _scoreborad[1].text = PlayerScore[1].ToString();
+        _scoreRandomSwitch = Mode;
+        for (int i = 0; i < _scoreborad.Length; i++)
+        {
+            _scoreborad[i].text = PlayerScore[i].ToString();
+        }
     }
 
     /// <summary>
@@ -161,15 +168,34 @@ public class Scoremaneger : MonoBehaviour
         }
     }
 
-    //変更箇所
-    public void ToTitle()
+    /// <summary>
+    /// TitleのStartで呼ばれる関数
+    /// </summary>
+    public void TitleStart()
     {
         for (int i = 0; i < _scoreborad.Length; i++)
         {
             SetScore(0, i + 1);
-            _scoreborad[i].fontSize = _originalFontSize;  // フォントサイズをリセット
-            _scoreborad[i].enabled = false;  // スコア表示を非表示にする
         }
-        _RenderSwitch = false;  // 表示状態をリセット
+        ToInGame();
+        RenderSwitch(false);
+    }
+
+    /// <summary>
+    /// GameのStartで呼ばれる関数
+    /// </summary>
+    public void InGameStart()
+    {
+        ToInGame();
+        RenderSwitch(true);
+    }
+    /// <summary>
+    /// ResultのStartで呼ばれる関数
+    /// </summary>
+    public void ResultStart()
+    {
+        ToResult();
+        RenderSwitch(true);
+        ScoreRandomSwitch(true);
     }
 }
