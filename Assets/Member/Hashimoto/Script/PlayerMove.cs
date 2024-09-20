@@ -52,12 +52,12 @@ public class PlayerMove : MonoBehaviour
 
         _animator.SetBool("Idel", true);
 
-        // ゲーム終了時や動けないときに操作を無効にする処理（コメントアウト）
-        if (GameFinished || !FadeText.canMove)
-        {
-            rb.velocity = Vector3.zero;
-            return;
-        }
+        // // ゲーム終了時や動けないときに操作を無効にする処理（コメントアウト）
+        // if (GameFinished || !FadeText.canMove)
+        // {
+        //     rb.velocity = Vector3.zero;
+        //     return;
+        // }
 
         // プレイヤーの移動
         var pos = _playerInput.actions["Move"].ReadValue<Vector2>();

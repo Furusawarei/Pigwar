@@ -15,6 +15,7 @@ public class TouchObject : MonoBehaviour
     private List<GameObject> grabObjects = new List<GameObject>(); // 持っているオブジェクトのリスト
     private List<GameObject> objectsInTrigger = new List<GameObject>(); // トリガー内にあるオブジェクトのリスト
 
+    
     private int maxPearlCount = 3; // 最大で持てるパールの数
     private int maxBoxCount = 1; // 最大で持てる箱の数
 
