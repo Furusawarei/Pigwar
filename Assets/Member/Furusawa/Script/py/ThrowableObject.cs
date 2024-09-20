@@ -9,7 +9,7 @@ public class ThrowableObject : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // プレイヤーに当たった場合の処理
-        if (isThrown && collision.gameObject.CompareTag("Player"))
+        if (isThrown && collision.gameObject.CompareTag("Player") && collision.gameObject.CompareTag("body")) 
         {
             // SEを再生する
             audioSource.PlayOneShot(hitSound);
