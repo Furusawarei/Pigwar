@@ -113,7 +113,7 @@ public class ResultTest : MonoBehaviour
     /// <param name="Text"></param>
     private void WinText(TextMeshProUGUI Text) 
     {
-        Text.color= Color.red;
+        Text.color= new Color32(242,68,114,255);
         Text.text = "WIN";
     }
 
@@ -123,7 +123,7 @@ public class ResultTest : MonoBehaviour
     /// <param name="Text"></param>
     private void LoseText(TextMeshProUGUI Text)
     {
-        Text.color = Color.blue;
+        Text.color =new Color32(65,105,225,255);
         Text.text = "LOSE";
     }
     /// <summary>
@@ -145,13 +145,13 @@ public class ResultTest : MonoBehaviour
         while (true) {
             if(_isScaleUp) 
             {
-                _f_scale += 0.0025f;
-                if(_f_scale >0.8)_isScaleUp = false;
+                _f_scale += 1.0f*Time.deltaTime;
+                if(_f_scale >0.9)_isScaleUp = false;
             }
             else
             {
-                _f_scale -= 0.0025f;
-                if( _f_scale <0.3)_isScaleUp=true;
+                _f_scale -= 1.0f*Time.deltaTime;
+                if( _f_scale <0.2)_isScaleUp=true;
             }
             //スケールサイズ変更
             _scale.x = _defScale.x * _f_scale;
@@ -175,11 +175,11 @@ public class ResultTest : MonoBehaviour
     /// <returns>1フレ待機</returns>
     IEnumerator LightOn()
     {
-        for(int i = 0; i < 200; i++) 
+        while (_lightPower<1.0f)
         {
             _winerLightImage.fillAmount = _lightPower;//上から光が来るやつ0~1
-            _lightPower += 0.005f;
-            yield return null; 
+            _lightPower += 1.5f * Time.deltaTime;
+            yield return null;
         }
     }
 }
