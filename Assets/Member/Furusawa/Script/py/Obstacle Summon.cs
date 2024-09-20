@@ -8,7 +8,7 @@ public class ObstacleSummon : MonoBehaviour
     [SerializeField] private int playerNumber; // プレイヤー番号を設定するための変数
     [SerializeField] private GameObject boxPrefab; // プレハブを設定するための変数
     [SerializeField] private Transform boxGeneratePos; // 生成位置を設定するための変数
-    [SerializeField] private int maxPrefabs = 8; // 保持するプレハブの最大数
+    [SerializeField] private int maxPrefabs = 2; // 保持するプレハブの最大数
 
     private Scoremaneger scoreManager; // スコアを管理するクラスを参照するための変数
     private AudioSource audioSource;
@@ -99,11 +99,11 @@ public class ObstacleSummon : MonoBehaviour
 
     private void UpdateSprite()
     {
-        if (instantiatedPrefabs.Count >= 4)
+        if (instantiatedPrefabs.Count >= 2)
         {
             uiSprite.sprite = sprite4;
         }
-        else if (instantiatedPrefabs.Count >= 2)
+        else if (instantiatedPrefabs.Count >= 1)
         {
             uiSprite.sprite = sprite2;
         }

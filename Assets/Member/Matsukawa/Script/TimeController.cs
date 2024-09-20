@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class TimerController : MonoBehaviour
 {
-    public static float countdownMinutes = 0.3f;
+    public static float countdownMinutes = 3f;
     private float countdownSeconds;
 
     [SerializeField] private TextMeshProUGUI timeText;
@@ -19,8 +19,8 @@ public class TimerController : MonoBehaviour
         Scoremaneger.Instance().SetScore(0, 1);
         Scoremaneger.Instance().SetScore(0, 2);
 
-        // ƒtƒBƒjƒbƒVƒ…ƒeƒLƒXƒg‚Ì“§–¾“x‚ğ0‚Éİ’è‚·‚é
-        finishText.text = "ƒtƒBƒjƒbƒVƒ…";
+        // ï¿½tï¿½Bï¿½jï¿½bï¿½Vï¿½ï¿½ï¿½eï¿½Lï¿½Xï¿½gï¿½Ì“ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½0ï¿½Éİ’è‚·ï¿½ï¿½
+        finishText.text = "ï¿½tï¿½Bï¿½jï¿½bï¿½Vï¿½ï¿½";
         finishText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
@@ -37,16 +37,16 @@ public class TimerController : MonoBehaviour
         if (FadeManager.Instance.IsFading) return;
         if (countdownSeconds < 0)
         {
-            // I—¹ŠÔ‚ğ0‚Éİ’è‚·‚é
+            // ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½0ï¿½Éİ’è‚·ï¿½ï¿½
             timeText.text = ("00:00");
 
             Debug.Log("aaa");            
 
-            // finishText‚ªFadeIn‚·‚é
+            // finishTextï¿½ï¿½FadeInï¿½ï¿½ï¿½ï¿½
             finishText.color = new Color(0, 0, 0, 0);
             finishText.DOFade(1.0f, (FadeText.fadeinDuration + 1.5f));
 
-            // finish‚Ì•\¦‚ªŠ®—¹‚µ‚½ŒãA1.0•bŒã‚ÉƒŠƒUƒ‹ƒg‰æ–Ê‚É‘JˆÚ
+            // finishï¿½Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A1.0ï¿½bï¿½ï¿½Éƒï¿½ï¿½Uï¿½ï¿½ï¿½gï¿½ï¿½Ê‚É‘Jï¿½ï¿½
             DOVirtual.DelayedCall(0.5f, () => FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f));
         }
     }
