@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultTest : MonoBehaviour
+public class ResultScript : MonoBehaviour
 {
     [SerializeField, Header("勝った人に当たるライト")] private GameObject _winerLight;
     private Transform _winerLightTransfrom;//ライトの位置
@@ -31,6 +31,7 @@ public class ResultTest : MonoBehaviour
     private bool _isScaleUp = false;//スケール変更用フラグ
 
     private Coroutine _scaleCoroutine;//プレイヤースケールを変えるコルーチン
+    private Coroutine _LightCoroutine;//光を降ろすコルーチン
     #region 初期化 start(){
     private void Awake()
     {
@@ -70,7 +71,7 @@ public class ResultTest : MonoBehaviour
         {
             StopCoroutine(_scaleCoroutine);//スケール変え止め
             judge();
-            if(_isSettled)StartCoroutine(LightOn());
+            if(_isSettled)_LightCoroutine=StartCoroutine(LightOn());
             _resulted = true;
         }
     }
@@ -181,5 +182,13 @@ public class ResultTest : MonoBehaviour
             _lightPower += 1.5f * Time.deltaTime;
             yield return null;
         }
+        LightOff();
+    }
+    /// <summary>
+    /// ↑のコルーチンを止める用
+    /// </summary>
+    private void LightOff()
+    {
+        StopCoroutine(_LightCoroutine);
     }
 }

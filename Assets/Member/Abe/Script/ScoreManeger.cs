@@ -43,6 +43,10 @@ public class Scoremaneger : MonoBehaviour
     void Start()
     {
         // 初期化コードがあればここに記述
+        for (int i = 0; i < _scoreboardTransform.Length; i++)
+        {
+            _defPos[i] = _scoreboardTransform[i].position;  // 最初の位置を記憶しておく
+        }
     }
 
     private void Update()
@@ -60,7 +64,7 @@ public class Scoremaneger : MonoBehaviour
     {
         PlayerScore[PlayerNumber - 1] = Score;
         _scoreborad[PlayerNumber - 1].text = Score.ToString();  // スコア表示を更新
-        _defPos[PlayerNumber - 1] = _scoreboardTransform[PlayerNumber - 1].position;  // 最初の位置を記憶しておく
+        
     }
 
     public int GetScore(int PlayerNumber)
@@ -89,7 +93,7 @@ public class Scoremaneger : MonoBehaviour
     }
 
     /// <summary>
-    /// リザルト画面遷移とスコア位置移動
+    /// スコア位置移動
     /// </summary>
     public void ToResult()
     {
