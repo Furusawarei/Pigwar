@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class pearl_counter : MonoBehaviour
 {
-
     private System.Action<GameObject> _hitCallback;
 
     public void Setup(System.Action<GameObject> hitCallback)
@@ -18,9 +17,10 @@ public class pearl_counter : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _hitCallback?.Invoke(gameObject);
-            Debug.Log("“–‚½‚Á‚½");
+            Debug.Log("è¡çªã—ã¾ã—ãŸ"); // æ–‡å­—åŒ–ã‘ã‚’ä¿®æ­£
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
 

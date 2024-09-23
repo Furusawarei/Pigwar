@@ -6,27 +6,27 @@ namespace ConveyorSamples
     public class Conveyor : MonoBehaviour
     {
         /// <summary>
-        /// ƒxƒ‹ƒgƒRƒ“ƒxƒA‚Ì‰Ò“­ó‹µ
+        /// ã‚³ãƒ³ãƒ™ã‚¢ãŒç¨¼åƒä¸­ã‹ã©ã†ã‹
         /// </summary>
         public bool IsOn = false;
 
         /// <summary>
-        /// ƒxƒ‹ƒgƒRƒ“ƒxƒA‚Ìİ’è‘¬“x
+        /// ã‚³ãƒ³ãƒ™ã‚¢ã®ç›®æ¨™é§†å‹•é€Ÿåº¦
         /// </summary>
         public float TargetDriveSpeed = 1.0f;
 
         /// <summary>
-        /// Œ»İ‚Ìƒxƒ‹ƒgƒRƒ“ƒxƒA‚Ì‘¬“x
+        /// ç¾åœ¨ã®ã‚³ãƒ³ãƒ™ã‚¢ã®é€Ÿåº¦
         /// </summary>
         public float CurrentSpeed { get { return _currentSpeed; } }
 
         /// <summary>
-        /// ƒxƒ‹ƒgƒRƒ“ƒxƒA‚ª•¨‘Ì‚ğ“®‚©‚·•ûŒü
+        /// ã‚³ãƒ³ãƒ™ã‚¢ã®é§†å‹•æ–¹å‘
         /// </summary>
         public Vector3 DriveDirection = Vector3.forward;
 
         /// <summary>
-        /// ƒRƒ“ƒxƒA‚ª•¨‘Ì‚ğ‰Ÿ‚·—Íi‰Á‘¬—Íj
+        /// é§†å‹•ã«ã‹ã‹ã‚‹åŠ›
         /// </summary>
         [SerializeField] private float _forcePower = 5f;
 
@@ -35,7 +35,7 @@ namespace ConveyorSamples
 
         void Start()
         {
-            //•ûŒü‚Í³‹K‰»‚µ‚Ä‚¨‚­
+            // é§†å‹•æ–¹å‘ã‚’æ­£è¦åŒ–ã™ã‚‹
             DriveDirection = DriveDirection.normalized;
         }
 
@@ -43,15 +43,15 @@ namespace ConveyorSamples
         {
             _currentSpeed = IsOn ? TargetDriveSpeed : 0;
 
-            //Á–Å‚µ‚½ƒIƒuƒWƒFƒNƒg‚Íœ‹‚·‚é
+            // NULLã®ãƒªã‚¸ãƒƒãƒ‰ãƒœãƒ‡ã‚£ã‚’å‰Šé™¤
             _rigidbodies.RemoveAll(r => r == null);
 
             foreach (var r in _rigidbodies)
             {
-                //•¨‘Ì‚ÌˆÚ“®‘¬“x‚Ìƒxƒ‹ƒgƒRƒ“ƒxƒA•ûŒü‚Ì¬•ª‚¾‚¯‚ğæ‚èo‚·
+                // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®é€Ÿåº¦ã¨é§†å‹•æ–¹å‘ã®ãƒ‰ãƒƒãƒˆç©ã‚’è¨ˆç®—
                 var objectSpeed = Vector3.Dot(r.velocity, DriveDirection);
 
-                //–Ú•W’lˆÈ‰º‚È‚ç‰Á‘¬‚·‚é
+                // ç›®æ¨™é€Ÿåº¦ã‚ˆã‚Šã‚‚é…ã„å ´åˆã€åŠ›ã‚’åŠ ãˆã‚‹
                 if (objectSpeed < Mathf.Abs(TargetDriveSpeed))
                 {
                     r.AddForce(DriveDirection * _forcePower, ForceMode.Acceleration);
@@ -72,5 +72,3 @@ namespace ConveyorSamples
         }
     }
 }
-
-

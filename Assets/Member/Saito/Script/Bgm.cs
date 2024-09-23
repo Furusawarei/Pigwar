@@ -10,12 +10,12 @@ public class Bgm : MonoBehaviour
     {
         #region 
         if (SceneManager.GetActiveScene().name == "MainTitle")
-        { // Title�V�[���ł݂̂�肽������
+        { // Titleシーンに入った時の処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainTitle);
-            Debug.Log("�؂�ւ��^�C�g��");
+            Debug.Log("タイトルシーンに入りました");
         }
         //else if (SceneManager.GetActiveScene().name == "MainScenes")
-        //{ //MainScenes�̃V�[���ł�肽������
+        //{ // MainScenesシーンに入った時の処理
         //    SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
         //}
         //else if (SceneManager.GetActiveScene().name == "Result")
@@ -26,28 +26,28 @@ public class Bgm : MonoBehaviour
 
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
+
     private void OnActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
-        Debug.Log("�؂�ւ�����");
+        Debug.Log("シーンが変更されました");
         //if (SceneManager.GetActiveScene().name == "CP_Title")
         if (SceneManager.GetActiveScene().name == "MainTitle")
-        { // Title�V�[���ł݂̂�肽������
+        { // Titleシーンに入った時の処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainTitle);
-            Debug.Log("�؂�ւ��^�C�g��");
+            Debug.Log("タイトルシーンに入りました");
         }
         else if (SceneManager.GetActiveScene().name == "MainScenes2")
-        { //MainScenes�̃V�[���ł�肽������
+        { // MainScenesシーンに入った時の処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
-            Debug.Log("�؂�ւ��Q�[��");
+            Debug.Log("メインシーンに入りました");
         }
 
         //else if (SceneManager.GetActiveScene().name == "CP_Result")
         else if (SceneManager.GetActiveScene().name == "MatukawaResult_Copy")
         {
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
-            Debug.Log("�؂�ւ����U���g");
+            Debug.Log("結果シーンに入りました");
         }
     }
     #endregion
 }
-

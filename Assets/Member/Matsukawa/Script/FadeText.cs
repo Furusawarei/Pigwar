@@ -3,23 +3,23 @@ using UnityEngine;
 using DG.Tweening;
 
 /// <summary>
-/// ƒQ[ƒ€ŠJn‘Ou‚æ`‚¢vuƒXƒ^[ƒgIv‚Ì•¶š‚ğ•\¦‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+/// ãƒ†ã‚­ã‚¹ãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ãƒ»ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹
 /// </summary>
 public class FadeText : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI readyText;
     [SerializeField] TextMeshProUGUI startText;
 
-    public static float fadeinDuration = 0.7f;     // FadeIn‚É‚©‚©‚éŠÔ
-    public static float fadeoutDuration = 0.7f;    // FadeOut‚É‚©‚©‚éŠÔ
+    public static float fadeinDuration = 0.7f;     // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ™‚é–“
+    public static float fadeoutDuration = 0.7f;    // ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®æ™‚é–“
 
-    [SerializeField] GameObject startCanvas;       // ƒJƒEƒ“ƒgƒ_ƒEƒ“‚Ég‚¤canvas
+    [SerializeField] GameObject startCanvas;       // ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã®ã‚­ãƒ£ãƒ³ãƒã‚¹
     [SerializeField] CanvasGroup imageToFade;
 
-    [SerializeField] AudioSource audioSource;      // SEÄ¶—p‚ÌAudioSource
-    [SerializeField] AudioClip startSE;            // ƒXƒ^[ƒg‚ÌÛ‚ÉÄ¶‚·‚éSE
+    [SerializeField] AudioSource audioSource;      // SEã‚’å†ç”Ÿã™ã‚‹AudioSource
+    [SerializeField] AudioClip startSE;            // ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã®SE
 
-    // ƒvƒŒƒCƒ„[‚ª“®‚¯‚é‚©‚Ç‚¤‚©‚ğ¦‚·ƒtƒ‰ƒO
+    // ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®ç§»å‹•åˆ¶å¾¡ãƒ•ãƒ©ã‚°
     public static bool canMove = false;
 
     void Start()
@@ -28,45 +28,45 @@ public class FadeText : MonoBehaviour
         startText.gameObject.SetActive(true);
         imageToFade.gameObject.SetActive(true);
 
-        // •¶š‚Ì“§–¾“x‚ğ0‚É‚µ‚Ä‚¨‚­
-        readyText.text = "‚æ`‚¢";
+        // åˆæœŸãƒ†ã‚­ã‚¹ãƒˆã®è¨­å®š
+        readyText.text = "ã‚ˆï½ã„";
         readyText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-        startText.text = "ƒXƒ^[ƒgI";
+        startText.text = "ã‚¹ã‚¿ãƒ¼ãƒˆï¼";
         startText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-        // ready‚ªFadeIn
+        // readyã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
         FadeInTx(readyText, fadeinDuration);
-        // 0.5•bŒã‚ÉStart‚ªFadeIn
-        DOVirtual.DelayedCall(0.5f, () => FadeInTx(startText, fadeinDuration, true));  // SE‚ğÄ¶‚·‚éƒ^ƒCƒ~ƒ“ƒO‚ğ’Ç‰Á
+        // 0.5ç§’å¾Œã«startã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
+        DOVirtual.DelayedCall(0.5f, () => FadeInTx(startText, fadeinDuration, true));  // SEå†ç”Ÿå¾Œã€ã‚¹ã‚¿ãƒ¼ãƒˆã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’éè¡¨ç¤ºã«
     }
 
     /// <summary>
-    /// •¶š‚ÌƒtƒF[ƒhƒCƒ“‚ğŠÇ—‚·‚éŠÖ”
+    /// ãƒ†ã‚­ã‚¹ãƒˆã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³å‡¦ç†
     /// </summary>
-    /// <param name="tx">ƒtƒF[ƒhƒCƒ“‚³‚¹‚½‚¢ Text</param>
-    /// <param name="inDuration">ƒtƒF[ƒhƒCƒ“‚·‚éŠÔ</param>
-    /// <param name="playSE">SE‚ğÄ¶‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO</param>
+    /// <param name="tx">ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã™ã‚‹Text</param>
+    /// <param name="inDuration">ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®æ™‚é–“</param>
+    /// <param name="playSE">SEå†ç”Ÿã®æœ‰ç„¡</param>
     public void FadeInTx(TextMeshProUGUI tx, float inDuration, bool playSE = false)
     {
-        //  ”’‚¢•¶š‚ªFadeIn‚·‚é
+        // åˆæœŸåŒ–
         tx.color = new Color(1, 1, 1, 0);
         tx.DOFade(1.0f, inDuration).OnComplete(() =>
         {
-            // ƒtƒF[ƒhƒCƒ“‚ªŠ®—¹‚µ‚½‚çSE‚ğÄ¶
+            // ãƒ†ã‚­ã‚¹ãƒˆã®è¡¨ç¤ºå¾Œã«SEå†ç”Ÿ
             if (playSE)
             {
                 PlayStartSE();
-                // SE‚ªÄ¶‚³‚ê‚½ƒ^ƒCƒ~ƒ“ƒO‚ÅstartCanvas‚ğ‘¦À‚É”ñ•\¦
+                // SEå†ç”Ÿå¾Œã«ã‚¹ã‚¿ãƒ¼ãƒˆã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’éè¡¨ç¤ºã«
                 DOVirtual.DelayedCall(1.5f, () => startCanvas.SetActive(false));
             }
 
-            // start‚Æready‚Ì•¶š‚ªFadeOut
+            // readyã¨startã®ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆå‡¦ç†
             DOVirtual.DelayedCall(5.0f, () => FadeOutTx(readyText, fadeoutDuration));
             DOVirtual.DelayedCall(5.0f, () => FadeOutTx(startText, fadeoutDuration));
             DOVirtual.DelayedCall(5.5f, () => imageToFade.DOFade(0.0f, fadeinDuration));
 
-            canMove = true;  // ƒvƒŒƒCƒ„[‚Ì“®‚«‚ğ‹–‰Â
+            canMove = true;  // ç§»å‹•å¯èƒ½ãƒ•ãƒ©ã‚°ã‚’æœ‰åŠ¹ã«
         });
     }
 
@@ -75,11 +75,11 @@ public class FadeText : MonoBehaviour
         tx.color = new Color(1, 1, 1, 1);
         tx.DOFade(0.0f, outDuration);
 
-        // startCanvas‚ğ”ñ•\¦‚É‚·‚éi‚Å‚È‚¢‚Æƒ^ƒCƒ}[‚ªn‚Ü‚ç‚È‚¢j
+        // ã‚¹ã‚¿ãƒ¼ãƒˆã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’éè¡¨ç¤ºã«
         DOVirtual.DelayedCall(2.0f, () => startCanvas.SetActive(false));
     }
 
-    // ƒXƒ^[ƒgSE‚ğÄ¶‚·‚éƒƒ\ƒbƒh
+    // ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã®SEã‚’å†ç”Ÿ
     private void PlayStartSE()
     {
         audioSource.PlayOneShot(startSE);
@@ -88,8 +88,7 @@ public class FadeText : MonoBehaviour
     //IEnumerator FadeInR()
     //{
     //    yield return new WaitForSeconds(0.05f);
-
-    //    ready.text = ("‚æ`‚¢");
+    //    ready.text = ("ã‚ˆï½ã„");
     //    while (true)
     //    {
     //        for (int i = 0; i < 255; i++)
@@ -101,12 +100,10 @@ public class FadeText : MonoBehaviour
     //    }
     //}
 
-
     //IEnumerator FadeInS()
     //{
     //    yield return new WaitForSeconds(1.5f);
-
-    //    start.text = ("ƒXƒ^[ƒgI");
+    //    start.text = ("ã‚¹ã‚¿ãƒ¼ãƒˆï¼");
     //    while (true)
     //    {
     //        for (int i = 0; i < 255; i++)
@@ -116,10 +113,7 @@ public class FadeText : MonoBehaviour
     //        }
     //        break;
     //    }
-
-
-    //StartCoroutine("FadeOut");
-
+    //    StartCoroutine("FadeOut");
     //}
 
     //IEnumerator FadeOut()
@@ -131,13 +125,10 @@ public class FadeText : MonoBehaviour
     //            imageToFade.color = imageToFade.color + new Color32(0, 0, 0, 0);
     //            ready.color = ready.color + new Color32(0, 0, 0, 0);
     //            start.color = start.color + new Color32(0, 0, 0, 0);
-
     //            yield return new WaitForSeconds(0f);
     //        }
     //        break;
     //    }
-
     //    startCanvas.SetActive(false);
     //}
-
 }

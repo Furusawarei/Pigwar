@@ -19,8 +19,8 @@ public class TimerController : MonoBehaviour
         Scoremaneger.Instance().SetScore(0, 1);
         Scoremaneger.Instance().SetScore(0, 2);
 
-        // ƒtƒBƒjƒbƒVƒ…ƒeƒLƒXƒg‚Ì“§–¾“x‚ğ0‚Éİ’è‚·‚é
-        finishText.text = "ƒtƒBƒjƒbƒVƒ…";
+        // çµæœè¡¨ç¤ºç”¨ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’åˆæœŸåŒ–
+        finishText.text = "çµ‚äº†";
         finishText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
@@ -37,16 +37,16 @@ public class TimerController : MonoBehaviour
         if (FadeManager.Instance.IsFading) return;
         if (countdownSeconds < 0)
         {
-            // c‚èŠÔ‚ğ0‚Éİ’è‚·‚é
+            // ã‚«ã‚¦ãƒ³ãƒˆãƒ€ã‚¦ãƒ³ãŒ0ã«ãªã£ãŸå ´åˆ
             timeText.text = ("00:00");
 
             Debug.Log("aaa");
 
-            // finishText‚ğƒtƒF[ƒhƒCƒ“‚³‚¹‚é
+            // finishTextã‚’ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³
             finishText.color = new Color(0, 0, 0, 0);
             finishText.DOFade(1.0f, (FadeText.fadeinDuration + 1.5f));
 
-            // finish‚Ì•\¦‚ªŠ®—¹‚µ‚½‚çA1.0•bŒã‚ÉƒŠƒUƒ‹ƒgƒV[ƒ“‚ÖˆÚs
+            // finishå¾Œã«ã‚·ãƒ¼ãƒ³é·ç§»
             DOVirtual.DelayedCall(0.5f, () => FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f));
         }
     }
