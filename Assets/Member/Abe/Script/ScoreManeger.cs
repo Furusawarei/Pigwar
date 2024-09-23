@@ -177,7 +177,7 @@ public class Scoremaneger : MonoBehaviour
         {
             SetScore(0, i + 1);
         }
-        ToInGame();
+        //ToInGame();
         RenderSwitch(false);
     }
 

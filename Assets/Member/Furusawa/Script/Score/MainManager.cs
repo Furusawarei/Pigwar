@@ -4,6 +4,6 @@ public class MainManager : MonoBehaviour
 {
     void Start()
     {
-           Scoremaneger.Instance().RenderSwitch();//これでスコア表示のオンオフ
+        Scoremaneger.Instance().InGameStart();//これでスコア表示のオンオフ
     }
 }

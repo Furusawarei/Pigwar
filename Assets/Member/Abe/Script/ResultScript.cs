@@ -32,6 +32,7 @@ public class ResultScript : MonoBehaviour
 
     private Coroutine _scaleCoroutine;//プレイヤースケールを変えるコルーチン
     private Coroutine _LightCoroutine;//光を降ろすコルーチン
+
     #region 初期化 start(){
     private void Awake()
     {
@@ -81,7 +82,7 @@ public class ResultScript : MonoBehaviour
     /// </summary>
     private void judge()
     {
-        Scoremaneger.Instance().ScoreRandomSwitch();//ランダム止め
+        Scoremaneger.Instance().ScoreRandomSwitch(false);//ランダム止め
         _isSettled=Scoremaneger.Instance().Judge(out int winer,out int loser);//プレイヤー番号
         //決着がついていないなら
         if (!_isSettled)

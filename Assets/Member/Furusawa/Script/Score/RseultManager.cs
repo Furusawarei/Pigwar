@@ -4,6 +4,6 @@ public class ResultManager : MonoBehaviour
 {
     void Start()
     {
-        Scoremaneger.Instance().ToResult();//これでスコア表示をリザルト型に移動
+        Scoremaneger.Instance().ResultStart();//これでスコア表示をリザルト型に移動
     }
 }
