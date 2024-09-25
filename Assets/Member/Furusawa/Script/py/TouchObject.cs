@@ -64,31 +64,34 @@ public class TouchObject : MonoBehaviour
     private GameObject GetClosestObject()
     {
         GameObject closestObject = null;
-        float closestDistance = float.MaxValue;
+        float closestDistance = Mathf.Infinity;
         foreach (var obj in objectsInTrigger)
         {
-            float distance = Vector3.Distance(CollPoint.position, obj.transform.position);
+            if (obj != null)
+            {
+                float distance = Vector3.Distance(CollPoint.position, obj.transform.position);
 
-            // パールを持つ条件をチェック
-            if (obj.CompareTag("Pearl") &&
-                grabObjects.Count(grabObj => grabObj.CompareTag("HeldObject")) < maxPearlCount &&
-                !grabObjects.Exists(grabObj => grabObj.CompareTag("boxPrefab")))
-            {
-                if (distance < closestDistance)
+                // パールを持つ条件をチェック
+                if (obj.CompareTag("Pearl") &&
+                    grabObjects.Count(grabObj => grabObj.CompareTag("HeldObject")) < maxPearlCount &&
+                    !grabObjects.Exists(grabObj => grabObj.CompareTag("boxPrefab")))
                 {
-                    closestDistance = distance;
-                    closestObject = obj;
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestObject = obj;
+                    }
                 }
-            }
-            // 箱を持つ条件をチェック
-            else if (obj.CompareTag("boxPrefab") &&
-                     grabObjects.Count(grabObj => grabObj.CompareTag("boxPrefab")) < maxBoxCount &&
-                     !grabObjects.Exists(grabObj => grabObj.CompareTag("HeldObject")))
-            {
-                if (distance < closestDistance)
+                // 箱を持つ条件をチェック
+                else if (obj.CompareTag("boxPrefab") &&
+                         grabObjects.Count(grabObj => grabObj.CompareTag("boxPrefab")) < maxBoxCount &&
+                         !grabObjects.Exists(grabObj => grabObj.CompareTag("HeldObject")))
                 {
-                    closestDistance = distance;
-                    closestObject = obj;
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestObject = obj;
+                    }
                 }
             }
         }
@@ -243,14 +246,14 @@ public class TouchObject : MonoBehaviour
         if (originalLayers.ContainsKey(obj))
         {
             int originalLayer = originalLayers[obj];
-            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.0167f)); // レイヤーをリセット
+            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.001f)); // レイヤーをリセット
             originalLayers.Remove(obj); // 辞書から削除
         }
 
         if (originalTags.ContainsKey(obj))
         {
             string originalTag = originalTags[obj];
-            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.0167f)); // タグをリセット
+            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.001f)); // タグをリセット
             originalTags.Remove(obj); // 辞書から削除
         }
 

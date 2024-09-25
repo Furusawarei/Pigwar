@@ -33,13 +33,6 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         /*
-        // ゲーム終了時や動けないときに操作を無効にする処理（変更前コード）
-        if (GameFinished || !FadeText.canMove)
-        {
-            rb.velocity = Vector3.zero;
-            return;
-        }
-
         // 前フレームとの位置の差分を計算してプレイヤーの向きを変更する処理（変更前コード）
         Vector3 diff = transform.position - BefoPos;
         diff.y = 0;
@@ -52,7 +45,7 @@ public class PlayerMove : MonoBehaviour
 
         _animator.SetBool("Idel", true);
 
-        // // ゲーム終了時や動けないときに操作を無効にする処理（コメントアウト）
+        // // ゲーム終了時や動けないときに操作を無効にする処理
         if (GameFinished || !FadeText.canMove)
         {
             rb.velocity = Vector3.zero;
