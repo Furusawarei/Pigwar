@@ -246,14 +246,14 @@ public class TouchObject : MonoBehaviour
         if (originalLayers.ContainsKey(obj))
         {
             int originalLayer = originalLayers[obj];
-            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.001f)); // レイヤーをリセット
+            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.033f)); // レイヤーをリセット
             originalLayers.Remove(obj); // 辞書から削除
         }
 
         if (originalTags.ContainsKey(obj))
         {
             string originalTag = originalTags[obj];
-            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.001f)); // タグをリセット
+            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.033f)); // タグをリセット
             originalTags.Remove(obj); // 辞書から削除
         }
 
@@ -313,7 +313,7 @@ public class TouchObject : MonoBehaviour
     private IEnumerator ResetKinematicAfterDelay(Rigidbody rb, float delay)
     {
         yield return new WaitForSeconds(delay);
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
     }
 
     // オブジェクトがトリガーに入ったときの処理
