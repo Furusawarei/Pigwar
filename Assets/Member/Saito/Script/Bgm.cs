@@ -28,21 +28,21 @@ public class Bgm : MonoBehaviour
     }
     private void OnActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
-        Debug.Log("切り替え成功");
+        Debug.Log("シーン移動確認");
         if (SceneManager.GetActiveScene().name == "Title")
         { // Titleシーンでのみやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
-            Debug.Log("切り替えタイトル");
+            Debug.Log("シーンタイトル");
         }
         else if (SceneManager.GetActiveScene().name == "MainScenes")
         { //MainScenesのシーンでやりたい処理
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
-            Debug.Log("切り替えゲーム");
+            Debug.Log("シーンゲーム");
         }
         else if (SceneManager.GetActiveScene().name == "Result")
         {
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
-            Debug.Log("切り替えリザルト");
+            Debug.Log("シーンリザルト");
         }
     }
     #endregion
