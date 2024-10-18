@@ -6,48 +6,33 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
-/// スコアの表示と、障害物の管理用クラス
+/// スコアの表示と、障害物の管理用クラス 
+/// ＊ScoreUp2は使わなくてもいいように変更済み
 /// </summary>
 public class ScoreUp : MonoBehaviour
 {
     // 他関数
     public Scoremaneger scoreManager;
+    public BoxUi boxUi;
 
-    // あべさんのスコアとスコアを表示するテキストリストをいれるところ
+    // あべさんのスコアとスコアを表示するテキストリストをいれる変数
     protected int score1;
     protected int score2;
-    private TextMeshProUGUI scoreTextList;
 
     // 障害物を生成する場所
     [SerializeField] private Transform boxGeneratePos;
     [SerializeField] private Transform boxGeneratePos2;
 
-    [SerializeField] private GameObject boxPrefab;    // Player1の障害物
-    [SerializeField] protected GameObject boxPrefab2;   // Player2の障害物
+    [SerializeField] public GameObject boxPrefab;    // Player1の障害物
+    [SerializeField] public GameObject boxPrefab2;   // Player2の障害物
 
-    [Header("Player1の障害物"), SerializeField] List<GameObject> boxList = new List<GameObject>();    // Player1の生成した障害物を保存しておくためのリスト
-    [Header("Player2の障害物"), SerializeField] List<GameObject> boxList2 = new List<GameObject>();    // Player2の障害物
+    [Header("Player1の障害物"), SerializeField] public List<GameObject> boxList = new List<GameObject>();    // Player1の生成した障害物を保存しておくためのリスト
+    [Header("Player2の障害物"), SerializeField] public List<GameObject> boxList2 = new List<GameObject>();    // Player2の障害物
 
     // 障害物管理時に使う (リスト用)
     private int countPrefabs;
 
-    [SerializeField] List<GameObject> pigUiList = new List<GameObject>();  // Player1の障害物のUIリスト
-    [SerializeField] List<GameObject> pigUiList2 = new List<GameObject>();  // Player2の障害物のUIリスト
-
-    // 出ている障害物を表示するUiを生成する場所
-    [SerializeField] private Transform magentaBoxUiPos;
-    [SerializeField] private Transform blueboxUiPos;
-
-    // 出ている障害物を表示するUiを生成する親obj
-    [SerializeField] private GameObject parentObj;
-
-    private void Start()
-    {
-        ShowMagentaBoxUi();
-        ShowBlueBoxUi();
-    }
-
-
+    // 
     public void Update()
     {
         // Player2の障害物生成用関数呼び出し
@@ -98,7 +83,7 @@ public class ScoreUp : MonoBehaviour
             }
 
             // Player1の障害物の数を表示するUIを管理するところ
-            ShowMagentaBoxUi();
+            boxUi.ShowMagentaBoxUi();
         }
 
         // Player1障害物の数をUIで表示する
@@ -153,7 +138,7 @@ public class ScoreUp : MonoBehaviour
                 boxList2.Remove(boxList2[0]);
             }
 
-            ShowBlueBoxUi();
+            boxUi.ShowBlueBoxUi();
         }
         // Player2障害物の数をUIで表示する
         int count2 = GameObject.FindGameObjectsWithTag("boxPrefab2").Length;
@@ -189,45 +174,6 @@ public class ScoreUp : MonoBehaviour
         Debug.Log("player2:" + score2);
     }
 
-    public void ShowMagentaBoxUi()
-    {
-        if (boxList.Count == 0)
-        {
-            Instantiate(pigUiList[0], magentaBoxUiPos.position, Quaternion.identity, parentObj.transform);
-        }
-        else if (boxList.Count == 1)
-        {
-            Instantiate(pigUiList[1], magentaBoxUiPos.position, Quaternion.identity, parentObj.transform);
-            Destroy(boxList[0]);
-        }
-        else if (boxList.Count == 2)
-        {
-            Instantiate(pigUiList[2], magentaBoxUiPos.position, Quaternion.identity, parentObj.transform);
-            Destroy(boxList[0]);
-            Destroy(boxList[1]);
-        }
-    }
-
-    public void ShowBlueBoxUi()
-    {
-        if (boxList2.Count == 0)
-        {
-            Instantiate(pigUiList2[0], blueboxUiPos.position, Quaternion.identity, parentObj.transform);
-
-        }
-        else if (boxList2.Count == 1)
-        {
-            Instantiate(pigUiList2[1], blueboxUiPos.position, Quaternion.identity, parentObj.transform);
-            Destroy(boxList2[0]);
-        }
-        else if (boxList2.Count == 2)
-        {
-            Instantiate(pigUiList2[2], blueboxUiPos.position, Quaternion.identity, parentObj.transform);
-            Destroy(boxList2[0]);
-            Destroy(boxList2[1]);
-
-        }
-    }
 
 }
 

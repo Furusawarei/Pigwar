@@ -23,7 +23,6 @@ public class Score_InGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
         if (Input.GetKeyUp(KeyCode.K))
         {
             Scoremaneger.Instance().ScoreChenge(1, 2);//増減値,プレイヤー
@@ -44,14 +43,23 @@ public class Score_InGame : MonoBehaviour
             Scoremaneger.Instance().ScoreChenge(-2, 1);
             Debug.Log("1P-2"); ;
         }
-        if (Input.GetKeyUp(KeyCode.J))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
+            Scoremaneger.Instance().ToResult();//これでスコア表示をリザルト型に移動
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            Scoremaneger.Instance().ToInGame();//これでスコア表示をゲーム型に移動
+            Scoremaneger.Instance().ScoreRandomSwitch();
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            Scoremaneger.Instance().RenderSwitch();//これでスコア表示のオンオフ
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
             SceneManager.LoadScene("MatukawaResult_Copy");
         }
-    */
-
-        Scoremaneger.Instance().ToResult();//ここでスコア表示を移動
     }
 
 

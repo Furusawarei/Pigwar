@@ -1,35 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using UnityEngine.UI;
-using Unity.VisualScripting;
+using DG.Tweening;
 
-/// <summary>
-/// ï¿½ï¿½ï¿½ÔŠÇ—ï¿½ï¿½pï¿½ÌƒNï¿½ï¿½ï¿½X
-/// </summary>
 public class TimerController : MonoBehaviour
 {
-    // ï¿½^ï¿½Cï¿½}ï¿½[
-    public float countdownMinutes;
+    public static float countdownMinutes = 0.3f;
     private float countdownSeconds;
 
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI finishText;
-
     [SerializeField] private GameObject startImage;
-    //[SerializeField] private GameObject resultButton;
 
     void Start()
     {
         countdownSeconds = countdownMinutes * 60;
-    }
 
+        Scoremaneger.Instance().SetScore(0, 1);
+        Scoremaneger.Instance().SetScore(0, 2);
+
+        // ƒtƒBƒjƒbƒVƒ…ƒeƒLƒXƒg‚Ì“§–¾“x‚ğ0‚Éİ’è‚·‚é
+        finishText.text = "ƒtƒBƒjƒbƒVƒ…";
+        finishText.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+    }
 
     void Update()
     {
-        //  ï¿½^ï¿½Cï¿½}ï¿½[ï¿½Ìï¿½ï¿½ï¿½
         if (startImage.activeSelf) return;
         if (countdownSeconds > 0)
         {
@@ -39,17 +35,19 @@ public class TimerController : MonoBehaviour
         }
 
         if (FadeManager.Instance.IsFading) return;
-        // ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
         if (countdownSeconds < 0)
         {
-            // ï¿½Iï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½oï¿½ï¿½
-            finishText.text = ("ï¿½ï¿½ï¿½ï¿½ï¿½I");
-
-            // ï¿½^ï¿½Cï¿½}ï¿½[0ï¿½ÉŒï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ï¿½
+            // I—¹ŠÔ‚ğ0‚Éİ’è‚·‚é
             timeText.text = ("00:00");
 
-            FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f);
+            Debug.Log("aaa");            
+
+            // finishText‚ªFadeIn‚·‚é
+            finishText.color = new Color(0, 0, 0, 0);
+            finishText.DOFade(1.0f, (FadeText.fadeinDuration + 1.5f));
+
+            // finish‚Ì•\¦‚ªŠ®—¹‚µ‚½ŒãA1.0•bŒã‚ÉƒŠƒUƒ‹ƒg‰æ–Ê‚É‘JˆÚ
+            DOVirtual.DelayedCall(0.5f, () => FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f));
         }
     }
-
 }
