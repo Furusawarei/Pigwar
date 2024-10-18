@@ -44,9 +44,6 @@ public class ResultScene : MonoBehaviour
         isScneChanging = true;
         PlaySE(sceneChangeSE); // SEを再生
         FadeManager.Instance.TransScene("MainTitle", 2.0f);
-        Scoremaneger.Instance().ToInGame();
-        Scoremaneger.Instance().ToTitle();
-
         yield return new WaitForSeconds(2.0f);
         isScneChanging = false;
     }

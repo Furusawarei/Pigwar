@@ -7,10 +7,11 @@ public class ObstacleSummon : MonoBehaviour
 {
     [SerializeField] private int playerNumber; // プレイヤー番号を設定するための変数
     [SerializeField] private GameObject boxPrefab; // プレハブを設定するための変数
-    [SerializeField] private Transform boxGeneratePos; // 生成位置を設定するための変数
+    [SerializeField] private Transform boxGeneratePos; // 生成位置を設定するための変
     [SerializeField] private int maxPrefabs = 8; // 保持するプレハブの最大数
 
     private Scoremaneger scoreManager; // スコアを管理するクラスを参照するための変数
+    public GameObject parentObject;
     private AudioSource audioSource;
     public AudioClip summonSE; // プレハブを生成する際のSE
 
@@ -46,64 +47,70 @@ public class ObstacleSummon : MonoBehaviour
         }
     }
 
-  public void SummonBox()
-{
-    int scoreToConsume = 1; // 消費するスコア
-
-    // スコアが2以上か確認
-    if (scoreManager.GetScore(playerNumber) >= scoreToConsume)
+    public void SummonBox()
     {
-        // スコアを減らす
-        scoreManager.ScoreChenge(-scoreToConsume, playerNumber);
+        int scoreToConsume = 1; // 消費するスコア
 
-        // プレイヤーの現在位置を取得
-        Vector3 playerPosition = transform.position;
-
-        // プレイヤーの前方向に1.5メートル進んだ位置を計算
-        // さらにY軸方向に+1メートルのオフセットを追加
-        Vector3 spawnPosition = playerPosition + transform.forward * 1.5f + Vector3.up * 1.0f;
-
-        // プレハブを生成
-        GameObject newBox = Instantiate(boxPrefab, spawnPosition, Quaternion.identity);
-
-        // プレハブの名前を設定（例：cube0, cube1など）
-        newBox.name = "BoxPlafab" + playerNumber;
-
-        // 生成したプレハブをリストに追加
-        instantiatedPrefabs.Add(newBox);
-
-        // プレハブの数が最大数を超えたら古いものから削除
-        if (instantiatedPrefabs.Count > maxPrefabs)
+        // スコアが2以上か確認
+        if (scoreManager.GetScore(playerNumber) >= scoreToConsume)
         {
-            GameObject oldPrefab = instantiatedPrefabs[0];
-            instantiatedPrefabs.RemoveAt(0);
-            Destroy(oldPrefab);
+            // スコアを減らす
+            scoreManager.ScoreChenge(-scoreToConsume, playerNumber);
+
+            // プレイヤーの現在位置を取得
+            Vector3 playerPosition = transform.position;
+
+            // プレイヤーの前方向に1.5メートル進んだ位置を計算
+            // さらにY軸方向に+1メートルのオフセットを追加
+            Vector3 spawnPosition = playerPosition + transform.forward * 1.5f + Vector3.up * 1.0f;
+
+            // プレハブを生成
+            GameObject newBox = Instantiate(boxPrefab, spawnPosition, Quaternion.identity);
+
+            // プレハブの名前を設定（例：cube0, cube1など）
+            newBox.name = "BoxPrefab" + playerNumber;
+
+            // プレハブの数が最大数を超えたら古いものから削除
+            if (instantiatedPrefabs.Count >= maxPrefabs)
+            {
+                GameObject oldPrefab = instantiatedPrefabs[0];
+                instantiatedPrefabs.RemoveAt(0);
+                Destroy(oldPrefab);
+            }
+
+            // 子オブジェクトを削除する処理
+            if (parentObject.transform.childCount > 0) // 親オブジェクトに子オブジェクトがある場合
+            {
+                Transform child = parentObject.transform.GetChild(0); // 最初の子オブジェクトを取得
+                Destroy(child.gameObject); // 子オブジェクトを削除
+            }
+
+            // 生成したプレハブをリストに追加
+            instantiatedPrefabs.Add(newBox);
+
+            // スプライトの更新
+            UpdateSprite();
+
+            // SEを再生
+            if (summonSE != null)
+            {
+                audioSource.PlayOneShot(summonSE);
+            }
         }
-
-        // スプライトの更新
-        UpdateSprite();
-
-        // 他の処理（UIの更新、SEの再生など）
-        if (summonSE != null)
+        else
         {
-            audioSource.PlayOneShot(summonSE);
+            // スコアが足りない場合の処理を記述
+            Debug.Log("Score is not enough to summon the box.");
         }
     }
-    else
-    {
-        // スコアが足りない場合の処理を記述
-        Debug.Log("Score is not enough to summon the box.");
-    }
-}
-
 
     private void UpdateSprite()
     {
-        if (instantiatedPrefabs.Count >= 4)
+        if (instantiatedPrefabs.Count >= 2)
         {
             uiSprite.sprite = sprite4;
         }
-        else if (instantiatedPrefabs.Count >= 2)
+        else if (instantiatedPrefabs.Count >= 1)
         {
             uiSprite.sprite = sprite2;
         }

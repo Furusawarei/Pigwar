@@ -25,7 +25,7 @@ public class pearl : MonoBehaviour
     private void Production()
     {
         // パールが6個以上の場合は生成しない
-        if (_pearlist.Count >= 9) return;
+        if (_pearlist.Count >= 6) return;
         {
             var obj = Instantiate(_pearlprefab, Vector3.zero, Quaternion.identity, pearl_limit);
             obj.GetComponent<pearl_counter>().Setup(DeleteObject);

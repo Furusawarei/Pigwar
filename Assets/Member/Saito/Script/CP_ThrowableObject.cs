@@ -11,7 +11,7 @@ public class CP_ThrowableObject : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // プレイヤーに当たった場合の処理
-        if (isThrown && collision.gameObject.CompareTag("body"))
+        if (isThrown && (collision.gameObject.CompareTag("body") || collision.gameObject.CompareTag("Player")))
         {
             // SEを再生する
             audioSource.PlayOneShot(hitSound);

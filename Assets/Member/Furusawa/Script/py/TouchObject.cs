@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,7 +16,7 @@ public class TouchObject : MonoBehaviour
     private List<GameObject> grabObjects = new List<GameObject>(); // 持っているオブジェクトのリスト
     private List<GameObject> objectsInTrigger = new List<GameObject>(); // トリガー内にあるオブジェクトのリスト
 
-    
+
     private int maxPearlCount = 3; // 最大で持てるパールの数
     private int maxBoxCount = 1; // 最大で持てる箱の数
 
@@ -24,6 +25,8 @@ public class TouchObject : MonoBehaviour
     public bool IsHoldingObject { get; private set; } // オブジェクトを持っているかどうかを示すプロパティ
 
     private bool canInteract = true; // インタラクションが可能かどうかを示すフラグ
+
+    private bool isThrowing = false; // 投げているかどうかを示すフラグ
 
     void Start()
     {
@@ -48,9 +51,12 @@ public class TouchObject : MonoBehaviour
         }
 
         // "Throw"アクションがトリガーされ、オブジェクトを持っている場合の処理
-        if (_playerInput.actions["Throw"].triggered && grabObjects.Count > 0)
+        if (_playerInput.actions["Throw"].triggered && grabObjects.Count > 0 && !isThrowing)
         {
+            isThrowing = true; // 投げる処理中フラグを立てる
             _animator.SetTrigger("Throw"); // アニメーションをトリガー
+            StartCoroutine(WaitForThrowAnimation()); // アニメーションが終わるのを待つ
+            Debug.Log("Throw");
         }
     }
 
@@ -58,31 +64,34 @@ public class TouchObject : MonoBehaviour
     private GameObject GetClosestObject()
     {
         GameObject closestObject = null;
-        float closestDistance = float.MaxValue;
+        float closestDistance = Mathf.Infinity;
         foreach (var obj in objectsInTrigger)
         {
-            float distance = Vector3.Distance(CollPoint.position, obj.transform.position);
+            if (obj != null)
+            {
+                float distance = Vector3.Distance(CollPoint.position, obj.transform.position);
 
-            // パールを持つ条件をチェック
-            if (obj.CompareTag("Pearl") &&
-                grabObjects.Count(grabObj => grabObj.CompareTag("HeldObject")) < maxPearlCount &&
-                !grabObjects.Exists(grabObj => grabObj.CompareTag("boxPrefab")))
-            {
-                if (distance < closestDistance)
+                // パールを持つ条件をチェック
+                if (obj.CompareTag("Pearl") &&
+                    grabObjects.Count(grabObj => grabObj.CompareTag("HeldObject")) < maxPearlCount &&
+                    !grabObjects.Exists(grabObj => grabObj.CompareTag("boxPrefab")))
                 {
-                    closestDistance = distance;
-                    closestObject = obj;
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestObject = obj;
+                    }
                 }
-            }
-            // 箱を持つ条件をチェック
-            else if (obj.CompareTag("boxPrefab") &&
-                     grabObjects.Count(grabObj => grabObj.CompareTag("boxPrefab")) < maxBoxCount &&
-                     !grabObjects.Exists(grabObj => grabObj.CompareTag("HeldObject")))
-            {
-                if (distance < closestDistance)
+                // 箱を持つ条件をチェック
+                else if (obj.CompareTag("boxPrefab") &&
+                         grabObjects.Count(grabObj => grabObj.CompareTag("boxPrefab")) < maxBoxCount &&
+                         !grabObjects.Exists(grabObj => grabObj.CompareTag("HeldObject")))
                 {
-                    closestDistance = distance;
-                    closestObject = obj;
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestObject = obj;
+                    }
                 }
             }
         }
@@ -237,14 +246,14 @@ public class TouchObject : MonoBehaviour
         if (originalLayers.ContainsKey(obj))
         {
             int originalLayer = originalLayers[obj];
-            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.015f)); // レイヤーをリセット
+            StartCoroutine(ResetLayerAfterDelay(obj, originalLayer, 0.033f)); // レイヤーをリセット
             originalLayers.Remove(obj); // 辞書から削除
         }
 
         if (originalTags.ContainsKey(obj))
         {
             string originalTag = originalTags[obj];
-            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.015f)); // タグをリセット
+            StartCoroutine(ResetTagAfterDelay(obj, originalTag, 0.033f)); // タグをリセット
             originalTags.Remove(obj); // 辞書から削除
         }
 
@@ -277,6 +286,14 @@ public class TouchObject : MonoBehaviour
         //Debug.Log($"{obj.name} reached final position: {obj.transform.position}");
     }
 
+    // アニメーションの終了を待つコルーチン
+    private IEnumerator WaitForThrowAnimation()
+    {
+        // アニメーションの長さに応じて待機する（例: 1秒）
+        yield return new WaitForSeconds(0.5f); // 必要に応じて調整
+        isThrowing = false; // 投げる処理が終わったらフラグをリセット
+    }
+
 
     // レイヤーを元に戻すコルーチン
     private IEnumerator ResetLayerAfterDelay(GameObject obj, int originalLayer, float delay)
@@ -296,7 +313,7 @@ public class TouchObject : MonoBehaviour
     private IEnumerator ResetKinematicAfterDelay(Rigidbody rb, float delay)
     {
         yield return new WaitForSeconds(delay);
-        rb.isKinematic = true;
+        //rb.isKinematic = true;
     }
 
     // オブジェクトがトリガーに入ったときの処理

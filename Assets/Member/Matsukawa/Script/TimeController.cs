@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class TimerController : MonoBehaviour
 {
-    public static float countdownMinutes = 0.3f;
+    public static float countdownMinutes = 2f;
     private float countdownSeconds;
 
     [SerializeField] private TextMeshProUGUI timeText;
@@ -37,16 +37,16 @@ public class TimerController : MonoBehaviour
         if (FadeManager.Instance.IsFading) return;
         if (countdownSeconds < 0)
         {
-            // 終了時間を0に設定する
+            // 経過時間を0に設定する
             timeText.text = ("00:00");
 
-            Debug.Log("aaa");            
+            Debug.Log("aaa");
 
-            // finishTextがFadeInする
+            // finishTextをフェードインさせる
             finishText.color = new Color(0, 0, 0, 0);
             finishText.DOFade(1.0f, (FadeText.fadeinDuration + 1.5f));
 
-            // finishの表示が完了した後、1.0秒後にリザルト画面に遷移
+            // フィニッシュの表示が完了した後、1.0秒後にリザルトシーンに遷移する
             DOVirtual.DelayedCall(0.5f, () => FadeManager.Instance.TransScene("MatukawaResult_Copy", 2.0f));
         }
     }

@@ -18,7 +18,7 @@ public class pearl_counter : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _hitCallback?.Invoke(gameObject);
-            Debug.Log("“–‚½‚Á‚½");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
     }
     void OnTriggerEnter(Collider other)

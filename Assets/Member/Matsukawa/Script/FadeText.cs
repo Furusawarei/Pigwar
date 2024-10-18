@@ -10,8 +10,8 @@ public class FadeText : MonoBehaviour
     [SerializeField] TextMeshProUGUI readyText;
     [SerializeField] TextMeshProUGUI startText;
 
-    public static float fadeinDuration = 0.5f;     // FadeInにかかる時間
-    public static float fadeoutDuration = 0.5f;    // FadeOutにかかる時間
+    public static float fadeinDuration = 0.7f;     // FadeInにかかる時間
+    public static float fadeoutDuration = 0.7f;    // FadeOutにかかる時間
 
     [SerializeField] GameObject startCanvas;       // カウントダウンに使うcanvas
     [SerializeField] CanvasGroup imageToFade;
@@ -54,12 +54,17 @@ public class FadeText : MonoBehaviour
         tx.DOFade(1.0f, inDuration).OnComplete(() =>
         {
             // フェードインが完了したらSEを再生
-            if (playSE) PlayStartSE();  // スタートのフェードイン完了時にのみSE再生
+            if (playSE)
+            {
+                PlayStartSE();
+                // SEが再生されたタイミングでstartCanvasを即座に非表示
+                DOVirtual.DelayedCall(1.5f, () => startCanvas.SetActive(false));
+            }
 
             // startとreadyの文字がFadeOut
-            DOVirtual.DelayedCall(2.0f, () => FadeOutTx(readyText, fadeoutDuration));
-            DOVirtual.DelayedCall(2.0f, () => FadeOutTx(startText, fadeoutDuration));
-            DOVirtual.DelayedCall(3.5f, () => imageToFade.DOFade(0.0f, fadeinDuration));
+            DOVirtual.DelayedCall(5.0f, () => FadeOutTx(readyText, fadeoutDuration));
+            DOVirtual.DelayedCall(5.0f, () => FadeOutTx(startText, fadeoutDuration));
+            DOVirtual.DelayedCall(5.5f, () => imageToFade.DOFade(0.0f, fadeinDuration));
 
             canMove = true;  // プレイヤーの動きを許可
         });

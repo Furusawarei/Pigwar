@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class DestroyBox : MonoBehaviour
 {
-
     private int HitCount = 0;
 
     /// <summary>
-    /// 衝突した時
+    /// 衝突時に呼び出されるメソッド
     /// </summary>
-    /// <param name="collision"></param>
+    /// <param name="collision">衝突したオブジェクトの情報</param>
     void OnCollisionEnter(Collision collision)
     {
         CP_ThrowableObject throwable = collision.gameObject.GetComponent<CP_ThrowableObject>();
@@ -24,14 +23,13 @@ public class DestroyBox : MonoBehaviour
                 {
                     Destroy(gameObject, 0.2f);
                 }
-
             }
         }
 
-        // // 衝突した相手にPlayerタグが付いているとき
+        // プレイヤーが持っているオブジェクト（Pearl）に衝突したとき
         // if (collision.gameObject.tag == "Pearl")
         // {
-        //     // 0.2秒後に消える
+        //     // 0.2秒後に自分自身を破壊する
         //     Destroy(gameObject, 0.2f);
         // }
     }

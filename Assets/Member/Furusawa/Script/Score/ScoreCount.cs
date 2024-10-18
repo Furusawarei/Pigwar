@@ -23,8 +23,8 @@ public class ScoreCount : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // トリガーに入ったオブジェクトのタグが "Pearl" の場合
-        if (other.CompareTag("Pearl"))
+        // トリガーに入ったオブジェクトのタグが "Pearl" または "HoldobjectTag" の場合
+        if (other.CompareTag("Pearl") || other.CompareTag("Holdobject"))
         {
             int scoreToAdd = 1; // 追加するスコア
 
@@ -33,6 +33,8 @@ public class ScoreCount : MonoBehaviour
 
             // タグを "Default" に変更
             other.gameObject.tag = "Default";
+
+            other.transform.parent = transform;
 
             // SEを再生
             if (pearlSE != null && audioSource != null)
