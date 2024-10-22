@@ -173,6 +173,11 @@ public class TouchObject : MonoBehaviour
         {
             throwable.isThrown = true;
         }
+        ScoreCount scoreCount = throwObj.GetComponent<ScoreCount>();
+        if(scoreCount != null)
+        {
+            scoreCount.isThrown = true;
+        }
 
         // 元のレイヤーとタグに戻す処理
         RestoreOriginalState(throwObj, rb);

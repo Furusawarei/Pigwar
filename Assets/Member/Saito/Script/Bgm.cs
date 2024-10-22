@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Bgm : MonoBehaviour
+public class BGMmanager : MonoBehaviour
 {
     #region
     private void Start()
