@@ -10,52 +10,47 @@ public class BGMmanager : MonoBehaviour
     {
         #region 
         if (SceneManager.GetActiveScene().name == "MainTitle")
-        { // Titleシーンでのみやりたい処理
+        { 
+            // タイトルシーンのみでBGMを再生
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainTitle);
-            Debug.Log("切り替えタイトル");
+            Debug.Log("タイトルシーンでBGM再生");
         }
         //else if (SceneManager.GetActiveScene().name == "MainScenes")
-        //{ //MainScenesのシーンでやりたい処理
+        //{
+        //    // MainScenesシーンでBGMを再生
         //    SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
         //}
         //else if (SceneManager.GetActiveScene().name == "Result")
         //{
+        //    // ResultシーンでBGMを再生
         //    SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
         //}
         #endregion
 
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
+
     private void OnActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
-<<<<<<< HEAD
-        Debug.Log("シーン移動確認");
-        if (SceneManager.GetActiveScene().name == "Title")
-        { // Titleシーンでのみやりたい処理
-            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Title);
-            Debug.Log("シーンタイトル");
-=======
-        Debug.Log("切り替え成功");
-        //if (SceneManager.GetActiveScene().name == "CP_Title")
+        Debug.Log("シーンが変更されました");
         if (SceneManager.GetActiveScene().name == "MainTitle")
-        { // Titleシーンでのみやりたい処理
+        { 
+            // タイトルシーンでBGMを再生
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainTitle);
-            Debug.Log("切り替えタイトル");
->>>>>>> e2c8d18453f0d3e59b9befb953a07ce28515cb62
+            Debug.Log("タイトルシーンでBGM再生");
         }
         else if (SceneManager.GetActiveScene().name == "MainScenes2")
-        { //MainScenesのシーンでやりたい処理
+        { 
+            // MainScenesシーンでBGMを再生
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.MainScenes);
-            Debug.Log("シーンゲーム");
+            Debug.Log("メインシーンでBGM再生");
         }
-
-        //else if (SceneManager.GetActiveScene().name == "CP_Result")
         else if (SceneManager.GetActiveScene().name == "MatukawaResult_Copy")
         {
+            // ResultシーンでBGMを再生
             SoundManager.Instance.PlayBGM(BGMSoundData.BGM.Result);
-            Debug.Log("シーンリザルト");
+            Debug.Log("リザルトシーンでBGM再生");
         }
     }
     #endregion
 }
-
